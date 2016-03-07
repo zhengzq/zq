@@ -33,6 +33,7 @@
     <Compile Include="Caching\ICacheManager.cs" />
     <Compile Include="Caching\NullCacheManager.cs" />
     <Compile Include="Common\Ensure.cs" />
+    <Compile Include="Domain\DomainException.cs" />
     <Compile Include="Domain\FakeRepository.cs" />
     <Compile Include="Domain\IVersionable.cs" />
     <Compile Include="Ioc\Component.cs" />
