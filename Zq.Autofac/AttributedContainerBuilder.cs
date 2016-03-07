@@ -44,21 +44,7 @@ namespace Zq.Autofac
 
             switch (attr.LifeTime)
             {
-                case ComponentScope.InstancePerDependency:
-                    registration.InstancePerDependency();
-                    break;
-
-                case ComponentScope.SingleInstance:
-                    registration.SingleInstance();
-                    break;
-
-                case ComponentScope.InstancePerLifetimeScope:
-                    registration.InstancePerLifetimeScope();
-                    break;
-
-                case ComponentScope.InstancePerMatchingLifetimeScope:
-                    registration.InstancePerMatchingLifetimeScope(attr.Tag);
-                    break;
+              
             }
         }
 
