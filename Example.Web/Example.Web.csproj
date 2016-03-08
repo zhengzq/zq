@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -693,6 +696,14 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Zq.Autofac\Zq.Autofac.csproj">
+      <Project>{AB29014A-B279-4DF8-89A3-2EAE4089642A}</Project>
+      <Name>Zq.Autofac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zq.Log4net\Zq.Log4net.csproj">
+      <Project>{3662D934-B958-44D8-B495-875F8477FDFC}</Project>
+      <Name>Zq.Log4net</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zq\Zq.csproj">
       <Project>{EEE306B5-087E-41F2-A5CC-6DFFAB7A068A}</Project>
       <Name>Zq</Name>

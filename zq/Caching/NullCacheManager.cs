@@ -3,6 +3,7 @@
     public partial class NullCacheManager : ICacheManager
     {
         public T Get<T>(string key, string region = "")
+            where T : class
         {
             return default(T);
         }

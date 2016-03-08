@@ -1,78 +1,84 @@
-﻿//using System;
-//using StackExchange.Redis;
-//using Zq.Caching;
-//using Zq.Ioc;
-//using Zq.Logging;
-//using Zq.Serializers;
+﻿using System;
+using StackExchange.Redis;
+using Zq.Caching;
+using Zq.Ioc;
+using Zq.Serializers;
 
-//namespace Zq.Redis
-//{
-//    public partial class RedisCacheManager : ICacheManager
-//    {
-//        private ConnectionMultiplexer _redis;
-//        private int _db;
-//        public RedisCacheManager(string redisConnString, int dbNum)
-//        {
-//            _redis = ConnectionMultiplexer.Connect(redisConnString);
-//            _db = dbNum;
-//        }
-
-//        public T Get<T>(string key, string region = "")
-//        {
-//            try
-//            {
-//                if (!string.IsNullOrWhiteSpace(region))
-//                    key = $"{region}_{key}";
-
-//                var db = _redis.GetDatabase(_db);
-//                return ObjectLocator.Resolve<IJsonSerializer>().Deserialize<T>(db.StringGet(key).ToString());
-//            }
-//            catch (Exception ex)
-//            {
-//                ObjectLocator.Resolve<ILogger>().Error(ex);
-//                return Activator.CreateInstance<T>();
-//            }
-//        }
-
-//        public void Set(string key, object data, int cacheTime, string region = "")
-//        {
-//            try
-//            {
-//                if (!string.IsNullOrWhiteSpace(region))
-//                    key = string.Format("{0}_{1}", region, key);
+namespace Zq.Redis
+{
+    public class RedisCacheManager : ICacheManager
+    {
+        private ConnectionMultiplexer _multiplexer;
+        protected ConnectionMultiplexer Multiplexer => _multiplexer
+                                                       ?? (_multiplexer = ConnectionMultiplexer.Connect("localhost"));
 
 
-//            }
-//            catch (Exception ex)
-//            {
-//                ObjectLocator.Resolve<ILogger>().Error(ex);
-//            }
-//        }
+        public T Get<T>(string key, string region = "")
+            where T : class
+        {
+            var db = GetDataBase();
+            byte[] value = db.StringGet(MergeKey(key, region));
+           
+            return ObjectLocator.Resolve<IBinarySerializer>().Deserialize<T>(value);
+        }
 
-//        public bool IsSet(string key, string region = "")
-//        {
-//            if (!string.IsNullOrWhiteSpace(region))
-//                key = string.Format("{0}_{1}", region, key);
+        public void Set(string key, object data, int cacheTime, string region = "")
+        {
+            var db = GetDataBase();
+            
+            var value = ObjectLocator.Resolve<IBinarySerializer>().Serialize(data);
+            if (cacheTime > 0)
+            {
+                db.StringSet(MergeKey(key, region), value, TimeSpan.FromMinutes(cacheTime));
+            }
+            else
+            {
+                db.StringSet(MergeKey(key, region), value);
+            }
+        }
 
-//            return base.HashSet()
-//        }
+        public bool IsSet(string key, string region = "")
+        {
+            var db = GetDataBase();
+            return db.KeyExists(MergeKey(key, region));
+        }
 
-//        public void Remove(string key, string region = "")
-//        {
-//            if (!string.IsNullOrWhiteSpace(region))
-//                key = $"{region}_{key}";
+        public void Remove(string key, string region = "")
+        {
+            try
+            {
+                var db = GetDataBase();
+                db.KeyDelete(MergeKey(key, region));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-//            base.DelKey(key);
-//        }
+        public void RemoveByPattern(string pattern)
+        {
+            
+        }
 
-//        public void RemoveByPattern(string pattern)
-//        {
+        public void Clear()
+        {
+            var endpoints = Multiplexer.GetEndPoints(true);
+            foreach (var endpoint in endpoints)
+            {
+                var server = Multiplexer.GetServer(endpoint);
+                server.FlushAllDatabases();
+            }
+        }
 
-//        }
+        private IDatabase GetDataBase()
+        {
+            return Multiplexer.GetDatabase();
+        }
 
-//        public void Clear()
-//        {
-//            RedisHelper.WriteClinet().FlushAll();
-//        }
-//    }
-//}
+        private string MergeKey(string key, string region)
+        {
+            return string.IsNullOrWhiteSpace(region) ? key : $"{key}_{region}";
+        }
+    }
+}
