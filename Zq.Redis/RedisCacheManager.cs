@@ -56,11 +56,6 @@ namespace Zq.Redis
             }
         }
 
-        public void RemoveByPattern(string pattern)
-        {
-            
-        }
-
         public void Clear()
         {
             var endpoints = Multiplexer.GetEndPoints(true);

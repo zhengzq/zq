@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Autofac;
 using Autofac.Core.Lifetime;
 using Zq.Ioc;
@@ -54,6 +55,11 @@ namespace Zq.Autofac
         public void RegisterComponents(Action<object> func)
         {
             func(_container);
+        }
+
+        public void RegisterComponentFromAssemblys(Assembly[] assemblies)
+        {
+            throw new NotImplementedException();
         }
 
         //private ILifetimeScope Scope()

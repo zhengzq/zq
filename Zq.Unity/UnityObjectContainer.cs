@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Zq.Ioc;
 
 namespace Zq.Autofac
@@ -35,6 +36,11 @@ namespace Zq.Autofac
         public void RegisterComponents(Action<object> func)
         {
             func(_container);
+        }
+
+        public void RegisterComponentFromAssemblys(Assembly[] assemblies)
+        {
+            throw new NotImplementedException();
         }
 
         public object Resovle(Type type)
