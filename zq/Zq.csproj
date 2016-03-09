@@ -38,6 +38,7 @@
     <Compile Include="Domain\IVersionable.cs" />
     <Compile Include="Ioc\ComponentAttribute.cs" />
     <Compile Include="Messages\IBus.cs" />
+    <Compile Include="Messages\IMessage.cs" />
     <Compile Include="Messages\IProducer.cs" />
     <Compile Include="Messages\IConsumer.cs" />
     <Compile Include="OperateResult.cs" />

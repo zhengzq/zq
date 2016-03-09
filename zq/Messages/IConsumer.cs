@@ -2,5 +2,6 @@
 {
     public interface IConsumer
     {
+        void Handle(IMessage message);
     }
 }
