@@ -33,6 +33,11 @@ namespace Zq.Unity
             return this;
         }
 
+        public void CustomRegisterComponents(Action<object> func)
+        {
+            throw new NotImplementedException();
+        }
+
         public void RegisterComponents(Action<object> func)
         {
             func(_container);

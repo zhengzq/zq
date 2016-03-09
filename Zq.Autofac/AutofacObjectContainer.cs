@@ -1,31 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Autofac;
+using Autofac.Builder;
 using Zq.Ioc;
 
 namespace Zq.Autofac
 {
     public class AutofacObjectContainer : IObjectContainer
     {
-        private readonly IContainer _container;
+        public IContainer Container { get; private set; }
         public AutofacObjectContainer()
         {
             var builder = new ContainerBuilder();
-            _container = builder.Build();
+            Container = builder.Build();
         }
         public Func<ILifetimeScope> CurrentHttpLifetimeScope;
         public T Resolve<T>()
         {
-            return _container.Resolve<T>();
+            return Container.Resolve<T>();
         }
         public IEnumerable<T> ResolveAll<T>()
         {
-            return _container.Resolve<IEnumerable<T>>();
+            return Container.Resolve<IEnumerable<T>>();
         }
         public object Resolve(Type type)
         {
-            return _container.Resolve(type);
+            return Container.Resolve(type);
         }
         public IObjectContainer Register<TImplement, TInterface>(LifeTime lifeTime = LifeTime.Single)
             where TInterface : class
@@ -33,6 +35,42 @@ namespace Zq.Autofac
         {
             var builder = new ContainerBuilder();
             var b = builder.RegisterType<TImplement>().As<TInterface>();
+            SwithLifeTime(lifeTime, b);
+            builder.Update(Container);
+            return this;
+        }
+
+        public void CustomRegisterComponents(Action<object> func)
+        {
+            func(Container);
+        }
+
+        public void RegisterComponentFromAssemblys(Assembly[] assemblies)
+        {
+            var builder = new ContainerBuilder();
+            foreach (var type in assemblies.Distinct().SelectMany(asm => asm.GetTypes()))
+            {
+                var attribute = FindComponentAttribute(type);
+                if (attribute != null)
+                {
+                    var b = builder.RegisterType(type).As(attribute.Type);
+                    SwithLifeTime(attribute.LifeTime, b);
+                }
+            }
+            builder.Update(Container);
+        }
+
+        public ComponentAttribute FindComponentAttribute(Type t)
+        {
+            var attrs = t.GetCustomAttributes(typeof(ComponentAttribute), false) as ComponentAttribute[];
+            if (attrs != null && attrs.Length == 0)
+                return null;
+            return attrs?[0];
+        }
+
+        private void SwithLifeTime(LifeTime lifeTime,
+            IRegistrationBuilder<object, ConcreteReflectionActivatorData, SingleRegistrationStyle> b)
+        {
             switch (lifeTime)
             {
                 case LifeTime.Single:
@@ -46,28 +84,6 @@ namespace Zq.Autofac
                     b.InstancePerLifetimeScope();
                     break;
             }
-            builder.Update(_container);
-            return this;
         }
-
-        public void RegisterComponents(Action<object> func)
-        {
-            func(_container);
-        }
-
-        public void RegisterComponentFromAssemblys(Assembly[] assemblies)
-        {
-            throw new NotImplementedException();
-        }
-
-        //private ILifetimeScope Scope()
-        //{
-        //    ILifetimeScope scope = null;
-        //    scope = CurrentHttpLifetimeScope != null
-        //        ? CurrentHttpLifetimeScope()
-        //        : this._container.BeginLifetimeScope(MatchingScopeLifetimeTags.RequestLifetimeScopeTag);
-
-        //    return scope;
-        //}
     }
 }

@@ -36,7 +36,7 @@
     <Compile Include="Domain\DomainException.cs" />
     <Compile Include="Domain\FakeRepository.cs" />
     <Compile Include="Domain\IVersionable.cs" />
-    <Compile Include="Ioc\Component.cs" />
+    <Compile Include="Ioc\ComponentAttribute.cs" />
     <Compile Include="Messages\IBus.cs" />
     <Compile Include="Messages\IProducer.cs" />
     <Compile Include="Messages\IConsumer.cs" />

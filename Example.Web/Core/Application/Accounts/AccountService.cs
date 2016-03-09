@@ -6,7 +6,7 @@ using Zq.Ioc;
 
 namespace Example.Web.Core.Application.Accounts
 {
-    [Component(typeof(IAccountService))]
+    [ComponentAttribute(typeof(IAccountService))]
     public class AccountService : IAccountService
     {
         private readonly IAccountRepository _accountRepository;

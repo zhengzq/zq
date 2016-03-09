@@ -10,7 +10,7 @@ using Zq.UnitOfWork;
 
 namespace Example.Web.Core.Application.Permissions
 {
-    [Component(typeof(IPermissionService))]
+    [ComponentAttribute(typeof(IPermissionService))]
     public class PermissionService : IPermissionService
     {
         private readonly IPermissionRepository _permissionRepository;
@@ -32,7 +32,7 @@ namespace Example.Web.Core.Application.Permissions
             try
             {
                 var existPermissions = _permissionRepository.GetAllPermission();
-                var a = Assembly.Load(assemblyName);
+                var a = System.Reflection.Assembly.Load(assemblyName);
                 var types = a.GetTypes();
                 var ts = types.Where(x => x.BaseType != null && x.BaseType.Name.Equals("AdminApiController"));
                 foreach (var type in ts)

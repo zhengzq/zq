@@ -6,7 +6,7 @@ using Zq.UnitOfWork;
 
 namespace Example.Web.Core.Application.Managers
 {
-    [Component(typeof(IManagerService))]
+    [ComponentAttribute(typeof(IManagerService))]
     public class ManagerService : IManagerService
     {
 

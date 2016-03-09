@@ -29,22 +29,22 @@ namespace Zq.Test
     {
         public static Configuration InitComponent(this Configuration configuration)
         {
-            configuration.Container.RegisterComponents(obj =>
-            {
-                var container = obj as IContainer;
-                var builder = new ContainerBuilder();
+            //configuration.Container.RegisterComponents(obj =>
+            //{
+            //    var container = obj as IContainer;
+            //    var builder = new ContainerBuilder();
 
 
-                //builder.RegisterAssemblyTypes(Assembly.Load("Zq.Test"))
-                //.Where(t =>
-                //{
-                //    var b = !t.IsInterface && (t.Name.EndsWith("Repository"));
-                //    return b;
-                //}).AsImplementedInterfaces().InstancePerDependency();
-                builder.RegisterGeneric(typeof(FakeRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+            //    //builder.RegisterAssemblyTypes(Assembly.Load("Zq.Test"))
+            //    //.Where(t =>
+            //    //{
+            //    //    var b = !t.IsInterface && (t.Name.EndsWith("Repository"));
+            //    //    return b;
+            //    //}).AsImplementedInterfaces().InstancePerDependency();
+            //    builder.RegisterGeneric(typeof(FakeRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
 
-                builder.Update(container);
-            });
+            //    builder.Update(container);
+            //});
             return configuration;
         }
     }

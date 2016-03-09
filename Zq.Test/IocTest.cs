@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zq.Autofac;
 using Zq.Ioc;
@@ -29,21 +30,56 @@ namespace Zq.Test
             Assert.AreEqual(true, hashCodes.GroupBy(x => x).Count() == 1);
         }
         [TestMethod]
-        public void Autofac_Hierarchical()
+        public void Autofac_Thread_Single()
         {
             var hashCodes = new List<int>();
 
             var container = new AutofacObjectContainer();
-            container.Register<Worker, IWorker>(LifeTime.Hierarchical)
-                .Register<Tool, ITool>();
+            container.Register<Worker, IWorker>();
 
-            for (var i = 0; i < 10; i++)
+            ThreadPool.QueueUserWorkItem(obj =>
             {
-                var w = container.Resolve<IWorker>();
-                hashCodes.Add(w.GetHashCode());
-            }
+                Debug.WriteLine(Thread.CurrentThread.ManagedThreadId);
+                for (var i = 0; i < 2; i++)
+                {
+                    var w = container.Resolve<IWorker>();
+                    hashCodes.Add(w.GetHashCode());
+                }
+            });
+
+            ThreadPool.QueueUserWorkItem(obj =>
+            {
+                Debug.WriteLine(Thread.CurrentThread.ManagedThreadId);
+                for (var i = 0; i < 2; i++)
+                {
+                    var w = container.Resolve<IWorker>();
+                    hashCodes.Add(w.GetHashCode());
+                }
+            });
+            Thread.Sleep(1000 * 5);
             Debug.WriteLine(string.Join("\n", hashCodes));
             Assert.AreEqual(true, hashCodes.GroupBy(x => x).Count() == 1);
+        }
+        [TestMethod]
+        public void Autofac_Hierarchical()
+        {
+            //var hashCodes = new List<int>();
+
+            var container = new AutofacObjectContainer();
+            container.Register<Worker, IWorker>(LifeTime.Hierarchical)
+                .Register<Employee, IEmployee>(LifeTime.Hierarchical)
+                .Register<Tool, ITool>(LifeTime.Single);
+
+            var scope = container.Scope();
+            var w = scope.Resolve<IWorker>();
+            var e = scope.Resolve<IEmployee>();
+
+            Debug.WriteLine("worker tool:{0}\nemployee tool:{1}", w.Tool.GetHashCode(), e.Tool.GetHashCode());
+
+            Assert.AreEqual(true, w.Tool.GetHashCode() == e.Tool.GetHashCode());
+
+            //Debug.WriteLine(string.Join("\n", hashCodes));
+            //Assert.AreEqual(true, hashCodes.GroupBy(x => x).Count() == 1);
         }
         [TestMethod]
         public void Autofac_Thread_Hierarchical()
@@ -52,25 +88,38 @@ namespace Zq.Test
 
             var container = new AutofacObjectContainer();
             container.Register<Worker, IWorker>(LifeTime.Hierarchical)
-              .Register<Tool, ITool>();
+              .Register<Employee, IEmployee>(LifeTime.Hierarchical)
+              .Register<Tool, ITool>(LifeTime.Hierarchical);
 
             ThreadPool.QueueUserWorkItem(obj =>
             {
-                for (var i = 0; i < 1; i++)
+                Debug.WriteLine(Thread.CurrentThread.ManagedThreadId);
+                var scope = container.Scope();
+                for (var i = 0; i < 2; i++)
                 {
-                    var w = container.Resolve<IWorker>();
+                    var w = scope.Resolve<IWorker>();
+                    var e = scope.Resolve<IEmployee>();
+
+                    Debug.WriteLine("worker tool:{0}\nemployee tool:{1}", w.Tool.GetHashCode(), e.Tool.GetHashCode());
+
                     hashCodes.Add(w.GetHashCode());
                 }
             });
 
             ThreadPool.QueueUserWorkItem(obj =>
             {
-                for (var i = 0; i < 1; i++)
+                Debug.WriteLine(Thread.CurrentThread.ManagedThreadId);
+                var scope = container.Scope();
+                for (var i = 0; i < 2; i++)
                 {
-                    var w = container.Resolve<IWorker>();
+                    var w = scope.Resolve<IWorker>();
+                    var e = scope.Resolve<IEmployee>();
+
+                    Debug.WriteLine("worker tool:{0}\nemployee tool:{1}", w.Tool.GetHashCode(), e.Tool.GetHashCode());
                     hashCodes.Add(w.GetHashCode());
                 }
             });
+
             Thread.Sleep(1000 * 5);
             Debug.WriteLine(string.Join("\n", hashCodes));
             Assert.AreEqual(true, hashCodes.GroupBy(x => x).Count() == 2);
@@ -81,8 +130,8 @@ namespace Zq.Test
             var hashCodes = new List<int>();
 
             var container = new UnityObjectContainer();
-                 container.Register<Worker, IWorker>()
-                 .Register<Tool, ITool>();
+            container.Register<Worker, IWorker>()
+            .Register<Tool, ITool>();
 
             for (var i = 0; i < 10; i++)
             {

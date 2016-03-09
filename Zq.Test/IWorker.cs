@@ -5,6 +5,7 @@ namespace Zq.Test
 {
     public interface IWorker
     {
+        ITool Tool { get; }
         int Number { get; set; }
         string Name { get; }
     }
@@ -17,16 +18,38 @@ namespace Zq.Test
 
         public Worker(ITool tool)
         {
-            this._tool = tool;
-            this.Name = "zzq";
+            this.Tool = tool;
+            this.Name = "Worker";
             this.Number = new Random().Next(1, 100000);
         }
 
-        private ITool _tool;
+        public ITool Tool { get; private set; }
         public int Number { get; set; }
         public string Name { get; set; }
     }
+    public interface IEmployee
+    {
+        ITool Tool { get; }
+        int Number { get; set; }
+        string Name { get; }
+    }
+    public class Employee : AggregateRoot<string>, IEmployee
+    {
+        public Employee() : this(new Tool())
+        {
+        }
 
+        public Employee(ITool tool)
+        {
+            this.Tool = tool;
+            this.Name = "Employee";
+            this.Number = new Random().Next(1, 100000);
+        }
+
+        public ITool Tool { get; private set; }
+        public int Number { get; set; }
+        public string Name { get; set; }
+    }
     public interface ITool
     {
     }

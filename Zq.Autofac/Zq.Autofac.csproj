@@ -37,7 +37,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttributedContainerBuilder.cs" />
+    <Compile Include="AutofacObjectContainerExtension.cs" />
     <Compile Include="ConfigurationExtension.cs" />
     <Compile Include="AutofacObjectContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

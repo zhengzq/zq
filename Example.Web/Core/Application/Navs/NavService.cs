@@ -9,7 +9,7 @@ using Zq.UnitOfWork;
 
 namespace Example.Web.Core.Application.Navs
 {
-    [Component(typeof(INavService))]
+    [ComponentAttribute(typeof(INavService))]
     public class NavService : INavService
     {
         private readonly INavigationRepository _navigationRepository;
@@ -127,7 +127,7 @@ namespace Example.Web.Core.Application.Navs
             try
             {
                 var existNavigations = _navigationRepository.GetAllNavigation();
-                var a = Assembly.Load(assemblyName);
+                var a = System.Reflection.Assembly.Load(assemblyName);
                 var types = a.GetTypes();
                 var ts = types.Where(x => x.BaseType != null && x.BaseType.Name.Equals("BaseApiController"));
                 foreach (var type in ts)

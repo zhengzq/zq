@@ -12,7 +12,8 @@ namespace Zq.Ioc
         IObjectContainer Register<TImplement, TInterface>(LifeTime lifeTime = LifeTime.Single)
             where TInterface : class
             where TImplement : class, TInterface;
-        void RegisterComponents(Action<object> func);
+        void CustomRegisterComponents(Action<object> func);
         void RegisterComponentFromAssemblys(Assembly[] assemblies);
+
     }
 }

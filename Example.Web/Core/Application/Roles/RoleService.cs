@@ -8,7 +8,7 @@ using Zq.UnitOfWork;
 
 namespace Example.Web.Core.Application.Roles
 {
-    [Component(typeof(IRoleService))]
+    [ComponentAttribute(typeof(IRoleService))]
     public class RoleService :  IRoleService
     {
         private readonly INavigationRepository _navigationRepository;
