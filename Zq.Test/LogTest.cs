@@ -14,11 +14,7 @@ namespace Zq.Test
         [TestMethod]
         public void Error()
         {
-            Configuration.Instance
-                   .UseAutofac()
-                   .UseLog4Net();
-
-            var logger = ObjectLocator.Resolve<ILogger>();
+            var logger = new Log4NetLogger();
             try
             {
                 logger.Info("INFO 信息");

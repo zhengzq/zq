@@ -57,6 +57,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CacheTest.cs" />
     <Compile Include="IocTest.cs" />
     <Compile Include="IWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,6 +72,10 @@
     <ProjectReference Include="..\Zq.Log4net\Zq.Log4net.csproj">
       <Project>{3662d934-b958-44d8-b495-875f8477fdfc}</Project>
       <Name>Zq.Log4net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zq.Redis\Zq.Redis.csproj">
+      <Project>{85E4596B-B96F-431D-8E90-9B9980F99AF9}</Project>
+      <Name>Zq.Redis</Name>
     </ProjectReference>
     <ProjectReference Include="..\Zq.Unity\Zq.Unity.csproj">
       <Project>{59b2943f-de64-41e7-897b-c11359b75470}</Project>

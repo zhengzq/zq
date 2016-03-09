@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography.X509Certificates;
 using StackExchange.Redis;
 using Zq.Caching;
 using Zq.Ioc;
@@ -8,9 +11,16 @@ namespace Zq.Redis
 {
     public class RedisCacheManager : ICacheManager
     {
+        public RedisCacheManager()
+        {
+            lock (this)
+            {
+                if (_multiplexer == null)
+                    _multiplexer = ConnectionMultiplexer.Connect("localhost");
+            }
+        }
+
         private ConnectionMultiplexer _multiplexer;
-        protected ConnectionMultiplexer Multiplexer => _multiplexer
-                                                       ?? (_multiplexer = ConnectionMultiplexer.Connect("localhost"));
 
 
         public T Get<T>(string key, string region = "")
@@ -18,22 +28,31 @@ namespace Zq.Redis
         {
             var db = GetDataBase();
             byte[] value = db.StringGet(MergeKey(key, region));
-           
-            return ObjectLocator.Resolve<IBinarySerializer>().Deserialize<T>(value);
+            using (var stream = new MemoryStream(value))
+            {
+                var formatter = new BinaryFormatter();
+                var data = formatter.Deserialize(stream);
+                return data as T;
+            }
         }
 
         public void Set(string key, object data, int cacheTime, string region = "")
         {
             var db = GetDataBase();
-            
-            var value = ObjectLocator.Resolve<IBinarySerializer>().Serialize(data);
-            if (cacheTime > 0)
+
+            using (var stream = new MemoryStream())
             {
-                db.StringSet(MergeKey(key, region), value, TimeSpan.FromMinutes(cacheTime));
-            }
-            else
-            {
-                db.StringSet(MergeKey(key, region), value);
+                var formatter = new BinaryFormatter();
+                formatter.Serialize(stream, data);
+                var value = stream.ToArray();
+                if (cacheTime > 0)
+                {
+                    db.StringSet(MergeKey(key, region), value, TimeSpan.FromMinutes(cacheTime));
+                }
+                else
+                {
+                    db.StringSet(MergeKey(key, region), value);
+                }
             }
         }
 
@@ -58,17 +77,22 @@ namespace Zq.Redis
 
         public void Clear()
         {
-            var endpoints = Multiplexer.GetEndPoints(true);
+            var endpoints = _multiplexer.GetEndPoints(true);
             foreach (var endpoint in endpoints)
             {
-                var server = Multiplexer.GetServer(endpoint);
+                var server = _multiplexer.GetServer(endpoint);
                 server.FlushAllDatabases();
             }
         }
 
         private IDatabase GetDataBase()
         {
-            return Multiplexer.GetDatabase();
+            if (!_multiplexer.IsConnected)
+            {
+                _multiplexer = ConnectionMultiplexer.Connect("localhost");
+            }
+
+            return _multiplexer.GetDatabase();
         }
 
         private string MergeKey(string key, string region)

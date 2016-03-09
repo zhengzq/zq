@@ -16,7 +16,7 @@ namespace Zq.Ioc
         {
             EnsureContainer();
 
-            return _container.Resovle<T>();
+            return _container.Resolve<T>();
         }
 
         private static void EnsureContainer()

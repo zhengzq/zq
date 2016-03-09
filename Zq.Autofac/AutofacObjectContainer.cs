@@ -17,15 +17,15 @@ namespace Zq.Autofac
             _container = builder.Build();
         }
         public Func<ILifetimeScope> CurrentHttpLifetimeScope;
-        public T Resovle<T>()
+        public T Resolve<T>()
         {
             return _container.Resolve<T>();
         }
-        public IEnumerable<T> ResovleAll<T>()
+        public IEnumerable<T> ResolveAll<T>()
         {
             return _container.Resolve<IEnumerable<T>>();
         }
-        public object Resovle(Type type)
+        public object Resolve(Type type)
         {
             return _container.Resolve(type);
         }

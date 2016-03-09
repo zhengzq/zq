@@ -6,9 +6,9 @@ namespace Zq.Ioc
 {
     public interface IObjectContainer
     {
-        T Resovle<T>();
-        IEnumerable<T> ResovleAll<T>();
-        object Resovle(Type type);
+        T Resolve<T>();
+        IEnumerable<T> ResolveAll<T>();
+        object Resolve(Type type);
         IObjectContainer Register<TImplement, TInterface>(LifeTime lifeTime = LifeTime.Single)
             where TInterface : class
             where TImplement : class, TInterface;
