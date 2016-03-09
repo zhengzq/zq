@@ -1,5 +1,4 @@
-﻿
-namespace Example.Web.Core.Application.Navs
+﻿namespace Example.Web.Core.Application.Navs
 {
     public class CreateNavCommand
     {

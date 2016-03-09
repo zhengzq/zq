@@ -1,5 +1,4 @@
-﻿using Zq.Autofac;
-using Zq.Configurations;
+﻿using Zq.Configurations;
 using Zq.Ioc;
 
 namespace Zq.Unity

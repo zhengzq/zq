@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zq.Autofac;
-using Zq.Configurations;
 using Zq.Ioc;
 using Zq.Unity;
 

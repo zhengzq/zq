@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
-using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Zq.Autofac;
-using Zq.Caching;
-using Zq.Configurations;
-using Zq.Ioc;
 using Zq.Redis;
-using Zq.Unity;
 
 namespace Zq.Test
 {

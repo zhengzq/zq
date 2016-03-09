@@ -1,5 +1,4 @@
-﻿
-namespace Zq.Domain
+﻿namespace Zq.Domain
 {
     public class ValueObject
     {

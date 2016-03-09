@@ -1,12 +1,12 @@
-﻿
-
-using Example.Web.Core.Domain.Managers;
+﻿using Example.Web.Core.Domain.Managers;
 using Zq;
 using Zq.Domain;
+using Zq.Ioc;
 using Zq.UnitOfWork;
 
 namespace Example.Web.Core.Application.Managers
 {
+    [Component(typeof(IManagerService))]
     public class ManagerService : IManagerService
     {
 
@@ -18,7 +18,6 @@ namespace Example.Web.Core.Application.Managers
             _unitWork = unitWork;
             _managerRepository = managerRepository;
         }
-
 
         public OperateResult Update(UpdateManagerCommand command)
         {

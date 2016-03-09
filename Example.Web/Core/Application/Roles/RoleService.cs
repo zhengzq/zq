@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Example.Web.Core.Domain.Navigations;
+﻿using Example.Web.Core.Domain.Navigations;
 using Example.Web.Core.Domain.Permissions;
 using Example.Web.Core.Domain.Roles;
 using Zq;
 using Zq.Domain;
+using Zq.Ioc;
 using Zq.UnitOfWork;
 
 namespace Example.Web.Core.Application.Roles
 {
+    [Component(typeof(IRoleService))]
     public class RoleService :  IRoleService
     {
         private readonly INavigationRepository _navigationRepository;
@@ -27,7 +25,6 @@ namespace Example.Web.Core.Application.Roles
             _roleRepository = roleRepository;
             _unitWork = unitWork;
         }
-
 
         public OperateResult Update(UpdateRoleCommand command)
         {

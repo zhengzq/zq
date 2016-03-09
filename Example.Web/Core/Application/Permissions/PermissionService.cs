@@ -1,15 +1,16 @@
-﻿ 
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using Example.Web.Core.Domain.Managers;
 using Example.Web.Core.Domain.Permissions;
 using Example.Web.Core.Domain.Roles;
 using Zq;
 using Zq.Domain;
+using Zq.Ioc;
 using Zq.UnitOfWork;
 
 namespace Example.Web.Core.Application.Permissions
 {
+    [Component(typeof(IPermissionService))]
     public class PermissionService : IPermissionService
     {
         private readonly IPermissionRepository _permissionRepository;

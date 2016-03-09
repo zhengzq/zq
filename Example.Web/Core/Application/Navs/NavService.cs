@@ -4,10 +4,12 @@ using Example.Web.Core.Domain.Navigations;
 using Example.Web.Core.Domain.Permissions;
 using Zq;
 using Zq.Domain;
+using Zq.Ioc;
 using Zq.UnitOfWork;
 
 namespace Example.Web.Core.Application.Navs
 {
+    [Component(typeof(INavService))]
     public class NavService : INavService
     {
         private readonly INavigationRepository _navigationRepository;
@@ -119,7 +121,6 @@ namespace Example.Web.Core.Application.Navs
                 return new OperateResult(ResultState.Error, dex.Message, dex.Code);
             }
         }
-
 
         public OperateResult InitNavigationFromAssembly(string assemblyName)
         {

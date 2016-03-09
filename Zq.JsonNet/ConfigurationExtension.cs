@@ -1,6 +1,4 @@
-﻿using System;
-using Zq.Configurations;
-using Zq.Ioc;
+﻿using Zq.Configurations;
 using Zq.Serializers;
 
 namespace Zq.JsonNet

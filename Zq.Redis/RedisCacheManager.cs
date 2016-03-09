@@ -1,11 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Security.Cryptography.X509Certificates;
 using StackExchange.Redis;
 using Zq.Caching;
-using Zq.Ioc;
-using Zq.Serializers;
 
 namespace Zq.Redis
 {
@@ -21,7 +18,6 @@ namespace Zq.Redis
         }
 
         private ConnectionMultiplexer _multiplexer;
-
 
         public T Get<T>(string key, string region = "")
             where T : class

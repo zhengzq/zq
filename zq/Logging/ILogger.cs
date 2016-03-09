@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Zq.Logging
 {
     public interface ILogger

@@ -1,5 +1,4 @@
 ﻿using Zq;
-using Zq.Ioc;
 
 namespace Example.Web.Core.Application.Accounts
 {

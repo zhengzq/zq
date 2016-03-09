@@ -1,5 +1,4 @@
-﻿
-using Zq.Serializers;
+﻿using Zq.Serializers;
 
 namespace Zq.JsonNet
 {

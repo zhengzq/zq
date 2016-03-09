@@ -1,9 +1,7 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Autofac;
-using Autofac.Core.Lifetime;
 using Zq.Ioc;
 
 namespace Zq.Autofac

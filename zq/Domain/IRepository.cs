@@ -1,5 +1,4 @@
-﻿
-namespace Zq.Domain
+﻿namespace Zq.Domain
 {
     public partial interface IRepository<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot, new()

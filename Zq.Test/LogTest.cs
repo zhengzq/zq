@@ -1,10 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Zq.Autofac;
-using Zq.Configurations;
-using Zq.Ioc;
 using Zq.Log4net;
-using Zq.Logging;
 
 namespace Zq.Test
 {

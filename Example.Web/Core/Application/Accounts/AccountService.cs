@@ -30,6 +30,7 @@ namespace Example.Web.Core.Application.Accounts
             }
 
         }
+
         public bool ValidateLoginNameWithPassword(string loginName, string password)
         {
             return _accountRepository.Validate(loginName, password);

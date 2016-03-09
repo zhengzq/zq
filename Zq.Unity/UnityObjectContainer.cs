@@ -1,10 +1,10 @@
-﻿using Microsoft.Practices.Unity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Microsoft.Practices.Unity;
 using Zq.Ioc;
 
-namespace Zq.Autofac
+namespace Zq.Unity
 {
     public class UnityObjectContainer : IObjectContainer
     {

@@ -1,5 +1,4 @@
-﻿
-namespace Zq.UnitOfWork
+﻿namespace Zq.UnitOfWork
 {
     public interface IDbContext
     {

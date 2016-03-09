@@ -1,5 +1,4 @@
-﻿
-namespace Zq
+﻿namespace Zq
 {
     public interface IQueryService
     {
