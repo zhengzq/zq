@@ -43,7 +43,7 @@ namespace Zq.Test
                     var i = queue.Dequeue();
                     cache.Set(i.ToString(), i, 10);
                     thread1HandleCount++;
-                }
+                } 
             });
             ThreadPool.QueueUserWorkItem(x =>
             {
