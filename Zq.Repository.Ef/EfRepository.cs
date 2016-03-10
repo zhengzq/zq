@@ -26,7 +26,7 @@ namespace Zq.Repository.Ef
         }
         public EfRepository(EfDbContext context)
         {
-            this.Context = context;
+            this.Context = context; 
         }
         public virtual T Get(object id)
         {
