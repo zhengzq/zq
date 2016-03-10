@@ -11,7 +11,7 @@ namespace Zq.Test
     {
         [TestMethod]
         public void Redis_Test()
-        {
+        { 
             var watch = new Stopwatch();
             watch.Start();
             var cache = new RedisCacheManager();
