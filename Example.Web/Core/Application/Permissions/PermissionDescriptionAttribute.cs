@@ -5,24 +5,24 @@ namespace Example.Web.Core.Application.Permissions
 {
     public class PermissionDescriptionAttribute :Attribute
     {
-        public PermissionDescriptionAttribute(string code
+        public PermissionDescriptionAttribute(string permissionId
             ,string name
-            , string navSystemName
+            , string navigationId
             , PermissionType type = PermissionType.功能
             , bool isEnable = true
             , int order = 0)
         {
-            this.Code = code;
+            this.PermissionId = permissionId;
             this.Name = name;
-            this.NavSystemName = navSystemName;
+            this.NavigationId = navigationId;
             this.Type = type;
             this.IsEnable = isEnable;
             this.Order = order;
         }
 
-        public string Code { get; set; }
+        public string PermissionId { get; set; }
         public string Name { get; set; }
-        public string NavSystemName { get; set; }
+        public string NavigationId { get; set; }
         public int Order { get; set; }
         public bool IsEnable { get; set; }
         public PermissionType Type { get; set; }

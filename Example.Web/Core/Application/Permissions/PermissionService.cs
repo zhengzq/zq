@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Example.Web.Core.Domain.Managers;
 using Example.Web.Core.Domain.Permissions;
@@ -10,74 +11,85 @@ using Zq.UnitOfWork;
 
 namespace Example.Web.Core.Application.Permissions
 {
-    [ComponentAttribute(typeof(IPermissionService))]
+    [Component(typeof(IPermissionService), LifeTime.Hierarchical)]
     public class PermissionService : IPermissionService
     {
         private readonly IPermissionRepository _permissionRepository;
-        private readonly IManagerRepository _managerRepository;
-        private readonly IRoleRepository _roleRepository;
         private readonly IUnitOfWork _unitWork;
+
         public PermissionService(IPermissionRepository permissionRepository
-            , IUnitOfWork unitWork, IManagerRepository managerRepository
-            , IRoleRepository roleRepository)
+            , IUnitOfWork unitWork)
         {
             _permissionRepository = permissionRepository;
             _unitWork = unitWork;
-            _managerRepository = managerRepository;
-            _roleRepository = roleRepository;
         }
-
-        public OperateResult InitPermissionFromAssembly(string assemblyName)
+        public void InitFunctionPermissionFromAssembly(string assemblyName)
         {
-            try
+            var existPermissions = _permissionRepository.GetAllPermission();
+            var a = Assembly.Load(assemblyName);
+            var types = a.GetTypes();
+            var ts = types.Where(x => x.BaseType != null && x.BaseType.Name.Equals("AdminApiController"));
+            foreach (var type in ts)
             {
-                var existPermissions = _permissionRepository.GetAllPermission();
-                var a = System.Reflection.Assembly.Load(assemblyName);
-                var types = a.GetTypes();
-                var ts = types.Where(x => x.BaseType != null && x.BaseType.Name.Equals("AdminApiController"));
-                foreach (var type in ts)
+                var methods = type.GetMethods(BindingFlags.Instance | BindingFlags.Public);
+                foreach (var method in methods)
                 {
-                    var methods = type.GetMethods(BindingFlags.Instance | BindingFlags.Public);
-                    foreach (var method in methods)
+                    var attrs = method.GetCustomAttributes(typeof(PermissionDescriptionAttribute));
+                    foreach (var attribute in attrs)
                     {
-                        var attrs = method.GetCustomAttributes(typeof(PermissionDescriptionAttribute));
-                        foreach (var attribute in attrs)
-                        {
-                            var r = attribute as PermissionDescriptionAttribute;
-                            if (r == null)
-                                break;
-                            if (string.IsNullOrWhiteSpace(r.Code))
-                                break;
+                        var r = attribute as PermissionDescriptionAttribute;
+                        if (r == null)
+                            break;
+                        if (string.IsNullOrWhiteSpace(r.PermissionId))
+                            break;
 
-                            if (existPermissions.Exists(x => x.Code == r.Code))
-                                break;
+                        if (existPermissions.Exists(x => x.Id == r.PermissionId))
+                            break;
 
-                            var permission = new Permission(r.Code
-                                , r.Name
-                                , r.NavSystemName
-                                , r.Order
-                                , r.IsEnable
-                                , r.Type);
+                        var permission = new Permission(r.PermissionId
+                            , r.Name
+                            , r.NavigationId
+                            , r.Order
+                            , r.IsEnable
+                            , r.Type);
 
-                            _permissionRepository.Add(permission);
-                        }
+                        _permissionRepository.Add(permission);
                     }
                 }
-                _unitWork.Commit();
-                return new OperateResult(ResultState.Success);
             }
-            catch (DomainException dex)
-            {
-                return new OperateResult(ResultState.Error, dex.Message, dex.Code);
-            }
+            _unitWork.Commit();
         }
 
-        public bool Authorize(string code, int managerId)
+        public void InitNavigationPermission(List<string> navigationIds)
         {
-            var manager = _managerRepository.Get(managerId);
-            if (manager.IsSys) return true;
-            var role = _roleRepository.Get(manager.RoleId);
-            return role.RolePermissions.Exists(x => x.PermissionCode == code);
+            var existPermissions = _permissionRepository.GetAllPermission(); 
+
+            foreach (var navigationId in navigationIds)
+            {
+                var id = $"{navigationId}View";
+
+                if (existPermissions.Exists(x => x.Id == id))
+                    continue;
+
+                var permission = new Permission()
+                {
+                    Id = id,
+                    Name = "查看",
+                    NavigationId = navigationId,
+                    Order = 0,
+                    Type = PermissionType.导航
+                };
+
+                _permissionRepository.Add(permission);
+            }
+            _unitWork.Commit();
+        }
+
+     
+
+        public Permission GetPermissionById(string permissionId)
+        {
+           return _permissionRepository.Get(permissionId);
         }
     }
 }

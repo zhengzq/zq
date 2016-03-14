@@ -38,7 +38,7 @@ namespace Zq.Repository.Ef.Interceptors
                 Trace.TraceInformation("Error executing command: {0}", command.CommandText);
                 if (LogEntityStatsToDatabase)
                 {
-                    _logger.Error($"Error executing command: {command.CommandText}", interceptionContext.Exception);
+                    _logger.Log(LogLevel.Error, $"Error executing command: {command.CommandText}", interceptionContext.Exception);
                 }
             }
             else
@@ -46,7 +46,7 @@ namespace Zq.Repository.Ef.Interceptors
                 Trace.TraceInformation("ScalarExecuted: {0}, Elapsed: {1}", command.CommandText, _stopwatch.Elapsed);
                 if (LogEntityStatsToDatabase)
                 {
-                    _logger.Debug("ScalarExecuted.  Elapsed: {0}, Command: {1}", _stopwatch.Elapsed, command.CommandText);
+                    _logger.Log(LogLevel.Error, "ScalarExecuted.  Elapsed: {0}, Command: {1}", _stopwatch.Elapsed, command.CommandText);
                 }
             }
             base.ScalarExecuted(command, interceptionContext);
@@ -70,7 +70,7 @@ namespace Zq.Repository.Ef.Interceptors
                 Trace.TraceInformation("Error executing command: {0}", command.CommandText);
                 if (LogEntityStatsToDatabase)
                 {
-                    _logger.Error(interceptionContext.Exception, "Error executing command: {0}", command.CommandText);
+                    _logger.Log(LogLevel.Error, interceptionContext.Exception, "Error executing command: {0}", command.CommandText);
                 }
             }
             else
@@ -78,7 +78,7 @@ namespace Zq.Repository.Ef.Interceptors
                 Trace.TraceInformation("NonQueryExecuted: {0}, Elapsed: {1}", command.CommandText, _stopwatch.Elapsed);
                 if (LogEntityStatsToDatabase)
                 {
-                    _logger.Debug("NonQueryExecuted.  Elapsed: {0}, Command: {1}", _stopwatch.Elapsed, command.CommandText);
+                    _logger.Log(LogLevel.Error, "NonQueryExecuted.  Elapsed: {0}, Command: {1}", _stopwatch.Elapsed, command.CommandText);
                 }
             }
             base.NonQueryExecuted(command, interceptionContext);
@@ -102,7 +102,7 @@ namespace Zq.Repository.Ef.Interceptors
                 Trace.TraceInformation("Error executing command: {0}", command.CommandText);
                 if (LogEntityStatsToDatabase)
                 {
-                    _logger.Error(interceptionContext.Exception, "Error executing command: {0}", command.CommandText);
+                    _logger.Log(LogLevel.Error, interceptionContext.Exception, "Error executing command: {0}", command.CommandText);
                 }
             }
             else
@@ -110,7 +110,7 @@ namespace Zq.Repository.Ef.Interceptors
                 Trace.TraceInformation("ReaderExecuted: {0}, Elapsed: {1}", command.CommandText, _stopwatch.Elapsed);
                 if (LogEntityStatsToDatabase)
                 {
-                    _logger.Debug("ReaderExecuted.  Elapsed: {0}, Command: {1}", _stopwatch.Elapsed, command.CommandText);
+                    _logger.Log(LogLevel.Error, "ReaderExecuted.  Elapsed: {0}, Command: {1}", _stopwatch.Elapsed, command.CommandText);
                 }
             }
             base.ReaderExecuted(command, interceptionContext);

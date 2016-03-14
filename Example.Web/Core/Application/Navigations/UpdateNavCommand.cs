@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Example.Web.Core.Application.Navs
+namespace Example.Web.Core.Application.Navigations
 {
     public class UpdateNavCommand
-    {
-        public int Id { get; set; }
-        public string SystemName { get; set; }
+    {      
+        public string NavigationId { get; set; }
         public string FullName { get; set; }
         public string Name { get; set; }
-        public int ParentId { get; set; }
+        public string ParentId { get; set; }
         public int Order { get; set; }
         public bool IsHide { get; set; }
         public string Icon { get; set; }

@@ -37,6 +37,7 @@
     <Compile Include="Domain\FakeRepository.cs" />
     <Compile Include="Domain\IVersionable.cs" />
     <Compile Include="Ioc\ComponentAttribute.cs" />
+    <Compile Include="Logging\LogLevel.cs" />
     <Compile Include="Messages\IBus.cs" />
     <Compile Include="Messages\IMessage.cs" />
     <Compile Include="Messages\IProducer.cs" />

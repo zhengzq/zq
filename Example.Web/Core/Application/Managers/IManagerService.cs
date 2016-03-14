@@ -1,4 +1,5 @@
-﻿using Zq;
+﻿using System.Collections.Generic;
+using Zq;
 
 namespace Example.Web.Core.Application.Managers
 {
@@ -6,8 +7,10 @@ namespace Example.Web.Core.Application.Managers
     {
         OperateResult Update(UpdateManagerCommand command);
         OperateResult Create(CreateManagerCommand command);
-        OperateResult Delete(DeleteManagerCommand command);
+        OperateResult Delete(List<int> managerIds);
         OperateResult UpdatePassword(UpdatePasswordCommand command);
         bool CheckLoginName(string loginName);
+        OperateResult GetManagerByLoginName(string loginName);
+        bool ValidateLoginNameWithPassword(string loginName, string password);
     }
 }

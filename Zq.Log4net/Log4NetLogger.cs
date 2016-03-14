@@ -9,14 +9,11 @@ using Zq.Logging;
 
 namespace Zq.Log4net
 {
+
     public class Log4NetLogger : ILogger
     {
-        private readonly ILog _logdebug;
-        private readonly ILog _logwarn;
-        private readonly ILog _loginfo;
-        private readonly ILog _logerror;
-        private readonly ILog _logfatal;
-        public Log4NetLogger(string configFile = "log4net.config")
+        private readonly ILog _logger;
+        public Log4NetLogger(string name= "logerror", string configFile = "log4net.config")
         {
             var file = new FileInfo(configFile);
             if (!file.Exists)
@@ -32,200 +29,122 @@ namespace Zq.Log4net
             {
                 BasicConfigurator.Configure(new TraceAppender { Layout = new PatternLayout() });
             }
-
-            _logdebug = LogManager.GetLogger("logdebug");
-            _logwarn = LogManager.GetLogger("logwarn");
-            _loginfo = LogManager.GetLogger("loginfo");
-            _logerror = LogManager.GetLogger("logerror");
-            _logfatal = LogManager.GetLogger("logfatal");
-        }
-        public void Debug(string message)
-        {
-            EnsureLogEnabled(_logdebug, "_logdebug.IsDebugEnabled is false");
-
-            _logdebug.Debug(message);
+            _logger = LogManager.GetLogger(name);
         }
 
-        public void Debug(string format, params object[] args)
+        public void Log(LogLevel level, string message)
         {
-            EnsureLogEnabled(_logdebug, "_logdebug.IsDebugEnabled is false");
-
-            _logdebug.Debug(string.Format(format, args));
-        }
-
-        public void Debug(Exception exception)
-        {
-            EnsureLogEnabled(_logdebug, "_logdebug.IsDebugEnabled is false");
-          
-            _logdebug.Debug(exception.Message, exception);
-        }
-
-        private void EnsureLogEnabled(ILog log, string message)
-        {
-            if (!log.IsDebugEnabled)
-                throw new Exception(message);
-        }
-
-        public void Debug(Exception exception, string message)
-        {
-            EnsureLogEnabled(_logdebug, "_logdebug.IsDebugEnabled is false");
-        }
-
-        public void Debug(Exception exception, string format, params object[] args)
-        {
-            EnsureLogEnabled(_logdebug, "_logdebug.IsDebugEnabled is false");
-        }
-
-        public void Error(string format, params object[] args)
-        {
-            EnsureLogEnabled(_logerror, "_logerror.IsDebugEnabled is false");
-        }
-
-        public void Error(Exception exception)
-        {
-            EnsureLogEnabled(_logerror, "_logerror.IsDebugEnabled is false");
-
-
-            if (!_logerror.IsErrorEnabled) return;
-
-            var info = "【附加信息】:";
-
-            info = info + "<br/>具体信息：" + ErrorDetails(exception);
-            _logerror.Error(info);
-        }
-
-        public void Error(Exception exception, string message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Error(Exception exception, string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        private string ErrorDetails(Exception ex)
-        {
-            var sb = new StringBuilder();
-            var count = 0;
-            var appString = "";
-            while (ex != null)
+            switch (level)
             {
-                if (count > 0)
-                {
-                    appString += "　";
-                }
-                sb.AppendLine(appString + " <br>异常消息：" + ex.Message);
-                sb.AppendLine(appString + " <br>异常类型：" + ex.GetType().FullName);
-                sb.AppendLine(appString + " <br>异常方法：" + ex.TargetSite?.Name);
-                sb.AppendLine(appString + " <br>异常源：" + ex.Source);
-                if (ex.StackTrace != null)
-                {
-                    sb.AppendLine(appString + "<br>异常堆栈：" + ex.StackTrace);
-                }
-                if (ex.InnerException != null)
-                {
-                    sb.AppendLine(appString + "<br>内部异常：");
-                    count++;
-                }
-                ex = ex.InnerException;
+                case LogLevel.Debug:
+                    _logger.Debug(message);
+                    break;
+                case LogLevel.Warn:
+                    _logger.Warn(message);
+                    break;
+                case LogLevel.Fatal:
+                    _logger.Fatal(message);
+                    break;
+                case LogLevel.Error:
+                    _logger.Error(message);
+                    break;
+                case LogLevel.Info:
+                default:
+                    _logger.Info(message);
+                    break;
             }
-            return sb.ToString().Replace("位置:", "<br>位置");
-        }
-        public void Error(string msg)
-        {
-            if (!_logerror.IsErrorEnabled) return;
-
-            var info = "【附加信息】:";
-            info = info + "<br/>具体信息：" + msg;
-            _logerror.Error(info);
         }
 
-        public void Fatal(Exception exception, string format, params object[] args)
+        public void Log(LogLevel level, string format, params object[] args)
         {
-            throw new NotImplementedException();
+            switch (level)
+            {
+                case LogLevel.Debug:
+                    _logger.Debug(string.Format(format, args));
+                    break;
+                case LogLevel.Warn:
+                    _logger.Warn(string.Format(format, args));
+                    break;
+                case LogLevel.Fatal:
+                    _logger.Fatal(string.Format(format, args));
+                    break;
+                case LogLevel.Error:
+                    _logger.Error(string.Format(format, args));
+                    break;
+                case LogLevel.Info:
+                default:
+                    _logger.Info(string.Format(format, args));
+                    break;
+            }
         }
 
-        public void Info(string msg)
+        public void Log(LogLevel level, Exception exception)
         {
-            if (!_loginfo.IsInfoEnabled) return;
-
-            var info = "【附加信息】:";
-            info = info + "<br/>具体信息：" + msg;
-            _loginfo.Info(info);
+            switch (level)
+            {
+                case LogLevel.Debug:
+                    _logger.Debug(exception);
+                    break;
+                case LogLevel.Warn:
+                    _logger.Warn(exception);
+                    break;
+                case LogLevel.Fatal:
+                    _logger.Fatal(exception);
+                    break;
+                case LogLevel.Error:
+                    _logger.Error(exception);
+                    break;
+                case LogLevel.Info:
+                default:
+                    _logger.Info(exception);
+                    break;
+            }
         }
 
-        public void Info(string format, params object[] args)
+        public void Log(LogLevel level, Exception exception, string message)
         {
-            throw new NotImplementedException();
+            switch (level)
+            {
+                case LogLevel.Debug:
+                    _logger.Debug(message, exception);
+                    break;
+                case LogLevel.Warn:
+                    _logger.Warn(message, exception);
+                    break;
+                case LogLevel.Fatal:
+                    _logger.Fatal(message, exception);
+                    break;
+                case LogLevel.Error:
+                    _logger.Error(message, exception);
+                    break;
+                case LogLevel.Info:
+                default:
+                    _logger.Info(message, exception);
+                    break;
+            }
         }
 
-        public void Info(Exception exception)
+        public void Log(LogLevel level, Exception exception, string format, params object[] args)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Info(Exception exception, string message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Info(Exception exception, string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Fatal(string msg)
-        {
-            if (!_logfatal.IsFatalEnabled) return;
-
-            var info = "【附加信息】:";
-            info = info + "<br/>具体信息：" + msg;
-            _logfatal.Fatal(info);
-        }
-
-        public void Fatal(string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Fatal(Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Fatal(Exception exception, string message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Warn(string msg)
-        {
-            if (!_logwarn.IsWarnEnabled) return;
-
-            var info = "【附加信息】:";
-            info = info + "<br/>具体信息：" + msg;
-            _logwarn.Warn(info);
-        }
-
-        public void Warn(string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Warn(Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Warn(Exception exception, string message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Warn(Exception exception, string format, params object[] args)
-        {
-            throw new NotImplementedException();
+            switch (level)
+            {
+                case LogLevel.Debug:
+                    _logger.Debug(string.Format(format, args), exception);
+                    break;
+                case LogLevel.Warn:
+                    _logger.Warn(string.Format(format, args), exception);
+                    break;
+                case LogLevel.Fatal:
+                    _logger.Fatal(string.Format(format, args), exception);
+                    break;
+                case LogLevel.Error:
+                    _logger.Error(string.Format(format, args), exception);
+                    break;
+                case LogLevel.Info:
+                default:
+                    _logger.Info(string.Format(format, args), exception);
+                    break;
+            }
         }
     }
 }

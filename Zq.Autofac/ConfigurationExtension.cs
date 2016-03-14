@@ -16,7 +16,7 @@ namespace Zq.Autofac
 
             configuration.Container = container;
 
-            ObjectLocator.Create(container); 
+            ObjectLocator.SetContainer(container); 
 
             return configuration;
         }

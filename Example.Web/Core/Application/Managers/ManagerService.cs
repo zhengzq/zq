@@ -1,4 +1,5 @@
-﻿using Example.Web.Core.Domain.Managers;
+﻿using System.Collections.Generic;
+using Example.Web.Core.Domain.Managers;
 using Zq;
 using Zq.Domain;
 using Zq.Ioc;
@@ -6,7 +7,7 @@ using Zq.UnitOfWork;
 
 namespace Example.Web.Core.Application.Managers
 {
-    [ComponentAttribute(typeof(IManagerService))]
+    [Component(typeof(IManagerService), LifeTime.Hierarchical)]
     public class ManagerService : IManagerService
     {
 
@@ -35,7 +36,9 @@ namespace Example.Web.Core.Application.Managers
                 data.SetIsEnable(command.IsEnable);
 
                 _managerRepository.Update(data);
+
                 _unitWork.Commit();
+
                 return new OperateResult(ResultState.Success);
             }
             catch (DomainException dex)
@@ -65,7 +68,9 @@ namespace Example.Web.Core.Application.Managers
                 data.SetIsEnable(command.IsEnable);
 
                 _managerRepository.Add(data);
+
                 _unitWork.Commit();
+
                 return new OperateResult(ResultState.Success);
             }
             catch (DomainException dex)
@@ -74,11 +79,11 @@ namespace Example.Web.Core.Application.Managers
             }
         }
 
-        public OperateResult Delete(DeleteManagerCommand command)
+        public OperateResult Delete(List<int> managerIds)
         {
             try
             {
-                command.ManagerIds.ForEach(id =>
+                managerIds.ForEach(id =>
                 {
                     var data = _managerRepository.Get(id);
                     data.CheckIsSys();
@@ -86,6 +91,7 @@ namespace Example.Web.Core.Application.Managers
                 });
 
                 _unitWork.Commit();
+
                 return new OperateResult(ResultState.Success);
             }
             catch (DomainException dex)
@@ -101,7 +107,9 @@ namespace Example.Web.Core.Application.Managers
                 var data = _managerRepository.Get(command.ManagerId);
                 data.UpdatePassword(command.Password, command.RepeatPassword);
                 _managerRepository.Update(data);
+
                 _unitWork.Commit();
+
                 return new OperateResult(ResultState.Success);
             }
             catch (DomainException dex)
@@ -113,6 +121,27 @@ namespace Example.Web.Core.Application.Managers
         public bool CheckLoginName(string loginName)
         {
             return _managerRepository.CheckLoginName(loginName);
+        }
+
+        public OperateResult GetManagerByLoginName(string loginName)
+        {
+            try
+            {
+                var manager = _managerRepository.GetManagerByLoginName(loginName);
+
+                manager.CheckIsEnable();
+                return new OperateResult(ResultState.Success, "", 0, manager);
+            }
+            catch (DomainException dex)
+            {
+                return new OperateResult(ResultState.Error, dex.Message, dex.Code);
+            }
+
+        }
+
+        public bool ValidateLoginNameWithPassword(string loginName, string password)
+        {
+            return _managerRepository.Validate(loginName, password);
         }
     }
 }

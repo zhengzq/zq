@@ -8,6 +8,14 @@ namespace Zq.Redis
 {
     public class RedisCacheManager : ICacheManager
     {
+        public RedisCacheManager(string redisConfiguration)
+        {
+            lock (this)
+            {
+                if (_multiplexer == null)
+                    _multiplexer = ConnectionMultiplexer.Connect(redisConfiguration);
+            }
+        }
         public RedisCacheManager()
         {
             lock (this)

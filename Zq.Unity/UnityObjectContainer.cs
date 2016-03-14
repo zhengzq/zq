@@ -30,7 +30,13 @@ namespace Zq.Unity
                     _container.RegisterType<TInterface, TImplement>(new HierarchicalLifetimeManager());
                     break;
             }
+
             return this;
+        }
+
+        public IObjectContainer Register<TInterface>(object instance, LifeTime lifeTime = LifeTime.Single)
+        {
+            throw new NotImplementedException();
         }
 
         public void CustomRegisterComponents(Action<object> func)
@@ -56,6 +62,17 @@ namespace Zq.Unity
         public T Resolve<T>()
         {
             return _container.Resolve<T>();
+        }
+
+        public T Resolve<T>(params Tuple<string, object>[] parameters)
+        {
+            var namedParameters = new List<ResolverOverride>();
+            foreach (var parameter in parameters)
+            {
+                namedParameters.Add(new ParameterOverride(parameter.Item1, parameter.Item2));
+            }
+            return _container.Resolve<T>(namedParameters.ToArray());
+
         }
 
         public IEnumerable<T> ResolveAll<T>()

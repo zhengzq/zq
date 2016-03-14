@@ -50,7 +50,7 @@ namespace Zq.Repository.Ef
 
                 var fail = new Exception(msg, dbEx);
                 var logger = ObjectLocator.Resolve<ILogger>();
-                logger.Fatal(fail.Message, fail);
+                logger.Log(LogLevel.Error, fail.Message, fail);
                 throw fail;
             }
         }
@@ -70,7 +70,7 @@ namespace Zq.Repository.Ef
 
                 var fail = new Exception(msg, dbEx);
                 var logger = ObjectLocator.Resolve<ILogger>();
-                logger.Fatal(fail.Message, fail);
+                logger.Log(LogLevel.Error, fail.Message, fail);
                 throw fail;
             }
         }
@@ -93,7 +93,7 @@ namespace Zq.Repository.Ef
 
                 var fail = new Exception(msg, dbEx);
                 var logger = ObjectLocator.Resolve<ILogger>();
-                logger.Fatal(fail.Message, fail);
+                logger.Log(LogLevel.Error, fail.Message, fail);
                 throw fail;
             }
         }

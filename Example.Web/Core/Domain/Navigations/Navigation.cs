@@ -2,11 +2,11 @@
 
 namespace Example.Web.Core.Domain.Navigations
 {
-    public class Navigation : AggregateRoot<int>
+    public class Navigation : AggregateRoot<string>
     {
         public Navigation() { }
-        public Navigation(string systemName
-            , int parentId = 0
+        public Navigation(string navigationId
+            , string parentId = ""
             , int order = 0
             , bool isHide = false
             , string name = ""
@@ -15,7 +15,7 @@ namespace Example.Web.Core.Domain.Navigations
             , string remark = ""
             , bool isSys = false)
         {
-            this.SystemName = systemName;
+            this.Id = navigationId;
             this.Name = name;
             this.ParentId = parentId;
             this.Order = order;
@@ -25,9 +25,8 @@ namespace Example.Web.Core.Domain.Navigations
             this.Remark = remark;
             this.IsSys = isSys;
         }
-        public string SystemName { get; set; }
         public string Name { get; set; }
-        public int ParentId { get; set; }
+        public string ParentId { get; set; }
         public int Order { get; set; }
         public bool IsHide { get; set; }
         public string Icon { get; set; }

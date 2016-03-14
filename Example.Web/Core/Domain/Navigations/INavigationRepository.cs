@@ -6,7 +6,7 @@ namespace Example.Web.Core.Domain.Navigations
     public interface INavigationRepository : IRepository<Navigation>
     {
         bool CheckHaveChildNode(Navigation value);
-        bool CheckExsitSystemName(string systemName);
+        bool CheckExsitId(string navigationId);
         List<Navigation> GetAllNavigation();
     }
 }

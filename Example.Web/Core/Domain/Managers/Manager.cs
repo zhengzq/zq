@@ -56,5 +56,10 @@ namespace Example.Web.Core.Domain.Managers
             if (this.IsSys)
                 throw new DomainException("系统管理员不能被删除");
         }
+        public void CheckIsEnable()
+        {
+            if (!this.IsEnable)
+                throw new DomainException("账号已被禁用", 1);
+        }
     }
 }

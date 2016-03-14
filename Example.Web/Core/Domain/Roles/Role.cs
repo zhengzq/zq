@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Zq.Domain;
 
 namespace Example.Web.Core.Domain.Roles
@@ -20,11 +18,11 @@ namespace Example.Web.Core.Domain.Roles
 
         public List<RolePermission> RolePermissions { get; set; }
 
-        public void SetPermission(int permissionId, string permissionCode)
+        public void SetPermission(string permissionId)
         {
             if (RolePermissions == null)
                 RolePermissions = new List<RolePermission>();
-            this.RolePermissions.Add(new RolePermission(this.Id, permissionId, permissionCode));
+            this.RolePermissions.Add(new RolePermission(this.Id, permissionId));
         }
 
         public void ClearPermission()

@@ -5,8 +5,8 @@ namespace Example.Web.Core.Domain.Permissions
 {
     public interface IPermissionRepository : IRepository<Permission>
     {
-        List<Permission> GetPermissionsByNavSystemName(string nvaSystemName);
+        List<Permission> GetPermissionsByNavigationId(string navigationId);
         List<Permission> GetAllPermission();
-        bool Authorize(string permissionCode, int managerId);
+        bool Authorize(string permissionId, int managerId);
     }
 }

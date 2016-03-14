@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Example.Web.Core.Domain.Navigations;
 using Example.Web.Core.Domain.Permissions;
 using Zq;
@@ -7,9 +7,9 @@ using Zq.Domain;
 using Zq.Ioc;
 using Zq.UnitOfWork;
 
-namespace Example.Web.Core.Application.Navs
+namespace Example.Web.Core.Application.Navigations
 {
-    [ComponentAttribute(typeof(INavService))]
+    [Component(typeof(INavService), LifeTime.Hierarchical)]
     public class NavService : INavService
     {
         private readonly INavigationRepository _navigationRepository;
@@ -28,10 +28,10 @@ namespace Example.Web.Core.Application.Navs
         {
             try
             {
-                if (_navigationRepository.CheckExsitSystemName(command.SystemName))
-                    throw new DomainException(string.Format("调用名称 {0} 已经存在", command.SystemName));
+                if (_navigationRepository.CheckExsitId(command.NavigationId))
+                    throw new DomainException(string.Format("调用名称 {0} 已经存在", command.NavigationId));
 
-                var nav =new Navigation(command.SystemName
+                var nav =new Navigation(command.NavigationId
                 , command.ParentId
                 , command.Order
                 , command.IsHide
@@ -44,16 +44,17 @@ namespace Example.Web.Core.Application.Navs
 
                 var permission = new Permission()
                 {
-                    Code = string.Format("{0}.show", nav.SystemName),
+                    Id = string.Format("{0}.show", nav.Id),
                     IsEnable = true,
                     Name = "显示(Show)",
-                    NavSystemName = nav.SystemName,
+                    NavigationId = nav.Id,
                     Order = 1,
                     Type = PermissionType.导航
                 };
                 _permissionRepository.Add(permission);
 
                 _unitWork.Commit();
+
                 return new OperateResult(ResultState.Success);
             }
             catch (DomainException dex)
@@ -66,7 +67,7 @@ namespace Example.Web.Core.Application.Navs
         {
             try
             {
-                var nav = _navigationRepository.Get(command.Id);
+                var nav = _navigationRepository.Get(command.NavigationId);
                 nav.ParentId = command.ParentId;
                 nav.Order = command.Order;
                 nav.IsHide = command.IsHide;
@@ -85,7 +86,9 @@ namespace Example.Web.Core.Application.Navs
                         _permissionRepository.Update(permission);
                     });
                 }
+
                 _unitWork.Commit();
+
                 return new OperateResult(ResultState.Success);
             }
             catch (DomainException dex)
@@ -94,11 +97,11 @@ namespace Example.Web.Core.Application.Navs
             }
         }
 
-        public OperateResult Delete(DeleteNavCommand command)
+        public OperateResult Delete(List<string> navigationIds)
         {
             try
             {
-                command.NavIds.ForEach(id =>
+                navigationIds.ForEach(id =>
                 {
                     var nav = _navigationRepository.Get(id);
                     nav.CheckIsSys();
@@ -108,12 +111,13 @@ namespace Example.Web.Core.Application.Navs
 
                     _navigationRepository.Delete(nav);
 
-                    var permissions = _permissionRepository.GetPermissionsByNavSystemName(nav.SystemName);
+                    var permissions = _permissionRepository.GetPermissionsByNavigationId(nav.Id);
                     if (permissions != null)
                         permissions.ForEach(x => _permissionRepository.Delete(x));
                 });
 
                 _unitWork.Commit();
+
                 return new OperateResult(ResultState.Success);
             }
             catch (DomainException dex)
@@ -122,50 +126,25 @@ namespace Example.Web.Core.Application.Navs
             }
         }
 
-        public OperateResult InitNavigationFromAssembly(string assemblyName)
+        public List<NavigationRecord> GetModules()
         {
-            try
+            var list = GetNavigationRecords().ToList();
+            var m = list.Where(x => string.IsNullOrEmpty(x.ParentId)).OrderBy(x => x.Order).ToList();
+            m.ForEach(x =>
             {
-                var existNavigations = _navigationRepository.GetAllNavigation();
-                var a = System.Reflection.Assembly.Load(assemblyName);
-                var types = a.GetTypes();
-                var ts = types.Where(x => x.BaseType != null && x.BaseType.Name.Equals("BaseApiController"));
-                foreach (var type in ts)
+                list.ForEach(y =>
                 {
-                    var methods = type.GetMethods(BindingFlags.Instance | BindingFlags.Public);
-                    foreach (var method in methods)
-                    {
-                        var attrs = method.GetCustomAttributes(typeof(NavigationDescriptionAttribute));
-                        foreach (var attribute in attrs)
-                        {
-                            var r = attribute as NavigationDescriptionAttribute;
-                            if (r == null)
-                                break;
+                    if (y.ParentId == x.NavigationId)
+                        x.Childs.Add(y);
+                });
+            });
+            return m;
+        }
 
-                            if (existNavigations.Exists(x => x.SystemName == r.SystemName))
-                                break;
-
-                            var nav = new Navigation(r.SystemName
-                                , 0
-                                , 0
-                                , r.IsHide
-                                , r.FullName
-                                , r.Icon
-                                , r.Link
-                                , r.Remark
-                                , r.IsSys);
-
-                            _navigationRepository.Add(nav);
-                        }
-                    }
-                }
-                _unitWork.Commit();
-                return new OperateResult(ResultState.Success);
-            }
-            catch (DomainException dex)
-            {
-                return new OperateResult(ResultState.Error, dex.Message, dex.Code);
-            }
+        public List<NavigationRecord> GetNavigationRecords()
+        {
+            var provider = new StandardNavigationProvider();
+            return provider.GetNavigationRecords().ToList();
         }
     }
 }

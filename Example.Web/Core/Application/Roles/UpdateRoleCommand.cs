@@ -8,7 +8,7 @@ namespace Example.Web.Core.Application.Roles
         /// <summary>
         /// Id ,Selected, Name
         /// </summary>
-        public List<Tuple<int, bool, string>> Permissions { get; set; }
+        public List<Tuple<string, bool, string>> Permissions { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }
         public int Order { get; set; }

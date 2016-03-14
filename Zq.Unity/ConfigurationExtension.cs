@@ -11,7 +11,7 @@ namespace Zq.Unity
 
             configuration.Container = container;
 
-            ObjectLocator.Create(container);
+            ObjectLocator.SetContainer(container);
 
             return configuration;
         }

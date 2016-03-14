@@ -1,4 +1,5 @@
-﻿using Example.Web.Core.Domain.Navigations;
+﻿using System.Collections.Generic;
+using Example.Web.Core.Domain.Navigations;
 using Example.Web.Core.Domain.Permissions;
 using Example.Web.Core.Domain.Roles;
 using Zq;
@@ -9,19 +10,13 @@ using Zq.UnitOfWork;
 namespace Example.Web.Core.Application.Roles
 {
     [Component(typeof(IRoleService))]
-    public class RoleService :  IRoleService
+    public class RoleService : IRoleService
     {
-        private readonly INavigationRepository _navigationRepository;
-        private readonly IPermissionRepository _permissionRepository;
         private readonly IRoleRepository _roleRepository;
         private readonly IUnitOfWork _unitWork;
         public RoleService(IUnitOfWork unitWork
-            , INavigationRepository navigationRepository
-            , IPermissionRepository permissionRepository
             , IRoleRepository roleRepository)
         {
-            _navigationRepository = navigationRepository;
-            _permissionRepository = permissionRepository;
             _roleRepository = roleRepository;
             _unitWork = unitWork;
         }
@@ -34,18 +29,20 @@ namespace Example.Web.Core.Application.Roles
                 role.Name = command.Name;
                 role.Order = command.Order;
                 role.ClearPermission();
+                role.ClearPermission();
+
                 command.Permissions.ForEach(x =>
                 {
                     if (x.Item2)
                     {
-                        var permission = _permissionRepository.Get(x.Item1);
-                        if (permission != null)
-                            role.SetPermission(permission.Id, permission.Code);
+                        role.SetPermission(x.Item1);
                     }
-
                 });
+
                 _roleRepository.Update(role);
+
                 _unitWork.Commit();
+
                 return new OperateResult(ResultState.Success);
             }
             catch (DomainException dex)
@@ -61,17 +58,20 @@ namespace Example.Web.Core.Application.Roles
                 var role = new Role(command.Name
                     , command.Order);
 
+               
+
                 command.Permissions.ForEach(x =>
                 {
                     if (x.Item2)
                     {
-                        var permission = _permissionRepository.Get(x.Item1);
-                        if (permission != null)
-                            role.SetPermission(permission.Id, permission.Code);
+                        role.SetPermission(x.Item1);
                     }
                 });
+
                 _roleRepository.Add(role);
+
                 _unitWork.Commit();
+
                 return new OperateResult(ResultState.Success);
             }
             catch (DomainException dex)
@@ -80,16 +80,18 @@ namespace Example.Web.Core.Application.Roles
             }
         }
 
-        public OperateResult Delete(DeleteRoleCommand command)
+        public OperateResult Delete(List<int> roleIds)
         {
             try
             {
-                command.RoleIds.ForEach(x =>
+                roleIds.ForEach(x =>
                 {
                     var role = _roleRepository.Get(x);
                     _roleRepository.Delete(role);
                 });
+
                 _unitWork.Commit();
+
                 return new OperateResult(ResultState.Success);
             }
             catch (DomainException dex)
@@ -97,5 +99,12 @@ namespace Example.Web.Core.Application.Roles
                 return new OperateResult(ResultState.Error, dex.Message, dex.Code);
             }
         }
+
+        public bool CheckRoleIsAuthorized(string permissionId, int roleId)
+        {
+            var role = _roleRepository.Get(roleId);
+            return role.RolePermissions.Exists(x => x.PermissionId == permissionId);
+        }
+
     }
 }
