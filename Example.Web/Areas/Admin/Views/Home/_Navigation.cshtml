@@ -1,0 +1,20 @@
+﻿@model List<Example.Web.Core.Domain.Navigations.NavigationRecord>
+
+@foreach (var item in Model)
+{
+    <li>
+        <a href="javascript:void(0)">
+            <i class="fa @item.Icon"></i>
+            <span class="nav-label">@item.Title</span>
+            <span class="fa arrow"></span>
+        </a>
+        <ul class="nav nav-second-level">
+            @foreach (var child in item.Childs)
+            {
+                <li>
+                    <a class="J_menuItem" href="@child.Url" data-index="0">@child.Title</a>
+                </li>
+            }
+        </ul>
+    </li>
+}

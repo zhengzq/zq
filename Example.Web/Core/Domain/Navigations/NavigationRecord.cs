@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Example.Web.Core.Application.Navigations
+namespace Example.Web.Core.Domain.Navigations
 {
     public class NavigationRecord
     {
@@ -13,6 +13,7 @@ namespace Example.Web.Core.Application.Navigations
         public string Url { get; set; }
         public string ParentId { get; set; }
         public int Order { get; set; }
+        public string Icon { get; set; }
         public bool Show { get; set; } = true;
 
         public List<NavigationRecord> Childs { get; set; }

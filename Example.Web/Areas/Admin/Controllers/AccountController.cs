@@ -31,7 +31,7 @@ namespace Example.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var b = _managerService.ValidateLoginNameWithPassword(model.LoginName, model.Password);
-                if (!b) return JsonManager.Error(200, "账号或密码错误");
+                if (!b) return JsonManager.GetError(200, "账号或密码错误");
 
                
                 var r = _managerService.GetManagerByLoginName(model.LoginName);

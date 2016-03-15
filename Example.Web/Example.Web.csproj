@@ -250,6 +250,12 @@
     <Content Include="Areas\Admin\css\plugins\treeview\bootstrap-treeview.css" />
     <Content Include="Areas\Admin\css\plugins\webuploader\webuploader.css" />
     <Content Include="Areas\Admin\css\style.css" />
+    <Content Include="Areas\Admin\js\zq\zq.common.js" />
+    <Content Include="Areas\Admin\js\zq\zq.expand.js" />
+    <Content Include="Areas\Admin\js\zq\zq.fileShowImg.expand.js" />
+    <Content Include="Areas\Admin\js\zq\zq.js" />
+    <Content Include="Areas\Admin\js\zq\zq.validation.expand.js" />
+    <Content Include="Areas\Admin\Views\Home\_Navigation.cshtml" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\js\bootstrap.min.js" />
     <Content Include="Areas\Admin\js\contabs.js" />
@@ -618,9 +624,9 @@
     <Compile Include="Core\Application\Managers\UpdatePasswordCommand.cs" />
     <Compile Include="Core\Application\Navigations\CreateNavCommand.cs" />
     <Compile Include="Core\Application\Navigations\INavService.cs" />
-    <Compile Include="Core\Application\Navigations\NavigationRecord.cs" />
+    <Compile Include="Core\Domain\Navigations\NavigationRecord.cs" />
     <Compile Include="Core\Application\Navigations\NavService.cs" />
-    <Compile Include="Core\Application\Navigations\StandardNavigationProvider.cs" />
+    <Compile Include="Core\Domain\Navigations\StandardNavigationProvider.cs" />
     <Compile Include="Core\Application\Navigations\UpdateNavCommand.cs" />
     <Compile Include="Core\Application\Permissions\PermissionCode.cs" />
     <Compile Include="Core\Application\Permissions\PermissionService.cs" />
@@ -647,6 +653,8 @@
     <Compile Include="Core\Domain\Roles\RolePermission.cs" />
     <Compile Include="Core\Extensions\ConfigurationExtension.cs" />
     <Compile Include="Core\Extensions\ModelStateExtensions.cs" />
+    <Compile Include="Core\Query\INavQueryService.cs" />
+    <Compile Include="Core\Query\IRoleQueryService.cs" />
     <Compile Include="Core\Web\AdminController.cs" />
     <Compile Include="Core\Web\CustomAttributes\AdminExceptionAttribute.cs" />
     <Compile Include="Core\Web\Authentication\CurrentUser.cs" />

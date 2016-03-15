@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Example.Web.Core.Application.Navigations
+namespace Example.Web.Core.Domain.Navigations
 {
     public class StandardNavigationProvider
     {
@@ -14,7 +14,7 @@ namespace Example.Web.Core.Application.Navigations
             #region 系统管理
             list.Add(new NavigationRecord
             {
-                NavigationId = "ModuleSys", Title = "系统管理", Url = "", Order = 1
+                NavigationId = "ModuleSys", Title = "系统管理", Url = "", Order = 1,Icon = "glyphicon glyphicon-book"
             });
             list.Add(new NavigationRecord
             {

@@ -7,6 +7,6 @@ namespace Example.Web.Core.Domain.Permissions
     {
         List<Permission> GetPermissionsByNavigationId(string navigationId);
         List<Permission> GetAllPermission();
-        bool Authorize(string permissionId, int managerId);
+ 
     }
 }

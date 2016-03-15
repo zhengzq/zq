@@ -13,7 +13,7 @@ namespace Example.Web.Core.Web.CustomAttributes
             ObjectLocator.Resolve<ILogger>().Log(LogLevel.Error, filterContext.Exception);
 
             filterContext.ExceptionHandled = true;
-            filterContext.Result = JsonManager.Error(500, filterContext.Exception.ToString());
+            filterContext.Result = JsonManager.GetError(500, filterContext.Exception.ToString());
 
             base.OnException(filterContext);
         }

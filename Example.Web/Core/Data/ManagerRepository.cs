@@ -14,7 +14,7 @@ namespace Example.Web.Core.Data
 
         public Manager GetManagerByLoginName(string loginName)
         {
-            return new Manager();
+            return new Manager() { IsEnable = true, IsSys = true };
         }
 
         public bool Validate(string loginName, string password)

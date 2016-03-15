@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Example.Web.Core.Domain.Navigations;
 using Zq;
 
 namespace Example.Web.Core.Application.Navigations

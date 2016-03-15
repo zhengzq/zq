@@ -40,6 +40,8 @@ namespace Example.Web.Core.Application.Managers
                 _unitWork.Commit();
 
                 return new OperateResult(ResultState.Success);
+
+               
             }
             catch (DomainException dex)
             {
