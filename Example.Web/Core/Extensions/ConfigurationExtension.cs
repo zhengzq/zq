@@ -35,10 +35,10 @@ namespace Example.Web.Core.Extensions
             {
                 var container = obj as IContainer;
                 var builder = new ContainerBuilder();
-                builder.Register(c => (new HttpContextWrapper(HttpContext.Current) as HttpContextBase))
-               .As<HttpContextBase>().InstancePerLifetimeScope();
-
+                builder.Register(c => (new HttpContextWrapper(HttpContext.Current) as HttpContextBase)).As<HttpContextBase>().InstancePerLifetimeScope();
+               
                 builder.RegisterControllers(assemblies);
+                builder.Update(container);
                 DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             });
             return configuration;

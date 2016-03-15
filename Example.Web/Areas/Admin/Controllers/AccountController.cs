@@ -35,7 +35,7 @@ namespace Example.Web.Areas.Admin.Controllers
 
                
                 var r = _managerService.GetManagerByLoginName(model.LoginName);
-                if (r.State != ResultState.Success) return JsonManager.Error(300, r.Msg);
+                if (r.State != ResultState.Success) return JsonManager.GetError(300, r.Msg);
                 var manager = r.Data as Manager;
                 _authenticationService.SignIn(new CurrentUser()
                 {
@@ -46,9 +46,9 @@ namespace Example.Web.Areas.Admin.Controllers
                     UserId = manager.Id
                 }, model.RememberMe);
 
-                return JsonManager.Success();
+                return JsonManager.GetSuccess();
             }
-            return JsonManager.Error(200, ModelState.SerializeErrorToString());
+            return JsonManager.GetError(200, ModelState.SerializeErrorToString());
         }
 
         public ActionResult LogOut()
