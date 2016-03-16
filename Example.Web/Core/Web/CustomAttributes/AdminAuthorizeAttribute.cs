@@ -25,7 +25,7 @@ namespace Example.Web.Core.Web.CustomAttributes
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
-            var currentUser = WorkContext.CurrentUser();
+            var currentUser = WorkContext.CurrentUser;
             if (!currentUser.IsSys)
             {
                 var roleService = ObjectLocator.Resolve<IRoleService>();
@@ -33,7 +33,7 @@ namespace Example.Web.Core.Web.CustomAttributes
                 var permissionService = ObjectLocator.Resolve<IRoleService>();
                 if (!roleService.CheckRoleIsAuthorized(PermissionId.ToString(), currentUser.RoleId))
                 {
-                    var user = WorkContext.CurrentUser() ?? new CurrentUser();
+                    var user = WorkContext.CurrentUser ?? new CurrentUser();
                     var controller = filterContext.RouteData.Values["controller"].ToString();
                     var action = filterContext.RouteData.Values["action"].ToString();
                     var model = new UnAuthorizeModel(

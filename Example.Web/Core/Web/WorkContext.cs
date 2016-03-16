@@ -8,9 +8,11 @@ namespace Example.Web.Core.Web
     public static class WorkContext
     {
       
-        public static CurrentUser CurrentUser()
-        {
-            return ObjectLocator.Resolve<IAuthenticationService>().GetAuthenticatedUser();
+        public static CurrentUser CurrentUser {
+            get
+            {
+                return ObjectLocator.Resolve<IAuthenticationService>().GetAuthenticatedUser();
+            }
         }
 
         public static string JsVersion

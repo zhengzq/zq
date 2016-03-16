@@ -625,6 +625,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Core\Application\Managers\CreateManagerCommand.cs" />
     <Compile Include="Core\Application\Managers\IManagerService.cs" />
     <Compile Include="Core\Application\Managers\ManagerService.cs" />
@@ -732,8 +733,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zq.Autofac\Zq.Autofac.csproj">
