@@ -23,12 +23,14 @@ namespace Example.Web.Core.Application.Permissions
             _permissionRepository = permissionRepository;
             _unitWork = unitWork;
         }
-        public void InitFunctionPermissionFromAssembly(string assemblyName)
+
+        public void InitNavigationPermissionWithFunctionPermissionFromAssembly(List<string> navigationIds, string assemblyName)
         {
             var existPermissions = _permissionRepository.GetAllPermission();
             var a = Assembly.Load(assemblyName);
             var types = a.GetTypes();
             var ts = types.Where(x => x.BaseType != null && x.BaseType.Name.Equals("AdminApiController"));
+            //初始化Action权限
             foreach (var type in ts)
             {
                 var methods = type.GetMethods(BindingFlags.Instance | BindingFlags.Public);
@@ -57,13 +59,7 @@ namespace Example.Web.Core.Application.Permissions
                     }
                 }
             }
-            _unitWork.Commit();
-        }
-
-        public void InitNavigationPermission(List<string> navigationIds)
-        {
-            var existPermissions = _permissionRepository.GetAllPermission(); 
-
+            //初始化导航权限
             foreach (var navigationId in navigationIds)
             {
                 var id = $"{navigationId}View";
@@ -85,7 +81,6 @@ namespace Example.Web.Core.Application.Permissions
             _unitWork.Commit();
         }
 
-     
 
         public Permission GetPermissionById(string permissionId)
         {

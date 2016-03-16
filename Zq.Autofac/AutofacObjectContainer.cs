@@ -46,20 +46,18 @@ namespace Zq.Autofac
             where TImplement : class, TInterface
         {
             var builder = new ContainerBuilder();
-            var b = builder.RegisterType<TImplement>().As<TInterface>();
-            switch (lifeTime)
+            var interfacType = typeof(TInterface);
+            var implementType = typeof(TImplement);
+            
+            if (implementType.IsGenericType && interfacType.IsGenericType)
             {
-                case LifeTime.Single:
-                    b.SingleInstance();
-                    break;
-                case LifeTime.Transient:
-                    b.InstancePerDependency();
-                    break;
-                case LifeTime.Hierarchical:
-                default:
-                    b.InstancePerLifetimeScope();
-                    break;
+                 builder.RegisterGeneric(implementType).As(interfacType).SwitchLifetime(lifeTime);
             }
+            else
+            {
+                builder.RegisterType<TImplement>().As<TInterface>().SwitchLifetime<TImplement>(lifeTime);
+            }
+
             builder.Update(_container);
 
             return this;
@@ -68,22 +66,16 @@ namespace Zq.Autofac
         public IObjectContainer Register<TInterface>(object instance, LifeTime lifeTime = LifeTime.Single)
         {
             var builder = new ContainerBuilder();
-            var b = builder.Register(c => instance).As<TInterface>();
-            switch (lifeTime)
+            var interfacType = typeof(TInterface);
+            if (interfacType.IsGenericType)
             {
-                case LifeTime.Single:
-                    b.SingleInstance();
-                    break;
-                case LifeTime.Transient:
-                    b.InstancePerDependency();
-                    break;
-                case LifeTime.Hierarchical:
-                default:
-                    b.InstancePerLifetimeScope();
-                    break;
+                builder.Register(c => instance).As(interfacType).SwitchLifetime(lifeTime);
+            }
+            else
+            {
+                builder.Register(c => instance).As<TInterface>().SwitchLifetime(lifeTime);
             }
             builder.Update(_container);
-
             return this;
         }
 
@@ -127,4 +119,6 @@ namespace Zq.Autofac
         }
 
     }
+
+
 }

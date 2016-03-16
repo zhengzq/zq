@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using System.Security;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Example.Web.Core.Application.Navigations;
 using Example.Web.Core.Application.Permissions;
+using Example.Web.Core.Data;
 using Example.Web.Core.Extensions;
 using Zq.Configurations;
 using Zq.Ioc;
@@ -19,6 +19,8 @@ namespace Example.Web
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
+            System.Data.Entity.Database.SetInitializer<EfDbContext>(new CreateDatabaseIfNotExists());
+
             Configuration.Instance
                 .UseIoc()
                 .UseLog4Net()
@@ -26,10 +28,10 @@ namespace Example.Web
 
             var permissionService = ObjectLocator.Resolve<IPermissionService>();
             var navService = ObjectLocator.Resolve<INavService>();
-            var navCodes = navService.GetNavigationRecords().Select(x => x.NavigationId).ToList();
+            var navIds = navService.GetNavigationRecords().Select(x => x.NavigationId).ToList();
 
-            permissionService.InitFunctionPermissionFromAssembly("Example.Web");
-            permissionService.InitNavigationPermission(navCodes);
+            permissionService.InitNavigationPermissionWithFunctionPermissionFromAssembly(navIds, "Example.Web");
+
         }
     }
 }

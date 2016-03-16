@@ -14,7 +14,7 @@ namespace Example.Web.Core.Domain.Navigations
             #region 系统管理
             list.Add(new NavigationRecord
             {
-                NavigationId = "ModuleSys", Title = "系统管理", Url = "", Order = 1,Icon = "glyphicon glyphicon-book"
+                NavigationId = "ModuleSys", Title = "系统管理", Url = "", Order = 1,Icon = "fa-home"
             });
             list.Add(new NavigationRecord
             {

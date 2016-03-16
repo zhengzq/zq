@@ -1,9 +1,12 @@
-﻿namespace Example.Web.Areas.Admin.Models
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace Example.Web.Areas.Admin.Models
 {
     public class LoginModel
     {
         public string LoginName { get; set; }
         public string Password { get; set; }
         public bool RememberMe { get; set; }
+        public string Error { get; set; }
     }
 }

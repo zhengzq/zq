@@ -16,7 +16,7 @@ namespace Example.Web.Core.Domain.Roles
         public string Name { get; set; }
         public int Order { get; set; }
 
-        public List<RolePermission> RolePermissions { get; set; }
+        public virtual List<RolePermission> RolePermissions { get; set; }
 
         public void SetPermission(string permissionId)
         {

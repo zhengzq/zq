@@ -1,6 +1,8 @@
-﻿namespace Example.Web.Core.Domain.Roles
+﻿using Zq.Domain;
+
+namespace Example.Web.Core.Domain.Roles
 {
-    public class RolePermission
+    public class RolePermission : Entity<int>
     {
         public RolePermission() { }
 

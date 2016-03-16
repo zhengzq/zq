@@ -51,6 +51,14 @@
       <HintPath>..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -624,6 +632,13 @@
     <Compile Include="Core\Application\Managers\UpdatePasswordCommand.cs" />
     <Compile Include="Core\Application\Navigations\CreateNavCommand.cs" />
     <Compile Include="Core\Application\Navigations\INavService.cs" />
+    <Compile Include="Core\Data\CreateDatabaseIfNotExists.cs" />
+    <Compile Include="Core\Data\EfDbContext.cs" />
+    <Compile Include="Core\Data\EfRepository.cs" />
+    <Compile Include="Core\Data\Mapping\ManagerTypeConfiguration.cs" />
+    <Compile Include="Core\Data\Mapping\NavigationTypeConfiguration.cs" />
+    <Compile Include="Core\Data\Mapping\PermissionTypeConfiguration.cs" />
+    <Compile Include="Core\Data\Mapping\RoleTypeConfiguration.cs" />
     <Compile Include="Core\Domain\Navigations\NavigationRecord.cs" />
     <Compile Include="Core\Application\Navigations\NavService.cs" />
     <Compile Include="Core\Domain\Navigations\StandardNavigationProvider.cs" />

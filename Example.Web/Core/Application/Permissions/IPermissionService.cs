@@ -6,8 +6,7 @@ namespace Example.Web.Core.Application.Permissions
 {
     public interface IPermissionService
     {
-        void InitFunctionPermissionFromAssembly(string assemblyName);
-        void InitNavigationPermission(List<string> navigationIds);
+        void InitNavigationPermissionWithFunctionPermissionFromAssembly(List<string> navigationIds, string assemblyName);
         Permission GetPermissionById(string permissionId);
     }
 }

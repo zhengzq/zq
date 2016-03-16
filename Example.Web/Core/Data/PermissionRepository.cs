@@ -1,26 +1,31 @@
 ﻿using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
 using Example.Web.Core.Domain.Permissions;
-using Zq.Domain;
 using Zq.Ioc;
+using Zq.UnitOfWork;
 
 namespace Example.Web.Core.Data
 {
     [Component(typeof(IPermissionRepository), LifeTime.Hierarchical)]
-    public class PermissionRepository : FakeRepository<Permission>, IPermissionRepository
+    public class PermissionRepository : EfRepository<Permission>, IPermissionRepository
     {
+        public PermissionRepository(IDbContext dbContext)
+            : base(dbContext)
+        {
+
+        }
+
         public List<Permission> GetPermissionsByNavigationId(string navigationId)
         {
-            return new List<Permission>();
+            return Table.Where(x => x.NavigationId == navigationId).ToList();
         }
 
         public List<Permission> GetAllPermission()
         {
-            return new List<Permission>();
+            return Table.ToList();
         }
 
-        public bool Authorize(string permissionId, int managerId)
-        {
-           return true;
-        }
+      
     }
 }

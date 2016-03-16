@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "ZQ";
+    Layout = null;
 }
 @model Example.Web.Areas.Admin.Models.LoginModel
 <!DOCTYPE html>
@@ -33,7 +34,7 @@
                     @Html.TextBoxFor(model => model.LoginName
                     , new
                     {
-                        type = "text" ,
+                        type = "text",
                         @class = "form-control",
                         @placeholder = "登入名",
                         @required = ""
@@ -41,13 +42,16 @@
                 </div>
                 <div class="form-group">
                     @Html.PasswordFor(model => model.Password
-                    , new
-                    {
-                        type = "password",
-                        @class = "form-control",
-                        @placeholder = "密码",
-                        @required = ""
-                    })
+                        , new
+                        {
+                            type = "password",
+                            @class = "form-control",
+                            @placeholder = "密码",
+                            @required = ""
+                        })
+                </div>
+                <div class="form-group">
+                  @Model.Error
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
             </form>
@@ -56,6 +60,6 @@
     <!-- 全局js -->
     <script src="/Areas/Admin/js/jquery.min.js?v=2.1.4"></script>
     <script src="/Areas/Admin/js/bootstrap.min.js?v=3.3.6"></script>
-
+  
 </body>
 </html>

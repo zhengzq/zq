@@ -1,25 +1,34 @@
-﻿using Example.Web.Core.Domain.Managers;
-using Zq.Domain;
+﻿using System.Data.SqlClient;
+using System.Linq;
+using Example.Web.Core.Domain.Managers;
 using Zq.Ioc;
+using Zq.UnitOfWork;
 
 namespace Example.Web.Core.Data
 {
     [Component(typeof(IManagerRepository), LifeTime.Hierarchical)]
-    public class ManagerRepository : FakeRepository<Manager>, IManagerRepository
+    public class ManagerRepository : EfRepository<Manager>, IManagerRepository
     {
+        public ManagerRepository(IDbContext dbContext)
+            : base(dbContext)
+        {
+        }
+
         public bool CheckLoginName(string loginName)
         {
-            return true;
+            var parameter = new SqlParameter("@0", loginName);
+            var i = base.Context.Database.ExecuteSqlCommand("SELECT COUNT(0) FROM Manager WHERE LoginName=@0", parameter);
+            return i == 0;
         }
 
         public Manager GetManagerByLoginName(string loginName)
         {
-            return new Manager() { IsEnable = true, IsSys = true };
+            return Table.FirstOrDefault(x => x.LoginName == loginName);
         }
 
         public bool Validate(string loginName, string password)
         {
-            return true;
+            return Table.Count(x => x.LoginName == loginName && x.Password == password) == 1;
         }
     }
 }
