@@ -27,6 +27,10 @@ namespace Example.Web.Areas.Admin.Controllers
 
             return View();
         }
+        public ActionResult Main()
+        {
+            return View();
+        }
 
     }
 }
