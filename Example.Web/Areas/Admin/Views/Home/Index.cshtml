@@ -1,7 +1,7 @@
 ﻿@using Example.Web.Core.Web
 @{
     ViewBag.Title = "Index";
-    Layout = "../Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_IndexLayout.cshtml";
 }
 <!--左侧导航开始-->
 <nav class="navbar-default navbar-static-side" role="navigation">
@@ -19,7 +19,7 @@
                         <span class="clear">
                             <span class="block m-t-xs">
                                 <strong class="font-bold">
-                                    @WorkContext.CurrentUser.RealName
+                                    @WorkContext.CurrentUser.UserName
                                 </strong>
                             </span>
                             <span class="text-muted text-xs block">

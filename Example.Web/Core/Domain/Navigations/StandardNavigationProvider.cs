@@ -18,7 +18,7 @@ namespace Example.Web.Core.Domain.Navigations
             });
             list.Add(new NavigationRecord
             {
-                NavigationId = "MenuUser", Title = "用户管理", Url = "/User/Index", ParentId = "ModuleSys"
+                NavigationId = "MenuManager", Title = "用户管理", Url = "/Admin/Manager/Index", ParentId = "ModuleSys"
             });
             list.Add(new NavigationRecord
             {

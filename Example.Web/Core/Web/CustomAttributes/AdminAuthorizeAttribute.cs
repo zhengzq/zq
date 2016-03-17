@@ -40,7 +40,7 @@ namespace Example.Web.Core.Web.CustomAttributes
                         message: $"您没有  的  操作权限",
                         controller: controller,
                         action: action,
-                        username: user.RealName);
+                        username: user.UserName);
 
                     switch (filterContext.HttpContext.Request.HttpMethod.ToLower())
                     {

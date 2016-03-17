@@ -13,5 +13,10 @@ namespace Zq.Serializers
         {
             throw new NotImplementedException();
         }
+
+        public object Deserialize(string json, Type type)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

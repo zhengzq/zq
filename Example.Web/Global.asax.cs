@@ -7,6 +7,7 @@ using Example.Web.Core.Data;
 using Example.Web.Core.Extensions;
 using Zq.Configurations;
 using Zq.Ioc;
+using Zq.JsonNet;
 using Zq.Log4net;
 using Zq.Redis;
 
@@ -23,6 +24,7 @@ namespace Example.Web
 
             Configuration.Instance
                 .UseIoc()
+                .UseJson()
                 .UseLog4Net()
                 .UseRedis();
 

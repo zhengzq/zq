@@ -137,6 +137,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\404.html" />
+    <Content Include="Areas\Admin\500.html" />
     <Content Include="Areas\Admin\favicon.ico" />
     <Content Include="Areas\Admin\fonts\fontawesome-webfont.svg" />
     <Content Include="Areas\Admin\fonts\glyphicons-halflings-regular.svg" />
@@ -264,6 +266,7 @@
     <Content Include="Areas\Admin\js\zq\zq.js" />
     <Content Include="Areas\Admin\js\zq\zq.validation.expand.js" />
     <Content Include="Areas\Admin\Views\Home\_Navigation.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_ReferencePartial.cshtml" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\js\bootstrap.min.js" />
     <Content Include="Areas\Admin\js\contabs.js" />
@@ -623,9 +626,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Core\Web\Binder.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Core\Application\Managers\CreateManagerCommand.cs" />
@@ -671,8 +675,10 @@
     <Compile Include="Core\Domain\Roles\RolePermission.cs" />
     <Compile Include="Core\Extensions\ConfigurationExtension.cs" />
     <Compile Include="Core\Extensions\ModelStateExtensions.cs" />
+    <Compile Include="Core\Query\IManagerQueryService.cs" />
     <Compile Include="Core\Query\INavQueryService.cs" />
     <Compile Include="Core\Query\IRoleQueryService.cs" />
+    <Compile Include="Core\Query\ManagerOption.cs" />
     <Compile Include="Core\Web\AdminController.cs" />
     <Compile Include="Core\Web\CustomAttributes\AdminExceptionAttribute.cs" />
     <Compile Include="Core\Web\Authentication\CurrentUser.cs" />
@@ -682,6 +688,7 @@
     <Compile Include="Core\Web\CustomAttributes\AdminAuthorizeAttribute.cs" />
     <Compile Include="Core\Web\Json\JsonManager.cs" />
     <Compile Include="Core\Web\Json\JsonNetResult.cs" />
+    <Compile Include="Core\Web\Page.cs" />
     <Compile Include="Core\Web\WorkContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -695,8 +702,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_ListLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\js\.DS_Store" />
     <Content Include="Areas\Admin\js\jquery.min.map" />
@@ -727,6 +733,12 @@
     <Content Include="Areas\Admin\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Main.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_IndexLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Manager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -742,6 +754,10 @@
     <ProjectReference Include="..\Zq.Autofac\Zq.Autofac.csproj">
       <Project>{AB29014A-B279-4DF8-89A3-2EAE4089642A}</Project>
       <Name>Zq.Autofac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zq.JsonNet\Zq.JsonNet.csproj">
+      <Project>{A629BEFE-8FF6-4B40-825E-B08C6B1AF0BF}</Project>
+      <Name>Zq.JsonNet</Name>
     </ProjectReference>
     <ProjectReference Include="..\Zq.Log4net\Zq.Log4net.csproj">
       <Project>{3662D934-B958-44D8-B495-875F8477FDFC}</Project>

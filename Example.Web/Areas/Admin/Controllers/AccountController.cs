@@ -39,7 +39,8 @@ namespace Example.Web.Areas.Admin.Controllers
                         _authenticationService.SignIn(new CurrentUser()
                         {
                             IsSys = manager.IsSys,
-                            RealName = manager.UserName,
+                            UserName = manager.UserName,
+                            LoginName = manager.LoginName,
                             //RoleName = manager.RoleName,
                             RoleId = manager.RoleId,
                             UserId = manager.Id

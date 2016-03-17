@@ -7,8 +7,9 @@ namespace Example.Web.Core.Web.Authentication
     {
         public int UserId { get; set; }
         public int RoleId { get; set; }
+        public string LoginName { get; set; }
         public string RoleName { get; set; }
-        public string RealName { get; set; }
+        public string UserName { get; set; }
         public bool IsSys { get; set; }
         public override string ToString()
         {
