@@ -42,6 +42,7 @@ namespace Example.Web.Areas.Admin.Controllers
                             UserName = manager.UserName,
                             LoginName = manager.LoginName,
                             //RoleName = manager.RoleName,
+                            RoleName = "超级管理员",
                             RoleId = manager.RoleId,
                             UserId = manager.Id
                         }, model.RememberMe);
