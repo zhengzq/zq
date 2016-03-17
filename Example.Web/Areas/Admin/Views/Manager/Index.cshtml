@@ -11,7 +11,8 @@
                     <h5>基本 <small>分类，查找</small></h5>
                 </div>
                 <div class="ibox-content">
-                    <table class="table table-striped table-bordered table-hover dataTables-example" id="table"></table>
+                    <table class="table table-striped table-bordered table-hover dataTables-example" id="table">
+                    </table>
                 </div>
             </div>
         </div>
@@ -26,14 +27,14 @@
             */
             var columns = [
                 {
-                    data: "Id", className: "td-debar"
+                    data: "Id", visible: true
                 },
-                { title: "登入名", data: "LoginName", className: "td-debar" },
+                { title: "登入名", data: "LoginName" },
                 { title: "真实姓名", data: "UserName" },
                 { title: "手机号码", data: "CellPhone" },
                 { title: "系统角色", data: "RoleName" },
                 {
-                    title: "操作", data: "Id", className: "td-debar", width: "15%",
+                    title: "操作", data: "Id", 
                     render: function (data, type, row) {
                         var btn = '<button class="btn" onclick="manager.editUser({0})">编辑</button>'.format(data);;
                         btn += "&nbsp;";
