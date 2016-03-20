@@ -20,7 +20,7 @@
 </div>
 @section Script{
     <script type="text/javascript">
-        window.manager = (function ($, zq, layer) {
+        window.manager = (function ($, zq) {
             var manager = {}, $table = $("#table"), $searchBtn = $("#searchBtn");
             /**
             * 表格数据列设置
@@ -50,6 +50,6 @@
                 columns: columns,
                 ajaxsetting: { url: "/Manager/List" }
             });
-        })($, zq, layer);
+        })($, zq);
     </script>
 }

@@ -9,6 +9,7 @@ namespace Example.Web.Areas.Admin.Controllers
     {
         private readonly IRoleQueryService _roleQueryService;
         private readonly INavQueryService _navQueryService;
+
         public HomeController(IRoleQueryService roleQueryService
             , INavQueryService navQueryService)
         {
@@ -32,5 +33,6 @@ namespace Example.Web.Areas.Admin.Controllers
             return View();
         }
 
+        
     }
 }

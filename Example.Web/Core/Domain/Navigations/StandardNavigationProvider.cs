@@ -27,6 +27,25 @@ namespace Example.Web.Core.Domain.Navigations
 
             #endregion
 
+            #region 工具
+            list.Add(new NavigationRecord
+            {
+                NavigationId = "ModuleTool",
+                Title = "工具",
+                Url = "",
+                Order = 2,
+                Icon = "fa-cutlery"
+            });
+            list.Add(new NavigationRecord
+            {
+                NavigationId = "MenuFormBuild",
+                Title = "表单构建器",
+                Url = "/Admin/Tool/FormBuild",
+                ParentId = "ModuleTool"
+            });
+
+            #endregion
+
             return list;
         }
     }

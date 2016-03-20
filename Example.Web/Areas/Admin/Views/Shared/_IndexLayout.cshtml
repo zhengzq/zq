@@ -1,8 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
 <html>
 <head>
-
-    @Html.Partial("_ReferencePartial")
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="renderer" content="webkit">
+    <title>后台主题UI框架</title>
+    @Styles.Render("~/admin/globalcss")
 
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg">
@@ -10,19 +15,8 @@
         @RenderBody()
     </div>
 
-    <!-- 全局js -->
-    <script src="/Areas/Admin/js/jquery.min.js?v=2.1.4"></script>
-    <script src="/Areas/Admin/js/bootstrap.min.js?v=3.3.6"></script>
-    <script src="/Areas/Admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="/Areas/Admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="/Areas/Admin/js/plugins/layer/layer.min.js"></script>
 
-    <!-- 自定义js -->
-    <script src="/Areas/Admin/js/hplus.js?v=4.1.0"></script>
-    <script type="text/javascript" src="/Areas/Admin/js/contabs.js"></script>
-
-    <!-- 第三方插件 -->
-    <script src="/Areas/Admin/js/plugins/pace/pace.min.js"></script>
-
+    @Scripts.Render("~/admin/indexjs")
+ 
 </body>
 </html>

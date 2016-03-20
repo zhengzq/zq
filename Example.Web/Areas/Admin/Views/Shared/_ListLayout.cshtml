@@ -1,30 +1,24 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
 <html>
 <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="renderer" content="webkit">
+    <title>后台主题UI框架</title>
 
-    @Html.Partial("_ReferencePartial")
-    <link href="~/Areas/Admin/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
-    <link href="~/Areas/Admin/js/plugins/layer/skin/layer.css" rel="stylesheet" />
+    @Styles.Render("~/admin/listcss")
+
+
 </head>
 <body class="gray-bg">
 
     @RenderBody()
 
+    @Scripts.Render("~/admin/listjs")
 
-    <!-- 全局js -->
-    <script src="/Areas/Admin/js/jquery.min.js?v=2.1.4"></script>
-    <script src="/Areas/Admin/js/bootstrap.min.js?v=3.3.6"></script>
-    
-    <!-- Data Tables -->
-    <script src="/Areas/Admin/js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="/Areas/Admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
-
-    <script src="~/Areas/Admin/js/plugins/layer/layer.min.js"></script>
-
-    <script src="~/Areas/Admin/js/zq/zq.js"></script>
-    <script src="~/Areas/Admin/js/zq/zq.expand.js"></script>
-
-    @RenderSection("Script")
+    @RenderSection("Script",false)
 
 </body>
 </html>

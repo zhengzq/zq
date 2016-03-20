@@ -1,6 +1,9 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using System.Web.Mvc.Routing.Constraints;
+using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.UI.WebControls;
 using Example.Web.Core.Application.Navigations;
 using Example.Web.Core.Application.Permissions;
 using Example.Web.Core.Data;
@@ -19,6 +22,7 @@ namespace Example.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             System.Data.Entity.Database.SetInitializer<EfDbContext>(new CreateDatabaseIfNotExists());
 

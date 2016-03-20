@@ -2,14 +2,13 @@
  *
  * @author 郑志强
  * 
- * @requires jQuery zq layer
+ * @requires jQuery zq
  * 
  * @description  zq的对象的一些公用组件封装
  *
  *****************************************************************/
 zq = (function (zq, $) {
-    function _showLoading() { }
-    function _closeLoading() { }
+
 
     $.extend($.prototype, {
         htmlCode: function () {
@@ -18,9 +17,18 @@ zq = (function (zq, $) {
             return $temp.html();
         }
     });
+
+
+    return zq;
+
+})(zq, $);
+
+zq = (function (zq, $) {
+    function _showLoading() { }
+    function _closeLoading() { }
     /****
-    * 公开的批量删除
-    */
+     * 公开的批量删除
+     */
     zq.standardDel = function (options) {
         var opts = $.extend(true, {
             msg: "确定要删除?",
@@ -129,69 +137,13 @@ zq = (function (zq, $) {
         };
         $.ajax(ajaxopts);
     }
-
-    return zq;
-
-})(zq, $, layer);
-
-zq = (function (zq, $, layer) {
-    zq.imageDomain = "";
-    var index;
-    function showLoading() { index = layer.load(); }
-    function closeLoading() { layer.close(index); }
-    function errorMsg(msg) {
-        var l = parent.layer || layer;
-        l.alert(msg, { icon: 3 });
-    }
-    function successMsg(msg) {
-        var l = parent.layer || layer;
-        l.msg(msg, { icon: 6 });
-    }
-    function alertMsg(msg) {
-        var l = parent.layer || layer;
-        l.alert(msg);
-    }
-    /****
-    * 公开的弹窗提示
-    */
-    zq.alertMsg = function (msg) { alertMsg(msg); }
-    /****
-    * 公开的错误提示
-    */
-    zq.errorMsg = function (msg) { errorMsg(msg); }
-    /****
-    * 公开的成功提示
-    */
-    zq.successMsg = function (msg) { successMsg(msg); }
     /****
     * 表格
     */
     zq.table = function (options) {
-        var opts = $.extend(true, {
-            $searchBtn: null,
-            $table: null,
-            $searchForm: null,
-            paging: true,
-            columns: [],
-            rowClickEvent: function () { },
-            initComplete: function () { },
-            footerCallback: function (tfoot, data, start, end, display) { },
-            drawCallback: function (settings) { },
-            ajaxsetting: {
-                url: "", //设置异步请求数据接口
-                type: "POST",
-                cache: false,
-                data: function (d) { d.filter = JSON.stringify(opts.$searchForm.serializeObject()); }
-            }
-        }, options);
-
         /** 
-        * 查询
-        */
-        opts.$searchBtn.on('click', function () { table.draw(true); });
-        /** 
-        * 表格多语言设置
-        */
+         * 表格多语言设置
+         */
         var language = {
             "sProcessing": "处理中...",
             "sLengthMenu": "_MENU_ 记录/页",
@@ -210,18 +162,35 @@ zq = (function (zq, $, layer) {
             }
         };
         /** 
-        * 表格列默认设置
-        */
+         * 表格列默认设置
+         */
         var columnDefs = [
             {
-                sDefaultContent: '' //列默认值为""，以防数据中没有此值，DataTables加载数据的时候报错
-               , aTargets: ['_all'] //设置所有列
+                sDefaultContent: "" //列默认值为""，以防数据中没有此值，DataTables加载数据的时候报错
+               , aTargets: ["_all"] //设置所有列
                , "searchable": false
             }
         ];
+        var opts = $.extend(true, {
+            $searchBtn: null,
+            $table: null,
+            $searchForm: null,
+            paging: true,
+            columns: [],
+            rowClickEvent: function () { },
+            initComplete: function () { },
+            footerCallback: function (tfoot, data, start, end, display) { },
+            drawCallback: function (settings) { },
+            ajaxsetting: {
+                url: "", //设置异步请求数据接口
+                type: "POST",
+                cache: false,
+                data: function (d) { d.filter = JSON.stringify(opts.$searchForm.serializeObject()); }
+            }
+        }, options);
         /** 
-        * 表格
-        */
+         * 表格
+         */
         var table = opts.$table.DataTable({
             //"dom": '<"top"i>rt<"bottom"flp><"clear">'
             "oLanguage": language
@@ -240,33 +209,20 @@ zq = (function (zq, $, layer) {
             , "footerCallback": opts.footerCallback
             , "drawCallback": opts.drawCallback
         });
-        opts.$table.on('click', 'tbody tr td:not(.td-debar)', opts.rowClickEvent);
+        opts.$table.on("click", "tbody tr td:not(.td-debar)", opts.rowClickEvent);
+        /** 
+        * 查询
+        */
+        opts.$searchBtn.on("click", function () { table.draw(true); });
+
+
 
         return table;
-    }
-    /****
-    * 弹框
-    */
-    zq.layer = function (options) {
-        var opts = $.extend(true, {
-            type: 2,
-            title: '标题',
-            shadeClose: true,
-            shade: 0.8,
-            maxmin: true,//最大化
-            content: ''
-        }, options);
-
-        if (options.parent) {
-            return options.parent.layer.open(opts);
-        } else {
-            return layer.open(opts);
-        }
     }
 
     return zq;
 
-})(zq, $, layer);
+})(zq, $);
 
 
 

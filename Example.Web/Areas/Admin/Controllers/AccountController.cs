@@ -3,13 +3,14 @@ using Example.Web.Areas.Admin.Models;
 using Example.Web.Core.Application.Managers;
 using Example.Web.Core.Domain.Managers;
 using Example.Web.Core.Extensions;
+using Example.Web.Core.Web;
 using Example.Web.Core.Web.Authentication;
 using Example.Web.Core.Web.Json;
 using Zq;
 
 namespace Example.Web.Areas.Admin.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : AdminController
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly IManagerService _managerService;
@@ -19,12 +20,12 @@ namespace Example.Web.Areas.Admin.Controllers
             _authenticationService = authenticationService;
             _managerService = managerService;
         }
-
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View(new LoginModel());
         }
-
+        [AllowAnonymous]    
         [HttpPost]
         public ActionResult Login(LoginModel model)
         {
