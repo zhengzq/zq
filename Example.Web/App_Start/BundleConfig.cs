@@ -20,6 +20,7 @@ namespace Example.Web
             };
             var admin_indexjs = new string[]
             {
+                "~/Areas/Admin/js/plugins/slimscroll/jquery.slimscroll.min.js",
                 "~/Areas/Admin/js/contabs.js",
                 "~/Areas/Admin/js/hplus.js"
             };

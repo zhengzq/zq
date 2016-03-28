@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
-using Example.Web.Core.Query;
-using Example.Web.Core.Web;
-using System.Linq;
+using Example.Core.Query;
+using Example.Core.Web;
 
 namespace Example.Web.Areas.Admin.Controllers
 {

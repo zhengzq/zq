@@ -1,0 +1,26 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="renderer" content="webkit">
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/admin/listcss")
+
+
+</head>
+<body class="gray-bg">
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/admin/listjs")
+
+    @RenderSection("Script", false)
+
+</body>
+</html>

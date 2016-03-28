@@ -1,6 +1,8 @@
-﻿namespace Zq.UnitOfWork
+﻿using System;
+
+namespace Zq.UnitOfWork
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         bool Committed { get; }
         void Commit();

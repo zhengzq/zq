@@ -3,7 +3,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_ListLayout.cshtml";
 }
 
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content animated fadeInRight ">
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
@@ -20,25 +20,27 @@
 </div>
 @section Script{
     <script type="text/javascript">
-        window.manager = (function ($, zq) {
+        window.manager = (function($, zq) {
             var manager = {}, $table = $("#table"), $searchBtn = $("#searchBtn");
             /**
             * 表格数据列设置
             */
             var columns = [
                 {
-                    data: "Id", visible: true
+                    data: "Id",
+                    visible: true
                 },
                 { title: "登入名", data: "LoginName" },
                 { title: "真实姓名", data: "UserName" },
                 { title: "手机号码", data: "CellPhone" },
                 { title: "系统角色", data: "RoleName" },
                 {
-                    title: "操作", data: "Id", 
-                    render: function (data, type, row) {
-                        var btn = '<button class="btn" onclick="manager.editUser({0})">编辑</button>'.format(data);;
+                    title: "操作",
+                    data: "Id",
+                    render: function(data, type, row) {
+                        var btn = '<a class="btn btn-primary btn-xs" href="/admin/manager/edit/{0}">编辑</a>'.format(data);;
                         btn += "&nbsp;";
-                        btn += '<button class="btn" onclick="manager.delUser({0})">删除</button>'.format(data);
+                        btn += '<button class="btn btn-primary btn-xs" onclick="manager.delUser({0})">删除</button>'.format(data);
                         return btn;
                     }
                 }
@@ -50,6 +52,8 @@
                 columns: columns,
                 ajaxsetting: { url: "/Manager/List" }
             });
+
+            return manager;
         })($, zq);
     </script>
 }

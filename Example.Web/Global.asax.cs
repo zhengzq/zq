@@ -3,11 +3,10 @@ using System.Web.Mvc;
 using System.Web.Mvc.Routing.Constraints;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.UI.WebControls;
-using Example.Web.Core.Application.Navigations;
-using Example.Web.Core.Application.Permissions;
-using Example.Web.Core.Data;
-using Example.Web.Core.Extensions;
+using Example.Core.Application.Navigations;
+using Example.Core.Application.Permissions;
+using Example.Core.Data;
+using Example.Core.Extensions;
 using Zq.Configurations;
 using Zq.Ioc;
 using Zq.JsonNet;
@@ -24,19 +23,27 @@ namespace Example.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            System.Data.Entity.Database.SetInitializer<EfDbContext>(new CreateDatabaseIfNotExists());
+            try
+            {
+                System.Data.Entity.Database.SetInitializer<EfDbContext>(new CreateDatabaseIfNotExists());
 
-            Configuration.Instance
-                .UseIoc()
-                .UseJson()
-                .UseLog4Net()
-                .UseRedis();
+                Configuration.Instance
+                    .UseIoc()
+                    .UseJson()
+                    .UseLog4Net()
+                    .UseRedis();
 
-            var permissionService = ObjectLocator.Resolve<IPermissionService>();
-            var navService = ObjectLocator.Resolve<INavService>();
-            var navIds = navService.GetNavigationRecords().Select(x => x.NavigationId).ToList();
+                var permissionService = ObjectLocator.Resolve<IPermissionService>();
+                var navService = ObjectLocator.Resolve<INavService>();
+                var navIds = navService.GetNavigationRecords().Select(x => x.NavigationId).ToList();
 
-            permissionService.InitNavigationPermissionWithFunctionPermissionFromAssembly(navIds, "Example.Web");
+                permissionService.InitNavigationPermissionWithFunctionPermissionFromAssembly(navIds, "Example.Web");
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
 
         }
     }

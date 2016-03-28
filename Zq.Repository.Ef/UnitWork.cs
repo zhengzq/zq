@@ -22,5 +22,10 @@ namespace Zq.Repository.Ef
         {
             Committed = false;
         }
+
+        public void Dispose()
+        {
+            _dbContext.Dispose();
+        }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using System.Web.Mvc;
+using Example.Core.Application.Managers;
+using Example.Core.Domain.Managers;
+using Example.Core.Extensions;
+using Example.Core.Web;
+using Example.Core.Web.Authentication;
 using Example.Web.Areas.Admin.Models;
-using Example.Web.Core.Application.Managers;
-using Example.Web.Core.Domain.Managers;
-using Example.Web.Core.Extensions;
-using Example.Web.Core.Web;
-using Example.Web.Core.Web.Authentication;
-using Example.Web.Core.Web.Json;
 using Zq;
 
 namespace Example.Web.Areas.Admin.Controllers

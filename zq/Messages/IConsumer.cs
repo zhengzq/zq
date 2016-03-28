@@ -2,6 +2,8 @@
 {
     public interface IConsumer
     {
-        void Handle(IMessage message);
+        void Handle<T>(T message) where T : class, IMessage;
     }
+
+
 }
