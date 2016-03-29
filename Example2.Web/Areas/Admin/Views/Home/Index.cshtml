@@ -1,0 +1,66 @@
+﻿@using Example.Core.Web
+@{
+    ViewBag.Title = "管理系统";
+    Layout = "~/Areas/Admin/Views/Shared/_IndexLayout.cshtml";
+}
+
+<div data-options="region:'north'" style="height: 85px;">
+    <div id="topbar">
+        <div class="top-bar-right">
+            <div id="timerSpan"></div>
+            <div class="cleardiv"></div>
+            <div id="themeSpan">
+                <span>更换皮肤风格：</span>
+                <select id="themeSelector"></select>
+                <a id="btnHideNorth"
+                   class="easyui-linkbutton"
+                   data-options="plain: true, iconCls: 'layout-button-up'"></a>
+            </div>
+        </div>
+        <!--工具条-->
+        <div id="toolbar" class="panel-header panel-header-noborder top-toolbar">
+            <!--用户信息-->
+            <div id="infobar">
+                <span class="icon-hamburg-user"
+                      style="padding-left: 25px; background-position: left center;">
+                    欢迎您,@WorkContext.CurrentUser.UserName
+                </span>
+            </div>
+            <!--右侧工具按钮-->
+            <div id="buttonbar">
+                <a id="btnFullScreen"
+                   class="easyui-linkbutton"
+                   data-options="plain: true,
+                   iconCls: 'icon-standard-arrow-inout'">
+                    全屏切换
+                </a>
+                <a id="btnExit" class="easyui-linkbutton" 
+                   data-options="plain: true, iconCls: 'icon-hamburg-sign-out'">
+                    退出系统
+                </a>
+                <a id="btnShowNorth" class="easyui-linkbutton"
+                    data-options="plain: true, iconCls: 'layout-button-down'" style="display: none;"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-options="region:'west',title:'菜单列表',split:true" title="West" style="width: 150px; height: 100%;">
+    <ul id="menus"></ul>
+</div>
+<div data-options="region:'center',iconCls:'icon-ok',split:true">
+    <div id="tab" class="easyui-tabs"></div>
+</div>
+<div data-options="region:'south',split:true" style="height: 30px;text-align:center">
+    <span style="line-height: 20px;">郑志强</span>
+</div>
+@section Script{
+    <script src="~/Areas/Admin/js/index-startupJs.js"></script>
+    <script>
+        $('#menus').tree({
+            onClick: function (note) { zq.easyui.tabShow(note.text, note.href, note.iconCls); },
+           url: '/Navigation/Tree'
+        });
+
+
+    </script>
+}

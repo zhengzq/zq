@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.BodyAttr = "class='easyui-layout' style='overflow: overlay; '";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Html.Partial("_ReferencePartial")
+    <script src="~/Scripts/jquery.form.js"></script>
+</head>
+<body id="mainbody" @Html.Raw(ViewBag.BodyAttr) >
+    @RenderBody()
+    <script>
+        zq.easyui.changeTheme(zq.cookie.get('easyuiTheme'));
+    </script>
+</body>
+</html>

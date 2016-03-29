@@ -1,0 +1,53 @@
+﻿/*弹出层的STYLE*/
+html, body {
+    height: 100%;
+    margin: 0px;
+    font-size: 12px;
+}
+
+.login {
+    background-color: #fff;
+    width: 600px;
+    height: 350px;
+    left: 42%; /*FF IE7*/
+    top: 30%; /*FF IE7*/
+    margin-left: -150px !important; /*FF IE7 该值为本身宽的一半 */
+    margin-top: -60px !important; /*FF IE7 该值为本身高的一半*/
+    margin-top: 0px;
+    position: fixed !important; /*FF IE7*/
+    position: absolute; /*IE6*/
+    _top: expression(eval(document.compatMode && document.compatMode=='CSS1Compat') ? documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 : /*IE6*/
+    document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2); /*IE5 IE5.5*/
+}
+
+.textbox {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #dfdfdf;
+    height: 18px;
+}
+
+    .textbox:focus {
+        box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+        padding: 3px 0px 3px 3px;
+        margin: 5px 1px 3px 0px;
+        border: 1px solid rgba(81, 203, 238, 1);
+    }
+
+.login-btn {
+    background-color: #1a7bc9;
+    color: #fff;
+    border: none;
+    width: 60px;
+    height: 25px;
+    cursor: pointer;
+}
+.login-btn:hover {
+    background :#9cc8f7
+}
+.error{color: red; text-align: left;}

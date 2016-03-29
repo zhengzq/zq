@@ -284,7 +284,6 @@
     <Content Include="Areas\Admin\js\zq\zq.validation.expand.js" />
     <Content Include="Areas\Admin\Views\Home\_Navigation.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_BreadcrupbPartial.cshtml" />
-    <Content Include="Global.asax" />
     <Content Include="Areas\Admin\js\bootstrap.min.js" />
     <Content Include="Areas\Admin\js\contabs.js" />
     <Content Include="Areas\Admin\js\content.js" />
@@ -637,10 +636,12 @@
     <Content Include="Areas\Admin\js\plugins\webuploader\webuploader.withoutimage.js" />
     <Content Include="Areas\Admin\js\plugins\webuploader\webuploader.withoutimage.min.js" />
     <Content Include="Areas\Admin\js\welcome.js" />
+    <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\ConfigurationExtension.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />

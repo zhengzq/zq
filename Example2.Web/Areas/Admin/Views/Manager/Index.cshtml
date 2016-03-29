@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_ListLayout.cshtml";
+}
+
+<div id="tb" style="padding:2px 5px;">
+    <div>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true " onclick="manager.add()">添加用户</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true " onclick="manager.delete()">删除用户</a>
+    </div>
+</div>
+<table id="grid"></table>
+
+
+@section Script{
+    <script>
+        var manager = {
+            authorizes: [],
+            controller: 'Admin',
+            $grid: $('#grid'),
+            toolbar: $('#tb'),
+            toobarBtnItemExcuter: null,
+            grid: null
+        }
+        //manager.authorizes = zq.getAuthorize('', { controller: manager.controller })
+
+        manager.grid = manager.$grid.datagrid({
+            toolbar: manager.toolbar,
+            rownumbers: true, //行号
+            singleSelect: true,
+            selectOnCheck: false,
+            checkOnSelect: false,
+            striped: true, //是否启用行交替颜色
+            pagination: true, //是否启用分页
+            fit: true,
+            fitColumns: false,
+            url: '/Admin/Manager/List', //远程请求数据地址
+            pageSize: 10, //初始分页大小.
+            pageNumber: 1, //初始页码.
+            pageList: [10, 20, 30], //初始分页大小选择列表.
+            columns: [
+                [
+                    { field: 'Id', checkbox: true },
+                    { field: 'LoginName', title: '登入名' },
+                    { field: 'UserName', title: '真实姓名' },
+                    { field: 'CellPhone', title: '手机号码' },
+                    { field: 'RoleName', title: '系统角色' },
+                    {
+                        field: 'action',
+                        title: '操作',
+                        formatter: function (value, row, index) {
+                            var array = [];
+                            array.push('<a href="javascript:void(0)" onclick="manager.edit(' + row.AdminId + ')">编辑</a>');
+                            return array.join('|');
+                        }
+                    }
+                ]
+            ]
+        });
+        manager.add = function () {
+            var $dialog = zq.easyui.modalDialog({
+                width: 400,
+                height: 300,
+                title: '添加用户',
+                url: '/Admin/Add',
+                buttons: [
+                    {
+                        text: '提交',
+                        iconCls: 'icon-save',
+                        handler: function () {
+                            zq.easyui.getIframe($dialog).submitForm(manager.$grid, $dialog);
+                        }
+                    }
+                ]
+            });
+        }
+        manager.delete = function () {
+            $.messager.confirm('提示', '确定执行删除?', function (r) {
+                if (r) {
+                    var selRows = [];
+                    selRows = manager.$grid.datagrid('getChecked');
+                    var array = [];
+                    $.each(selRows, function (i, n) {
+                        array.push(n.AdminId);
+                    });
+                    zq.easyui.batchOp('/Admin/Delete',
+                        manager.$grid,
+                        { 'adminIds': array.join(',') });
+                }
+            });
+        }
+        manager.edit = function (adminId) {
+            var $dialog = zq.easyui.modalDialog({
+                width: 400,
+                height: 300,
+                title: '用户修改',
+                url: '/Admin/Edit?adminId=' + adminId,
+                buttons: [
+                    {
+                        text: '提交',
+                        iconCls: 'icon-save',
+                        handler: function () {
+                            zq.easyui.getIframe($dialog).submitForm(manager.$grid, $dialog);
+                        }
+                    }
+                ]
+            });
+        }
+
+    </script>
+}

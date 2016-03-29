@@ -1,0 +1,79 @@
+﻿@model Example2.Web.Areas.Admin.Models.LoginModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="login">
+    <table style="width: 100%; color: #808080;">
+        <tr>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td style="width: 40%; vertical-align: middle;">
+                <table style="height: 260px">
+                    <tr>
+                        <td>
+                            <h2>后台管理系统</h2>
+                            <p>版本:1.0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top; text-align: center;">
+                            <img src="~/Areas/Admin/images/ico13.gif" alt="" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <img src="~/Areas/Admin/images/line.gif" alt="" />
+            </td>
+            <td style="width: 60%">
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @id = "form_login" }))
+                {
+                    <table>
+                        <tr>
+                            <td>登入账号：</td>
+                            <td>
+                                @Html.TextBoxFor(model => model.LoginName, new
+                                {
+                                    @style = "width: 180px",
+                                    @class = "textbox"
+                                })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>密码：</td>
+                            <td>
+                                @Html.PasswordFor(model => model.Password, new
+                                {
+                                    @style = "width: 180px",
+                                    @class = "textbox"
+                                })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>验证码：</td>
+                            <td>
+                                <input type="text" name="checkNum" style="width: 100px;" class="textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align: left;">
+                                <input type="submit"
+                                       value=" 登录 "
+                                       class="login-btn" />
+                                @Html.ActionLink("忘记密码？", "ForgetPassword")
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="error">@Model.Error</td>
+                        </tr>
+                    </table>
+                }
+
+            </td>
+        </tr>
+    </table>
+</div>
