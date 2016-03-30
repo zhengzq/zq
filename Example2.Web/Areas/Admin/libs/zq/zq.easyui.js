@@ -168,17 +168,25 @@ var zq = (function (zq) {
 
             return $dialogDiv.dialog(opts);
         },
+        themeData: [
+            { id: 1, cnName: "默认(天空蓝,推荐)", value: "default" },
+            { id: 2, cnName: "金属黑(推荐)", value: "black" },
+            { id: 3, cnName: "银色(推荐)", value: "bootstrap" },
+            { id: 4, cnName: "灰霾(推荐)", value: "gray" },
+            { id: 5, cnName: "素材", value: "material" },
+            { id: 6, cnName: "地铁", value: "metro" }
+        ],
         /**
          * 更换主题(需要设置模板的样式LINK的ID)               
          * 
          * @param themeName
          */
-        changeTheme: function (themeName, setCookie) {
-            if (!themeName) themeName = parent.zq.cookie.get("easyuiTheme");
-            if (!themeName) themeName = "default";
+        changeTheme: function (theme, setCookie) {
+            if (!theme) return;
+            if (!theme.value) return;
             var $easyuiTheme = $("#easyuiTheme");
             var url = $easyuiTheme.attr("href");
-            var href = url.substring(0, url.indexOf("themes")) + "themes/" + themeName + "/easyui.css";
+            var href = url.substring(0, url.indexOf("themes")) + "themes/" + theme.value + "/easyui.css";
             $easyuiTheme.attr("href", href);
 
             var $iframe = $("iframe");
@@ -196,7 +204,8 @@ var zq = (function (zq) {
                 }
             }
             if (setCookie) {
-                zq.cookie.add("easyuiTheme", themeName, { expires: 7 });
+                $.cookie.json = true;
+                $.cookie("easyuiTheme", theme, { expires: 7 });
             }
         },
         /**

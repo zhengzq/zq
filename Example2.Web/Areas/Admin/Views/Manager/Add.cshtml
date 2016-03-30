@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_FormLayout.cshtml";
+}
+@model Example.Core.Domain.Managers.Manager
+
+<div class="easyui-panel" data-options="fit:true">
+    <div style=" padding:10px">
+
+        <form id="form" action="/Admin/Edit" method="post">
+         
+        <fieldset>
+            <legend>用户信息</legend>
+            @Html.HiddenFor(model => model.Id)
+            <table cellpadding="5">
+                <tr>
+                    <th>用户名</th>
+                    <td>
+                        @Html.TextBoxFor(model => model.UserName,
+                    new
+                    {
+                        @class = "easyui-validatebox",
+                        @data_options = "required:true"
+                    })
+                    </td>
+                </tr>
+                <tr>
+                    <th>登入名</th>
+                    <td>
+                        @Html.TextBoxFor(model => model.LoginName,
+                    new
+                    {
+                        @class = "easyui-validatebox",
+                        @data_options = "required:true"
+                    })
+                    </td>
+                </tr>
+                <tr>
+                    <th>密码</th>
+                    <td>
+                        @Html.PasswordFor(model => model.Password,
+                    new
+                    {
+                        @class = "easyui-validatebox",
+                        @data_options = "required:true"
+                    })
+                    </td>
+                </tr>
+            </table>
+
+        </fieldset>
+
+
+        </form>
+    </div>
+</div>
+
+<script>
+    function submitForm($grid, $dialog) {
+        zq.easyui.submitForm({
+            $grid: $grid,
+            $dialog: $dialog,
+            $form: $('#form')
+        });
+    }
+</script>

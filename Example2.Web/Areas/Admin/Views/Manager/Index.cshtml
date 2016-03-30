@@ -5,8 +5,13 @@
 
 <div id="tb" style="padding:2px 5px;">
     <div>
-        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true " onclick="manager.add()">添加用户</a>
-        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true " onclick="manager.delete()">删除用户</a>
+        <a href="#" class="easyui-linkbutton"
+           data-options="iconCls:'icon-add',plain:true " 
+           onclick="manager.add()">添加用户</a>
+        
+        <a href="#" class="easyui-linkbutton"
+           data-options="iconCls:'icon-remove',plain:true " 
+           onclick="manager.del()">删除用户</a>
     </div>
 </div>
 <table id="grid"></table>
@@ -58,23 +63,10 @@
             ]
         });
         manager.add = function () {
-            var $dialog = zq.easyui.modalDialog({
-                width: 400,
-                height: 300,
-                title: '添加用户',
-                url: '/Admin/Add',
-                buttons: [
-                    {
-                        text: '提交',
-                        iconCls: 'icon-save',
-                        handler: function () {
-                            zq.easyui.getIframe($dialog).submitForm(manager.$grid, $dialog);
-                        }
-                    }
-                ]
-            });
+            zq.easyui.tabShow('添加用户', '/Admin/Manager/Add', '');
+           
         }
-        manager.delete = function () {
+        manager.del = function () {
             $.messager.confirm('提示', '确定执行删除?', function (r) {
                 if (r) {
                     var selRows = [];

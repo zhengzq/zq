@@ -1,17 +1,47 @@
-﻿.cleardiv {clear:both;}
-
-/*顶部右侧样式*/
-.top-bar-right { position: absolute;width: 400px;height: 52px;right: 0;}
-/*顶部工具条*/
-.top-toolbar {position: absolute; font-weight: normal;padding: 0;width: 100%;height: 28px;top: 55px; left: 0;border-top-width: 1px;}
-/*顶部事件*/
-#timerSpan { float: right;padding: 3px 5px;}
-/*顶部切换模板*/
-#themeSpan {float: right;}
-/*顶部工具条按键*/
-#buttonbar{ float:right;padding:2px 10px;}
-#infobar{float:left;padding:6px 5px;}
-
-.top-toolbar-topmost { top: 0px; height: 27px; border-top-width: 0px; border-bottom-width: 1px;z-index: 1000; }
-
-.zq-icon {width: 16px;height: 16px;cursor: pointer;float:left}
+﻿body{font-size:12px; font-family:Verdana,宋体,Tahoma;padding:0px; margin:0px; }
+a{color:Black; text-decoration:none;}
+a:hover{ color:Red; text-decoration:underline;}
+.header {
+}
+.header-content {
+    position: absolute;
+    width: 400px;
+    height: 52px;
+    right: 0;
+}
+    .header-content .timer {
+        float: right;
+        padding: 3px 5px;
+    }
+    .header-content .theme {
+        float: right;
+    }
+.header-toolbar {
+    position: absolute;
+    font-weight: normal;
+    padding: 0;
+    width: 100%;
+    height: 28px;
+    top: 55px;
+    left: 0;
+    border-top-width: 1px;
+}
+.infobar {
+    float: left;
+    padding: 6px 5px;
+}
+    .infobar span {
+        padding-left: 25px;
+        background-position: left center;
+    }
+.header-toolbar .buttonbar {
+    float: right;
+    padding: 2px 10px;
+}
+.top-toolbar-topmost {
+    top: 0px;
+    height: 27px;
+    border-top-width: 0px;
+    border-bottom-width: 1px;
+    z-index: 1000;
+}

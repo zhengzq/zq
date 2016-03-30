@@ -1,7 +1,7 @@
 ﻿$(function () {
     var $mainbody = $("#mainbody");
     var $toolbar = $("#toolbar");
-    var $topbar = $("#topbar");
+    var $header = $("#header");
     var $btnShow = $("#btnShowNorth");
     zq.easyui.option.tab = $("#tab");
 
@@ -13,21 +13,21 @@
         interval();
         window.setInterval(interval, 1000);
     }();
-
-    var tempName = zq.cookie.get("easyuiTheme");
+    var theme = ($.cookie("easyuiTheme") && JSON.parse($.cookie("easyuiTheme"))) || zq.easyui.themeData[0];
     /**
     * 模板选择
     */
     $("#themeSelector").combobox({
         width: 140,
         editable: false,
-        data: themeData,
+        data: zq.easyui.themeData,
         valueField: "value",
         textField: "cnName",
-        value: tempName,
-        onSelect: function (record) { zq.easyui.changeTheme(record.value, true); },
-        onLoadSuccess: function () { zq.easyui.changeTheme(tempName, true); }
+        value: theme.value,
+        onSelect: function (record) { zq.easyui.changeTheme(record, true); },
+        onLoadSuccess: function () { zq.easyui.changeTheme(theme, true); }
     });
+    
     /**
     * 全屏事件
     */
@@ -57,7 +57,7 @@
     northopts.onExpand = function () {
         if ($.isFunction(onExpand)) { onExpand.apply(this, arguments); }
         $btnShow.hide();
-        $toolbar.removeClass("top-toolbar-topmost").insertAfter($topbar);
+        $toolbar.removeClass("top-toolbar-topmost").insertAfter($header);
     };
    
     $mainbody.layout("panel", "center").panel({
