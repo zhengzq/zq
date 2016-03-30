@@ -15,6 +15,7 @@
     @RenderBody()
 
     <script src="~/Areas/Admin/libs/jquery/jquery-1.12.2.min.js"></script>
+    <script src="~/Areas/Admin/libs/jquery/jquery.cookie.js"></script>
     <script src="~/Areas/Admin/libs/jeasyui/jquery.easyui.min.js"></script>
     <script src="~/Areas/Admin/libs/jeasyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Areas/Admin/libs/zq/zq.js"></script>
@@ -23,7 +24,7 @@
     @RenderSection("Script")
 
     <script>
-        zq.easyui.changeTheme(zq.cookie.get('easyuiTheme'));
+        zq.easyui.changeTheme($.cookie('easyuiTheme'));
         zq.easyui.option.tab = parent.$("#tab");
     </script>
 </body>
