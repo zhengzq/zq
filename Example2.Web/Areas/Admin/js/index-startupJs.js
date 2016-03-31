@@ -27,7 +27,7 @@
         onSelect: function (record) { zq.easyui.changeTheme(record, true); },
         onLoadSuccess: function () { zq.easyui.changeTheme(theme, true); }
     });
-    
+
     /**
     * 全屏事件
     */
@@ -35,7 +35,7 @@
     /*
     * 退出事件
     */
-    $("#btnExit").click(function () { window.location = "/Account/logout"; });
+    $("#btnExit").click(function () { window.location = "/Admin/Account/logout"; });
     /**
     * 隐藏顶部事件
     */
@@ -59,7 +59,7 @@
         $btnShow.hide();
         $toolbar.removeClass("top-toolbar-topmost").insertAfter($header);
     };
-   
+
     $mainbody.layout("panel", "center").panel({
         onResize: function (width, height) {
             setIframeHeight("centerIframe", $mainbody.layout("panel", "center").panel("options").height - 5);
