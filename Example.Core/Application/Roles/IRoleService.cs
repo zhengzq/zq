@@ -9,9 +9,9 @@ namespace Example.Core.Application.Roles
         OperateResult Create(CreateRoleCommand command);
         OperateResult Delete(List<int> roleIds);
         /// <summary>
-        /// 当前管理员是否有权限-Code
+        /// 当前管理员是否有权限-permissionId
         /// </summary>
-        bool CheckRoleIsAuthorized(string code, int roleId);
+        bool CheckRoleIsAuthorized(string permissionId, int roleId);
     }
   
 }
