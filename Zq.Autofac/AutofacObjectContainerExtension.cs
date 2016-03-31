@@ -15,7 +15,7 @@ namespace Zq.Autofac
             throw new Exception("container not is AutofacObjectContainer");
         }
 
-        public static void SwitchLifetime(this IRegistrationBuilder<object, ReflectionActivatorData, DynamicRegistrationStyle> instance, LifeTime lifeTime)
+        internal static void SwitchLifetime(this IRegistrationBuilder<object, ReflectionActivatorData, DynamicRegistrationStyle> instance, LifeTime lifeTime)
         {
             switch (lifeTime)
             {
@@ -31,7 +31,7 @@ namespace Zq.Autofac
                     break;
             }
         }
-        public static void SwitchLifetime<TImplement>(this IRegistrationBuilder<TImplement, ConcreteReflectionActivatorData, SingleRegistrationStyle> instance, LifeTime lifeTime)
+        internal static void SwitchLifetime<TImplement>(this IRegistrationBuilder<TImplement, ConcreteReflectionActivatorData, SingleRegistrationStyle> instance, LifeTime lifeTime)
         {
             switch (lifeTime)
             {
@@ -48,7 +48,7 @@ namespace Zq.Autofac
             }
         }
 
-        public static void SwitchLifetime<TImplement>(this IRegistrationBuilder<TImplement, SimpleActivatorData, SingleRegistrationStyle> instance, LifeTime lifeTime)
+        internal static void SwitchLifetime<TImplement>(this IRegistrationBuilder<TImplement, SimpleActivatorData, SingleRegistrationStyle> instance, LifeTime lifeTime)
         {
             switch (lifeTime)
             {
