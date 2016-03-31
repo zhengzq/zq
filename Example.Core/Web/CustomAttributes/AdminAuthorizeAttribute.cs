@@ -6,7 +6,7 @@ using Example.Core.Application.Permissions;
 using Example.Core.Application.Roles;
 using Example.Core.Web.Authentication;
 using Example.Core.Web.Json;
-using Zq.Ioc;
+using Zq.DI;
 
 namespace Example.Core.Web.CustomAttributes
 {
@@ -26,9 +26,9 @@ namespace Example.Core.Web.CustomAttributes
             var currentUser = WorkContext.CurrentUser;
             if (!currentUser.IsSys)
             {
-                var roleService = ObjectLocator.Resolve<IRoleService>();
-                var navigationService = ObjectLocator.Resolve<INavService>();
-                var permissionService = ObjectLocator.Resolve<IRoleService>();
+                var roleService = Ioc.Resolve<IRoleService>();
+                var navigationService = Ioc.Resolve<INavService>();
+                var permissionService = Ioc.Resolve<IRoleService>();
                 if (!roleService.CheckRoleIsAuthorized(PermissionId.ToString(), currentUser.RoleId))
                 {
                     var user = WorkContext.CurrentUser ?? new CurrentUser();

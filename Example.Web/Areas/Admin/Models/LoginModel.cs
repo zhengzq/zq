@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace Example.Web.Areas.Admin.Models
+﻿namespace Example.Web.Areas.Admin.Models
 {
     public class LoginModel
     {

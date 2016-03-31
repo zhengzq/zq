@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -24,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,10 +45,867 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="app\admin\bower_components\angular-animate\angular-animate.js" />
+    <Content Include="app\admin\bower_components\angular-animate\angular-animate.min.js" />
+    <Content Include="app\admin\bower_components\angular-bootstrap\ui-bootstrap-tpls.js" />
+    <Content Include="app\admin\bower_components\angular-bootstrap\ui-bootstrap-tpls.min.js" />
+    <Content Include="app\admin\bower_components\angular-bootstrap\ui-bootstrap.js" />
+    <Content Include="app\admin\bower_components\angular-bootstrap\ui-bootstrap.min.js" />
+    <Content Include="app\admin\bower_components\angular-chart.js\angular-chart.js" />
+    <Content Include="app\admin\bower_components\angular-chart.js\dist\angular-chart.css" />
+    <Content Include="app\admin\bower_components\angular-chart.js\dist\angular-chart.js" />
+    <Content Include="app\admin\bower_components\angular-chart.js\dist\angular-chart.min.js" />
+    <Content Include="app\admin\bower_components\angular-chart.js\examples\app.css" />
+    <Content Include="app\admin\bower_components\angular-chart.js\examples\app.js" />
+    <Content Include="app\admin\bower_components\angular-chart.js\examples\bootstrap.css" />
+    <Content Include="app\admin\bower_components\angular-chart.js\examples\charts.html" />
+    <Content Include="app\admin\bower_components\angular-chart.js\examples\charts.template.html" />
+    <Content Include="app\admin\bower_components\angular-chart.js\examples\smoothscroll.min.js" />
+    <Content Include="app\admin\bower_components\angular-chart.js\examples\stacked-bars.html" />
+    <Content Include="app\admin\bower_components\angular-chart.js\examples\tables.html" />
+    <Content Include="app\admin\bower_components\angular-chart.js\examples\ticks.html" />
+    <Content Include="app\admin\bower_components\angular-chart.js\gulpfile.js" />
+    <Content Include="app\admin\bower_components\angular-cookies\angular-cookies.js" />
+    <Content Include="app\admin\bower_components\angular-cookies\angular-cookies.min.js" />
+    <Content Include="app\admin\bower_components\angular-cookies\index.js" />
+    <Content Include="app\admin\bower_components\angular-loading-bar\build\loading-bar.css" />
+    <Content Include="app\admin\bower_components\angular-loading-bar\build\loading-bar.js" />
+    <Content Include="app\admin\bower_components\angular-loading-bar\build\loading-bar.min.css" />
+    <Content Include="app\admin\bower_components\angular-loading-bar\build\loading-bar.min.js" />
+    <Content Include="app\admin\bower_components\angular-loading-bar\Gruntfile.js" />
+    <Content Include="app\admin\bower_components\angular-loading-bar\src\loading-bar.css" />
+    <Content Include="app\admin\bower_components\angular-loading-bar\src\loading-bar.js" />
+    <Content Include="app\admin\bower_components\angular-messages\angular-messages.js" />
+    <Content Include="app\admin\bower_components\angular-messages\angular-messages.min.js" />
+    <Content Include="app\admin\bower_components\angular-messages\index.js" />
+    <Content Include="app\admin\bower_components\angular-mocks\angular-mocks.js" />
+    <Content Include="app\admin\bower_components\angular-resource\angular-resource.js" />
+    <Content Include="app\admin\bower_components\angular-resource\angular-resource.min.js" />
+    <Content Include="app\admin\bower_components\angular-route\angular-route.js" />
+    <Content Include="app\admin\bower_components\angular-route\angular-route.min.js" />
+    <Content Include="app\admin\bower_components\angular-sanitize\angular-sanitize.js" />
+    <Content Include="app\admin\bower_components\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="app\admin\bower_components\angular-scenario\angular-scenario.js" />
+    <Content Include="app\admin\bower_components\angular-scenario\jstd-scenario-adapter-config.js" />
+    <Content Include="app\admin\bower_components\angular-scenario\jstd-scenario-adapter.js" />
+    <Content Include="app\admin\bower_components\angular-toaster\index.js" />
+    <Content Include="app\admin\bower_components\angular-toaster\karma.conf.js" />
+    <Content Include="app\admin\bower_components\angular-toaster\test\directiveTemplateSpec.js" />
+    <Content Include="app\admin\bower_components\angular-toaster\toaster.css" />
+    <Content Include="app\admin\bower_components\angular-toaster\toaster.js" />
+    <Content Include="app\admin\bower_components\angular-toaster\toaster.min.css" />
+    <Content Include="app\admin\bower_components\angular-toaster\toaster.min.js" />
+    <Content Include="app\admin\bower_components\angular-toggle-switch\angular-toggle-switch-bootstrap.css" />
+    <Content Include="app\admin\bower_components\angular-toggle-switch\angular-toggle-switch.css" />
+    <Content Include="app\admin\bower_components\angular-toggle-switch\angular-toggle-switch.js" />
+    <Content Include="app\admin\bower_components\angular-toggle-switch\angular-toggle-switch.min.js" />
+    <Content Include="app\admin\bower_components\angular-toggle-switch\test\angular-toggle-switch.spec.js" />
+    <Content Include="app\admin\bower_components\angular-touch\angular-touch.js" />
+    <Content Include="app\admin\bower_components\angular-touch\angular-touch.min.js" />
+    <Content Include="app\admin\bower_components\angular-ui-router\release\angular-ui-router.js" />
+    <Content Include="app\admin\bower_components\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="app\admin\bower_components\angular-ui-router\src\common.js" />
+    <Content Include="app\admin\bower_components\angular-ui-router\src\resolve.js" />
+    <Content Include="app\admin\bower_components\angular-ui-router\src\state.js" />
+    <Content Include="app\admin\bower_components\angular-ui-router\src\stateDirectives.js" />
+    <Content Include="app\admin\bower_components\angular-ui-router\src\stateFilters.js" />
+    <Content Include="app\admin\bower_components\angular-ui-router\src\templateFactory.js" />
+    <Content Include="app\admin\bower_components\angular-ui-router\src\urlMatcherFactory.js" />
+    <Content Include="app\admin\bower_components\angular-ui-router\src\urlRouter.js" />
+    <Content Include="app\admin\bower_components\angular-ui-router\src\view.js" />
+    <Content Include="app\admin\bower_components\angular-ui-router\src\viewDirective.js" />
+    <Content Include="app\admin\bower_components\angular-ui-router\src\viewScroll.js" />
+    <Content Include="app\admin\bower_components\angular\angular-csp.css" />
+    <Content Include="app\admin\bower_components\angular\angular.js" />
+    <Content Include="app\admin\bower_components\angular\angular.min.js" />
+    <Content Include="app\admin\bower_components\angular\index.js" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\js\npm.js" />
+    <Content Include="app\admin\bower_components\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\admin\bower_components\bootstrap\Gruntfile.js" />
+    <Content Include="app\admin\bower_components\bootstrap\grunt\bs-commonjs-generator.js" />
+    <Content Include="app\admin\bower_components\bootstrap\grunt\bs-glyphicons-data-generator.js" />
+    <Content Include="app\admin\bower_components\bootstrap\grunt\bs-lessdoc-parser.js" />
+    <Content Include="app\admin\bower_components\bootstrap\grunt\bs-raw-files-generator.js" />
+    <Content Include="app\admin\bower_components\bootstrap\js\affix.js" />
+    <Content Include="app\admin\bower_components\bootstrap\js\alert.js" />
+    <Content Include="app\admin\bower_components\bootstrap\js\button.js" />
+    <Content Include="app\admin\bower_components\bootstrap\js\carousel.js" />
+    <Content Include="app\admin\bower_components\bootstrap\js\collapse.js" />
+    <Content Include="app\admin\bower_components\bootstrap\js\dropdown.js" />
+    <Content Include="app\admin\bower_components\bootstrap\js\modal.js" />
+    <Content Include="app\admin\bower_components\bootstrap\js\popover.js" />
+    <Content Include="app\admin\bower_components\bootstrap\js\scrollspy.js" />
+    <Content Include="app\admin\bower_components\bootstrap\js\tab.js" />
+    <Content Include="app\admin\bower_components\bootstrap\js\tooltip.js" />
+    <Content Include="app\admin\bower_components\bootstrap\js\transition.js" />
+    <Content Include="app\admin\bower_components\bootstrap\package.js" />
+    <Content Include="app\admin\bower_components\Chart.js\Chart.js" />
+    <Content Include="app\admin\bower_components\Chart.js\Chart.min.js" />
+    <Content Include="app\admin\bower_components\Chart.js\gulpfile.js" />
+    <Content Include="app\admin\bower_components\Chart.js\samples\bar.html" />
+    <Content Include="app\admin\bower_components\Chart.js\samples\doughnut.html" />
+    <Content Include="app\admin\bower_components\Chart.js\samples\line-customTooltips.html" />
+    <Content Include="app\admin\bower_components\Chart.js\samples\line.html" />
+    <Content Include="app\admin\bower_components\Chart.js\samples\pie-customTooltips.html" />
+    <Content Include="app\admin\bower_components\Chart.js\samples\pie.html" />
+    <Content Include="app\admin\bower_components\Chart.js\samples\polar-area.html" />
+    <Content Include="app\admin\bower_components\Chart.js\samples\radar.html" />
+    <Content Include="app\admin\bower_components\Chart.js\src\Chart.Bar.js" />
+    <Content Include="app\admin\bower_components\Chart.js\src\Chart.Core.js" />
+    <Content Include="app\admin\bower_components\Chart.js\src\Chart.Doughnut.js" />
+    <Content Include="app\admin\bower_components\Chart.js\src\Chart.Line.js" />
+    <Content Include="app\admin\bower_components\Chart.js\src\Chart.PolarArea.js" />
+    <Content Include="app\admin\bower_components\Chart.js\src\Chart.Radar.js" />
+    <Content Include="app\admin\bower_components\es5-shim\es5-sham.js" />
+    <Content Include="app\admin\bower_components\es5-shim\es5-sham.min.js" />
+    <Content Include="app\admin\bower_components\es5-shim\es5-shim.js" />
+    <Content Include="app\admin\bower_components\es5-shim\es5-shim.min.js" />
+    <Content Include="app\admin\bower_components\font-awesome\css\font-awesome.css" />
+    <Content Include="app\admin\bower_components\font-awesome\css\font-awesome.min.css" />
+    <Content Include="app\admin\bower_components\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="app\admin\bower_components\jquery.datetimepicker\jquery.datetimepicker.css" />
+    <Content Include="app\admin\bower_components\jquery.datetimepicker\jquery.datetimepicker.js" />
+    <Content Include="app\admin\bower_components\jquery\dist\jquery.js" />
+    <Content Include="app\admin\bower_components\jquery\dist\jquery.min.js" />
+    <Content Include="app\admin\bower_components\jquery\MIT-LICENSE.txt" />
+    <Content Include="app\admin\bower_components\jquery\src\ajax.js" />
+    <Content Include="app\admin\bower_components\jquery\src\ajax\jsonp.js" />
+    <Content Include="app\admin\bower_components\jquery\src\ajax\load.js" />
+    <Content Include="app\admin\bower_components\jquery\src\ajax\parseJSON.js" />
+    <Content Include="app\admin\bower_components\jquery\src\ajax\parseXML.js" />
+    <Content Include="app\admin\bower_components\jquery\src\ajax\script.js" />
+    <Content Include="app\admin\bower_components\jquery\src\ajax\var\nonce.js" />
+    <Content Include="app\admin\bower_components\jquery\src\ajax\var\rquery.js" />
+    <Content Include="app\admin\bower_components\jquery\src\ajax\xhr.js" />
+    <Content Include="app\admin\bower_components\jquery\src\attributes.js" />
+    <Content Include="app\admin\bower_components\jquery\src\attributes\attr.js" />
+    <Content Include="app\admin\bower_components\jquery\src\attributes\classes.js" />
+    <Content Include="app\admin\bower_components\jquery\src\attributes\prop.js" />
+    <Content Include="app\admin\bower_components\jquery\src\attributes\support.js" />
+    <Content Include="app\admin\bower_components\jquery\src\attributes\val.js" />
+    <Content Include="app\admin\bower_components\jquery\src\callbacks.js" />
+    <Content Include="app\admin\bower_components\jquery\src\core.js" />
+    <Content Include="app\admin\bower_components\jquery\src\core\access.js" />
+    <Content Include="app\admin\bower_components\jquery\src\core\init.js" />
+    <Content Include="app\admin\bower_components\jquery\src\core\parseHTML.js" />
+    <Content Include="app\admin\bower_components\jquery\src\core\ready.js" />
+    <Content Include="app\admin\bower_components\jquery\src\core\var\rsingleTag.js" />
+    <Content Include="app\admin\bower_components\jquery\src\css.js" />
+    <Content Include="app\admin\bower_components\jquery\src\css\addGetHookIf.js" />
+    <Content Include="app\admin\bower_components\jquery\src\css\curCSS.js" />
+    <Content Include="app\admin\bower_components\jquery\src\css\defaultDisplay.js" />
+    <Content Include="app\admin\bower_components\jquery\src\css\hiddenVisibleSelectors.js" />
+    <Content Include="app\admin\bower_components\jquery\src\css\support.js" />
+    <Content Include="app\admin\bower_components\jquery\src\css\swap.js" />
+    <Content Include="app\admin\bower_components\jquery\src\css\var\cssExpand.js" />
+    <Content Include="app\admin\bower_components\jquery\src\css\var\getStyles.js" />
+    <Content Include="app\admin\bower_components\jquery\src\css\var\isHidden.js" />
+    <Content Include="app\admin\bower_components\jquery\src\css\var\rmargin.js" />
+    <Content Include="app\admin\bower_components\jquery\src\css\var\rnumnonpx.js" />
+    <Content Include="app\admin\bower_components\jquery\src\data.js" />
+    <Content Include="app\admin\bower_components\jquery\src\data\accepts.js" />
+    <Content Include="app\admin\bower_components\jquery\src\data\Data.js" />
+    <Content Include="app\admin\bower_components\jquery\src\data\var\data_priv.js" />
+    <Content Include="app\admin\bower_components\jquery\src\data\var\data_user.js" />
+    <Content Include="app\admin\bower_components\jquery\src\deferred.js" />
+    <Content Include="app\admin\bower_components\jquery\src\deprecated.js" />
+    <Content Include="app\admin\bower_components\jquery\src\dimensions.js" />
+    <Content Include="app\admin\bower_components\jquery\src\effects.js" />
+    <Content Include="app\admin\bower_components\jquery\src\effects\animatedSelector.js" />
+    <Content Include="app\admin\bower_components\jquery\src\effects\Tween.js" />
+    <Content Include="app\admin\bower_components\jquery\src\event.js" />
+    <Content Include="app\admin\bower_components\jquery\src\event\ajax.js" />
+    <Content Include="app\admin\bower_components\jquery\src\event\alias.js" />
+    <Content Include="app\admin\bower_components\jquery\src\event\support.js" />
+    <Content Include="app\admin\bower_components\jquery\src\exports\amd.js" />
+    <Content Include="app\admin\bower_components\jquery\src\exports\global.js" />
+    <Content Include="app\admin\bower_components\jquery\src\intro.js" />
+    <Content Include="app\admin\bower_components\jquery\src\jquery.js" />
+    <Content Include="app\admin\bower_components\jquery\src\manipulation.js" />
+    <Content Include="app\admin\bower_components\jquery\src\manipulation\support.js" />
+    <Content Include="app\admin\bower_components\jquery\src\manipulation\var\rcheckableType.js" />
+    <Content Include="app\admin\bower_components\jquery\src\manipulation\_evalUrl.js" />
+    <Content Include="app\admin\bower_components\jquery\src\offset.js" />
+    <Content Include="app\admin\bower_components\jquery\src\outro.js" />
+    <Content Include="app\admin\bower_components\jquery\src\queue.js" />
+    <Content Include="app\admin\bower_components\jquery\src\queue\delay.js" />
+    <Content Include="app\admin\bower_components\jquery\src\selector-native.js" />
+    <Content Include="app\admin\bower_components\jquery\src\selector-sizzle.js" />
+    <Content Include="app\admin\bower_components\jquery\src\selector.js" />
+    <Content Include="app\admin\bower_components\jquery\src\serialize.js" />
+    <Content Include="app\admin\bower_components\jquery\src\sizzle\dist\sizzle.js" />
+    <Content Include="app\admin\bower_components\jquery\src\sizzle\dist\sizzle.min.js" />
+    <Content Include="app\admin\bower_components\jquery\src\traversing.js" />
+    <Content Include="app\admin\bower_components\jquery\src\traversing\findFilter.js" />
+    <Content Include="app\admin\bower_components\jquery\src\traversing\var\rneedsContext.js" />
+    <Content Include="app\admin\bower_components\jquery\src\var\arr.js" />
+    <Content Include="app\admin\bower_components\jquery\src\var\class2type.js" />
+    <Content Include="app\admin\bower_components\jquery\src\var\concat.js" />
+    <Content Include="app\admin\bower_components\jquery\src\var\hasOwn.js" />
+    <Content Include="app\admin\bower_components\jquery\src\var\indexOf.js" />
+    <Content Include="app\admin\bower_components\jquery\src\var\pnum.js" />
+    <Content Include="app\admin\bower_components\jquery\src\var\push.js" />
+    <Content Include="app\admin\bower_components\jquery\src\var\rnotwhite.js" />
+    <Content Include="app\admin\bower_components\jquery\src\var\slice.js" />
+    <Content Include="app\admin\bower_components\jquery\src\var\strundefined.js" />
+    <Content Include="app\admin\bower_components\jquery\src\var\support.js" />
+    <Content Include="app\admin\bower_components\jquery\src\var\toString.js" />
+    <Content Include="app\admin\bower_components\jquery\src\wrap.js" />
+    <Content Include="app\admin\bower_components\json3\lib\json3.js" />
+    <Content Include="app\admin\bower_components\json3\lib\json3.min.js" />
+    <Content Include="app\admin\bower_components\metisMenu\dist\metisMenu.css" />
+    <Content Include="app\admin\bower_components\metisMenu\dist\metisMenu.js" />
+    <Content Include="app\admin\bower_components\metisMenu\dist\metisMenu.min.css" />
+    <Content Include="app\admin\bower_components\metisMenu\dist\metisMenu.min.js" />
+    <Content Include="app\admin\bower_components\metisMenu\Gruntfile.js" />
+    <Content Include="app\admin\bower_components\metisMenu\src\metisMenu.css" />
+    <Content Include="app\admin\bower_components\metisMenu\src\metisMenu.js" />
+    <Content Include="app\admin\bower_components\ng-dialog\css\ngDialog-custom-width.css" />
+    <Content Include="app\admin\bower_components\ng-dialog\css\ngDialog-theme-default.css" />
+    <Content Include="app\admin\bower_components\ng-dialog\css\ngDialog-theme-default.min.css" />
+    <Content Include="app\admin\bower_components\ng-dialog\css\ngDialog-theme-plain.css" />
+    <Content Include="app\admin\bower_components\ng-dialog\css\ngDialog-theme-plain.min.css" />
+    <Content Include="app\admin\bower_components\ng-dialog\css\ngDialog.css" />
+    <Content Include="app\admin\bower_components\ng-dialog\css\ngDialog.min.css" />
+    <Content Include="app\admin\bower_components\ng-dialog\js\ngDialog.js" />
+    <Content Include="app\admin\bower_components\ng-dialog\js\ngDialog.min.js" />
+    <Content Include="app\admin\bower_components\ng-dialog\karma.conf.js" />
+    <Content Include="app\admin\bower_components\ng-dialog\protractor.conf.js" />
+    <Content Include="app\admin\bower_components\ng-dialog\server.js" />
+    <Content Include="app\admin\bower_components\oclazyload\dist\ocLazyLoad.js" />
+    <Content Include="app\admin\bower_components\oclazyload\dist\ocLazyLoad.min.js" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\complexExample\index.html" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\complexExample\js\app.js" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\complexExample\js\AppCtrl.js" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\complexExample\js\gridModule.js" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\complexExample\partials\main.html" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\complexExample\partials\modal.html" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\requireJSExample\css\ng-grid.css" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\requireJSExample\index.html" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\requireJSExample\js\angular.min.js" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\requireJSExample\js\jquery.js" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\requireJSExample\js\lazymodule.js" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\requireJSExample\js\main.js" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\requireJSExample\js\ng-grid-2.0.11.debug.js" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\requireJSExample\js\require.js" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\requireJSExample\js\testmodule.js" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\requireJSExample\partials\grid.html" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\simpleExample\index.html" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\simpleExample\js\testApp.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\anchor\anchor.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\attachment.css" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\attachment.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\attachment.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\fileTypeImages\icon_chm.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\fileTypeImages\icon_default.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\fileTypeImages\icon_doc.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\fileTypeImages\icon_exe.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\fileTypeImages\icon_jpg.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\fileTypeImages\icon_mp3.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\fileTypeImages\icon_mv.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\fileTypeImages\icon_pdf.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\fileTypeImages\icon_ppt.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\fileTypeImages\icon_psd.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\fileTypeImages\icon_rar.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\fileTypeImages\icon_txt.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\fileTypeImages\icon_xls.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\images\alignicon.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\images\alignicon.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\images\bg.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\images\file-icons.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\images\file-icons.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\images\icons.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\images\icons.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\images\image.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\images\progress.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\images\success.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\attachment\images\success.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\background\background.css" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\background\background.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\background\background.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\background\images\bg.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\background\images\success.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\charts\chart.config.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\charts\charts.css" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\charts\charts.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\charts\charts.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\charts\images\charts0.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\charts\images\charts1.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\charts\images\charts2.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\charts\images\charts3.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\charts\images\charts4.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\charts\images\charts5.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\emotion\emotion.css" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\emotion\emotion.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\emotion\emotion.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\emotion\images\0.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\emotion\images\bface.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\emotion\images\cface.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\emotion\images\fface.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\emotion\images\jxface2.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\emotion\images\neweditor-tab-bg.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\emotion\images\tface.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\emotion\images\wface.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\emotion\images\yface.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\gmap\gmap.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\help\help.css" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\help\help.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\help\help.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\image\image.css" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\image\image.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\image\image.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\image\images\alignicon.jpg" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\image\images\bg.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\image\images\icons.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\image\images\icons.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\image\images\image.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\image\images\progress.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\image\images\success.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\image\images\success.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\insertframe\insertframe.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\internal.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\link\link.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\map\map.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\map\show.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\music\music.css" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\music\music.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\music\music.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\preview\preview.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\addimg.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\brush.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\delimg.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\delimgH.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\empty.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\emptyH.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\eraser.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\redo.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\redoH.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\scale.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\scaleH.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\size.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\undo.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\images\undoH.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\scrawl.css" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\scrawl.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\scrawl\scrawl.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\searchreplace\searchreplace.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\searchreplace\searchreplace.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\snapscreen\snapscreen.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\spechars\spechars.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\spechars\spechars.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\table\dragicon.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\table\edittable.css" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\table\edittable.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\table\edittable.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\table\edittd.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\table\edittip.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\template\config.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\template\images\bg.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\template\images\pre0.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\template\images\pre1.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\template\images\pre2.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\template\images\pre3.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\template\images\pre4.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\template\template.css" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\template\template.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\template\template.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\images\bg.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\images\center_focus.jpg" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\images\file-icons.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\images\file-icons.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\images\icons.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\images\icons.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\images\image.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\images\left_focus.jpg" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\images\none_focus.jpg" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\images\progress.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\images\right_focus.jpg" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\images\success.gif" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\images\success.png" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\video.css" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\video.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\video\video.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\webapp\webapp.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\wordimage\fClipboard_ueditor.swf" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\wordimage\imageUploader.swf" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\wordimage\tangram.js" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\wordimage\wordimage.html" />
+    <Content Include="app\admin\bower_components\ueditor\dialogs\wordimage\wordimage.js" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\en.js" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\addimage.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\alldeletebtnhoverskin.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\alldeletebtnupskin.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\background.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\button.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\copy.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\deletedisable.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\deleteenable.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\listbackground.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\localimage.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\music.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\rotateleftdisable.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\rotateleftenable.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\rotaterightdisable.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\rotaterightenable.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\en\images\upload.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\zh-cn\images\copy.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\zh-cn\images\localimage.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\zh-cn\images\music.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\zh-cn\images\upload.png" />
+    <Content Include="app\admin\bower_components\ueditor\lang\zh-cn\zh-cn.js" />
+    <Content Include="app\admin\bower_components\ueditor\net\libs\upload\image\20151102\6358201948473264792673548.png" />
+    <Content Include="app\admin\bower_components\ueditor\net\libs\upload\image\20151102\6358201950538436624629157.png" />
+    <Content Include="app\admin\bower_components\ueditor\readme.txt" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\css\ueditor.css" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\css\ueditor.min.css" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\dialogbase.css" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\anchor.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\arrow.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\arrow_down.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\arrow_up.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\button-bg.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\cancelbutton.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\charts.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\cursor_h.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\cursor_h.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\cursor_v.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\cursor_v.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\dialog-title-bg.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\filescan.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\highlighted.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\icons-all.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\icons.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\icons.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\loaderror.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\loading.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\lock.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\neweditor-tab-bg.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\pagebreak.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\scale.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\sortable.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\spacer.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\sparator_v.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\table-cell-align.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\tangram-colorpicker.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\toolbar_bg.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\unhighlighted.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\upload.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\videologo.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\word.gif" />
+    <Content Include="app\admin\bower_components\ueditor\themes\default\images\wordpaste.png" />
+    <Content Include="app\admin\bower_components\ueditor\themes\iframe.css" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\codemirror\codemirror.css" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\codemirror\codemirror.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\adapters\mootools-adapter.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\adapters\mootools-adapter.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\adapters\prototype-adapter.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\adapters\prototype-adapter.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\adapters\standalone-framework.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\adapters\standalone-framework.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\highcharts-more.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\highcharts-more.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\highcharts.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\highcharts.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\annotations.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\annotations.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\canvas-tools.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\canvas-tools.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\data.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\data.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\drilldown.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\drilldown.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\exporting.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\exporting.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\funnel.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\funnel.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\heatmap.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\heatmap.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\map.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\map.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\no-data-to-display.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\modules\no-data-to-display.src.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\themes\dark-blue.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\themes\dark-green.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\themes\gray.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\themes\grid.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\highcharts\themes\skies.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\jquery-1.10.2.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\jquery-1.10.2.min.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\snapscreen\UEditorSnapscreen.exe" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\SyntaxHighlighter\shCore.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\SyntaxHighlighter\shCoreDefault.css" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\video-js\font\vjs.svg" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\video-js\video-js.css" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\video-js\video-js.min.css" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\video-js\video-js.swf" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\video-js\video.dev.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\video-js\video.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\webuploader\Uploader.swf" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\webuploader\webuploader.css" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\webuploader\webuploader.custom.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\webuploader\webuploader.custom.min.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\webuploader\webuploader.flashonly.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\webuploader\webuploader.flashonly.min.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\webuploader\webuploader.html5only.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\webuploader\webuploader.html5only.min.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\webuploader\webuploader.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\webuploader\webuploader.min.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\webuploader\webuploader.withoutimage.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\webuploader\webuploader.withoutimage.min.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\zeroclipboard\ZeroClipboard.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\zeroclipboard\ZeroClipboard.min.js" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\zeroclipboard\ZeroClipboard.swf" />
+    <Content Include="app\admin\bower_components\ueditor\ueditor.all.js" />
+    <Content Include="app\admin\bower_components\ueditor\ueditor.all.min.js" />
+    <Content Include="app\admin\bower_components\ueditor\ueditor.config.js" />
+    <Content Include="app\admin\bower_components\ueditor\ueditor.parse.js" />
+    <Content Include="app\admin\bower_components\ueditor\ueditor.parse.min.js" />
+    <Content Include="app\admin\favicon.ico" />
+    <Content Include="app\admin\index.html" />
+    <Content Include="app\admin\module\category\categoryController.js" />
+    <Content Include="app\admin\module\category\views\categorys.html" />
+    <Content Include="app\admin\module\manageLog\manageLogController.js" />
+    <Content Include="app\admin\module\manageLog\views\manageLog.html" />
+    <Content Include="app\admin\module\post\postController.js" />
+    <Content Include="app\admin\module\post\postEditController.js" />
+    <Content Include="app\admin\module\post\views\postEdit.html" />
+    <Content Include="app\admin\module\post\views\posts.html" />
+    <Content Include="app\admin\scripts\app.js" />
+    <Content Include="app\admin\scripts\controllers\loginCtrl.js" />
+    <Content Include="app\admin\scripts\directives\custtoms\ensureUnique.js" />
+    <Content Include="app\admin\scripts\directives\custtoms\repeat.js" />
+    <Content Include="app\admin\scripts\directives\dashboard\stats\stats.html" />
+    <Content Include="app\admin\scripts\directives\dashboard\stats\stats.js" />
+    <Content Include="app\admin\scripts\directives\header\header.html" />
+    <Content Include="app\admin\scripts\directives\header\header.js" />
+    <Content Include="app\admin\scripts\directives\sidebar\sidebar.html" />
+    <Content Include="app\admin\scripts\directives\sidebar\sidebar.js" />
+    <Content Include="app\admin\scripts\directives\ueditor\ueditor.js" />
+    <Content Include="app\admin\scripts\directives\zqSelects\zqSelect.html" />
+    <Content Include="app\admin\scripts\directives\zqSelects\zqSelect.js" />
+    <Content Include="app\admin\scripts\filters\pagings\pagination.css" />
+    <Content Include="app\admin\scripts\filters\pagings\paging.js" />
+    <Content Include="app\admin\scripts\filters\range.js" />
+    <Content Include="app\admin\scripts\services\authService.js" />
+    <Content Include="app\admin\scripts\services\categoryService.js" />
+    <Content Include="app\admin\scripts\services\commonService.js" />
+    <Content Include="app\admin\scripts\services\managerService.js" />
+    <Content Include="app\admin\scripts\services\navService.js" />
+    <Content Include="app\admin\scripts\services\postService.js" />
+    <Content Include="app\admin\scripts\services\roleService.js" />
+    <Content Include="app\admin\scripts\services\taskService.js" />
+    <Content Include="app\admin\skin\base.css" />
+    <Content Include="app\admin\skin\default\ie_update.jpg" />
+    <Content Include="app\admin\skin\default\loadimg.gif" />
+    <Content Include="app\admin\skin\default\logo.png" />
+    <Content Include="app\admin\skin\default\logo1.png" />
+    <Content Include="app\admin\skin\default\nav\home.png" />
+    <Content Include="app\admin\skin\default\nav\order.png" />
+    <Content Include="app\admin\skin\default\nav\pus.png" />
+    <Content Include="app\admin\skin\default\nav\sys.png" />
+    <Content Include="app\admin\skin\default\nav\user.png" />
+    <Content Include="app\admin\skin\default\order_speed.gif" />
+    <Content Include="app\admin\skin\default\skin_icons.png" />
+    <Content Include="app\admin\skin\default\style.css" />
+    <Content Include="app\admin\skin\default\valid_icons.png" />
+    <Content Include="app\admin\skin\default\ZQ.png" />
+    <Content Include="app\admin\skin\layout.css" />
+    <Content Include="app\admin\sys\home\homeController.js" />
+    <Content Include="app\admin\sys\home\views\home.html" />
+    <Content Include="app\admin\sys\manager\managerController.js" />
+    <Content Include="app\admin\sys\manager\views\manager.html" />
+    <Content Include="app\admin\sys\manager\views\manager_edit.html" />
+    <Content Include="app\admin\sys\manager\views\manager_pwd.html" />
+    <Content Include="app\admin\sys\nav\navController.js" />
+    <Content Include="app\admin\sys\nav\views\nav.html" />
+    <Content Include="app\admin\sys\nav\views\navEdit.html" />
+    <Content Include="app\admin\sys\role\roleController.js" />
+    <Content Include="app\admin\sys\role\views\role.html" />
+    <Content Include="app\admin\sys\role\views\role_edit.html" />
+    <Content Include="app\admin\sys\setting\settingController.js" />
+    <Content Include="app\admin\sys\setting\views\setting.html" />
+    <Content Include="app\admin\sys\task\taskController.js" />
+    <Content Include="app\admin\sys\task\views\task.html" />
+    <Content Include="app\admin\sys\task\views\task_edit.html" />
+    <Content Include="app\admin\views\404.html" />
+    <Content Include="app\admin\views\login.html" />
+    <Content Include="app\admin\views\main.html" />
+    <Content Include="Global.asax" />
     <Content Include="packages.config" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="app\admin\bower_components\angular-animate\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-animate\angular-animate.min.js.map" />
+    <Content Include="app\admin\bower_components\angular-animate\bower.json" />
+    <Content Include="app\admin\bower_components\angular-animate\README.md" />
+    <Content Include="app\admin\bower_components\angular-bootstrap\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-bootstrap\bower.json" />
+    <Content Include="app\admin\bower_components\angular-chart.js\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-chart.js\angular-chart.less" />
+    <Content Include="app\admin\bower_components\angular-chart.js\bower.json" />
+    <Content Include="app\admin\bower_components\angular-chart.js\dist\angular-chart.css.map" />
+    <Content Include="app\admin\bower_components\angular-chart.js\dist\angular-chart.js.tar.gz" />
+    <Content Include="app\admin\bower_components\angular-chart.js\dist\angular-chart.min.js.map" />
+    <Content Include="app\admin\bower_components\angular-chart.js\LICENSE" />
+    <Content Include="app\admin\bower_components\angular-chart.js\package.json" />
+    <Content Include="app\admin\bower_components\angular-chart.js\README.md" />
+    <Content Include="app\admin\bower_components\angular-cookies\angular-cookies.min.js.map" />
+    <Content Include="app\admin\bower_components\angular-cookies\bower.json" />
+    <Content Include="app\admin\bower_components\angular-cookies\package.json" />
+    <Content Include="app\admin\bower_components\angular-cookies\README.md" />
+    <Content Include="app\admin\bower_components\angular-loading-bar\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-loading-bar\bower.json" />
+    <Content Include="app\admin\bower_components\angular-loading-bar\CHANGELOG.md" />
+    <Content Include="app\admin\bower_components\angular-loading-bar\LICENSE" />
+    <Content Include="app\admin\bower_components\angular-loading-bar\package.json" />
+    <Content Include="app\admin\bower_components\angular-loading-bar\README.md" />
+    <Content Include="app\admin\bower_components\angular-messages\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-messages\angular-messages.min.js.map" />
+    <Content Include="app\admin\bower_components\angular-messages\bower.json" />
+    <Content Include="app\admin\bower_components\angular-messages\package.json" />
+    <Content Include="app\admin\bower_components\angular-messages\README.md" />
+    <Content Include="app\admin\bower_components\angular-mocks\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-mocks\bower.json" />
+    <Content Include="app\admin\bower_components\angular-mocks\README.md" />
+    <Content Include="app\admin\bower_components\angular-resource\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-resource\angular-resource.min.js.map" />
+    <Content Include="app\admin\bower_components\angular-resource\bower.json" />
+    <Content Include="app\admin\bower_components\angular-resource\README.md" />
+    <Content Include="app\admin\bower_components\angular-route\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-route\angular-route.min.js.map" />
+    <Content Include="app\admin\bower_components\angular-route\bower.json" />
+    <Content Include="app\admin\bower_components\angular-route\README.md" />
+    <Content Include="app\admin\bower_components\angular-sanitize\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="app\admin\bower_components\angular-sanitize\bower.json" />
+    <Content Include="app\admin\bower_components\angular-sanitize\README.md" />
+    <Content Include="app\admin\bower_components\angular-scenario\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-scenario\bower.json" />
+    <Content Include="app\admin\bower_components\angular-scenario\README.md" />
+    <Content Include="app\admin\bower_components\angular-toaster\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-toaster\bower.json" />
+    <Content Include="app\admin\bower_components\angular-toaster\LICENSE" />
+    <Content Include="app\admin\bower_components\angular-toaster\package.json" />
+    <Content Include="app\admin\bower_components\angular-toaster\README.md" />
+    <Content Include="app\admin\bower_components\angular-toaster\toaster.scss" />
+    <Content Include="app\admin\bower_components\angular-toggle-switch\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-toggle-switch\bower.json" />
+    <Content Include="app\admin\bower_components\angular-toggle-switch\LICENSE" />
+    <Content Include="app\admin\bower_components\angular-toggle-switch\README.md" />
+    <Content Include="app\admin\bower_components\angular-touch\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-touch\angular-touch.min.js.map" />
+    <Content Include="app\admin\bower_components\angular-touch\bower.json" />
+    <Content Include="app\admin\bower_components\angular-touch\README.md" />
+    <Content Include="app\admin\bower_components\angular-ui-router\.bower.json" />
+    <Content Include="app\admin\bower_components\angular-ui-router\bower.json" />
+    <Content Include="app\admin\bower_components\angular-ui-router\CHANGELOG.md" />
+    <Content Include="app\admin\bower_components\angular-ui-router\CONTRIBUTING.md" />
+    <Content Include="app\admin\bower_components\angular-ui-router\LICENSE" />
+    <Content Include="app\admin\bower_components\angular-ui-router\README.md" />
+    <Content Include="app\admin\bower_components\angular\.bower.json" />
+    <Content Include="app\admin\bower_components\angular\angular.min.js.gzip" />
+    <Content Include="app\admin\bower_components\angular\angular.min.js.map" />
+    <Content Include="app\admin\bower_components\angular\bower.json" />
+    <Content Include="app\admin\bower_components\angular\package.json" />
+    <Content Include="app\admin\bower_components\angular\README.md" />
+    <Content Include="app\admin\bower_components\bootstrap\.bower.json" />
+    <Content Include="app\admin\bower_components\bootstrap\bower.json" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="app\admin\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="app\admin\bower_components\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="app\admin\bower_components\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="app\admin\bower_components\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="app\admin\bower_components\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="app\admin\bower_components\bootstrap\grunt\.jshintrc" />
+    <Content Include="app\admin\bower_components\bootstrap\grunt\configBridge.json" />
+    <Content Include="app\admin\bower_components\bootstrap\grunt\sauce_browsers.yml" />
+    <Content Include="app\admin\bower_components\bootstrap\js\.jscsrc" />
+    <Content Include="app\admin\bower_components\bootstrap\js\.jshintrc" />
+    <Content Include="app\admin\bower_components\bootstrap\less\.csscomb.json" />
+    <Content Include="app\admin\bower_components\bootstrap\less\.csslintrc" />
+    <Content Include="app\admin\bower_components\bootstrap\less\alerts.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\badges.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\bootstrap.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\breadcrumbs.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\button-groups.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\buttons.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\carousel.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\close.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\code.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\component-animations.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\dropdowns.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\forms.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\glyphicons.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\grid.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\input-groups.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\jumbotron.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\labels.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\list-group.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\media.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\alerts.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\background-variant.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\border-radius.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\buttons.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\center-block.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\clearfix.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\forms.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\gradients.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\grid-framework.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\grid.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\hide-text.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\image.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\labels.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\list-group.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\nav-divider.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\nav-vertical-align.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\opacity.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\pagination.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\panels.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\progress-bar.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\reset-filter.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\resize.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\responsive-visibility.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\size.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\tab-focus.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\table-row.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\text-emphasis.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\text-overflow.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\mixins\vendor-prefixes.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\modals.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\navbar.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\navs.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\normalize.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\pager.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\pagination.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\panels.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\popovers.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\print.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\progress-bars.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\responsive-embed.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\responsive-utilities.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\scaffolding.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\tables.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\theme.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\thumbnails.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\tooltip.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\type.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\utilities.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\variables.less" />
+    <Content Include="app\admin\bower_components\bootstrap\less\wells.less" />
+    <Content Include="app\admin\bower_components\bootstrap\LICENSE" />
+    <Content Include="app\admin\bower_components\bootstrap\package.json" />
+    <Content Include="app\admin\bower_components\bootstrap\README.md" />
+    <Content Include="app\admin\bower_components\Chart.js\.bower.json" />
+    <Content Include="app\admin\bower_components\Chart.js\.gitignore" />
+    <Content Include="app\admin\bower_components\Chart.js\.travis.yml" />
+    <Content Include="app\admin\bower_components\Chart.js\bower.json" />
+    <Content Include="app\admin\bower_components\Chart.js\CONTRIBUTING.md" />
+    <Content Include="app\admin\bower_components\Chart.js\docs\00-Getting-Started.md" />
+    <Content Include="app\admin\bower_components\Chart.js\docs\01-Line-Chart.md" />
+    <Content Include="app\admin\bower_components\Chart.js\docs\02-Bar-Chart.md" />
+    <Content Include="app\admin\bower_components\Chart.js\docs\03-Radar-Chart.md" />
+    <Content Include="app\admin\bower_components\Chart.js\docs\04-Polar-Area-Chart.md" />
+    <Content Include="app\admin\bower_components\Chart.js\docs\05-Pie-Doughnut-Chart.md" />
+    <Content Include="app\admin\bower_components\Chart.js\docs\06-Advanced.md" />
+    <Content Include="app\admin\bower_components\Chart.js\docs\07-Notes.md" />
+    <Content Include="app\admin\bower_components\Chart.js\LICENSE.md" />
+    <Content Include="app\admin\bower_components\Chart.js\package.json" />
+    <Content Include="app\admin\bower_components\Chart.js\README.md" />
+    <Content Include="app\admin\bower_components\es5-shim\.bower.json" />
+    <Content Include="app\admin\bower_components\es5-shim\bower.json" />
+    <Content Include="app\admin\bower_components\es5-shim\CHANGES" />
+    <Content Include="app\admin\bower_components\es5-shim\component.json" />
+    <Content Include="app\admin\bower_components\es5-shim\CONTRIBUTORS.md" />
+    <Content Include="app\admin\bower_components\es5-shim\es5-sham.map" />
+    <Content Include="app\admin\bower_components\es5-shim\es5-shim.map" />
+    <Content Include="app\admin\bower_components\es5-shim\LICENSE" />
+    <Content Include="app\admin\bower_components\es5-shim\package.json" />
+    <Content Include="app\admin\bower_components\es5-shim\README.md" />
+    <Content Include="app\admin\bower_components\es5-shim\shims.json" />
+    <Content Include="app\admin\bower_components\font-awesome\.bower.json" />
+    <Content Include="app\admin\bower_components\font-awesome\.gitignore" />
+    <Content Include="app\admin\bower_components\font-awesome\.npmignore" />
+    <Content Include="app\admin\bower_components\font-awesome\bower.json" />
+    <Content Include="app\admin\bower_components\font-awesome\css\font-awesome.css.map" />
+    <Content Include="app\admin\bower_components\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="app\admin\bower_components\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="app\admin\bower_components\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="app\admin\bower_components\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="app\admin\bower_components\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="app\admin\bower_components\font-awesome\less\animated.less" />
+    <Content Include="app\admin\bower_components\font-awesome\less\bordered-pulled.less" />
+    <Content Include="app\admin\bower_components\font-awesome\less\core.less" />
+    <Content Include="app\admin\bower_components\font-awesome\less\fixed-width.less" />
+    <Content Include="app\admin\bower_components\font-awesome\less\font-awesome.less" />
+    <Content Include="app\admin\bower_components\font-awesome\less\icons.less" />
+    <Content Include="app\admin\bower_components\font-awesome\less\larger.less" />
+    <Content Include="app\admin\bower_components\font-awesome\less\list.less" />
+    <Content Include="app\admin\bower_components\font-awesome\less\mixins.less" />
+    <Content Include="app\admin\bower_components\font-awesome\less\path.less" />
+    <Content Include="app\admin\bower_components\font-awesome\less\rotated-flipped.less" />
+    <Content Include="app\admin\bower_components\font-awesome\less\stacked.less" />
+    <Content Include="app\admin\bower_components\font-awesome\less\variables.less" />
+    <Content Include="app\admin\bower_components\font-awesome\scss\font-awesome.scss" />
+    <Content Include="app\admin\bower_components\font-awesome\scss\_animated.scss" />
+    <Content Include="app\admin\bower_components\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="app\admin\bower_components\font-awesome\scss\_core.scss" />
+    <Content Include="app\admin\bower_components\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="app\admin\bower_components\font-awesome\scss\_icons.scss" />
+    <Content Include="app\admin\bower_components\font-awesome\scss\_larger.scss" />
+    <Content Include="app\admin\bower_components\font-awesome\scss\_list.scss" />
+    <Content Include="app\admin\bower_components\font-awesome\scss\_mixins.scss" />
+    <Content Include="app\admin\bower_components\font-awesome\scss\_path.scss" />
+    <Content Include="app\admin\bower_components\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="app\admin\bower_components\font-awesome\scss\_stacked.scss" />
+    <Content Include="app\admin\bower_components\font-awesome\scss\_variables.scss" />
+    <Content Include="app\admin\bower_components\jquery\.bower.json" />
+    <Content Include="app\admin\bower_components\jquery\bower.json" />
+    <Content Include="app\admin\bower_components\jquery\dist\jquery.min.map" />
+    <Content Include="app\admin\bower_components\jquery\src\sizzle\dist\sizzle.min.map" />
+    <Content Include="app\admin\bower_components\json3\.bower.json" />
+    <Content Include="app\admin\bower_components\json3\bower.json" />
+    <Content Include="app\admin\bower_components\json3\CHANGELOG.md" />
+    <Content Include="app\admin\bower_components\json3\CONTRIBUTING.md" />
+    <Content Include="app\admin\bower_components\json3\LICENSE" />
+    <Content Include="app\admin\bower_components\json3\README.md" />
+    <Content Include="app\admin\bower_components\metisMenu\.bower.json" />
+    <Content Include="app\admin\bower_components\metisMenu\bower.json" />
+    <Content Include="app\admin\bower_components\metisMenu\LICENSE" />
+    <Content Include="app\admin\bower_components\metisMenu\package.json" />
+    <Content Include="app\admin\bower_components\metisMenu\README.md" />
+    <Content Include="app\admin\bower_components\ng-dialog\.bower.json" />
+    <Content Include="app\admin\bower_components\ng-dialog\bower.json" />
+    <Content Include="app\admin\bower_components\ng-dialog\CHANGELOG.md" />
+    <Content Include="app\admin\bower_components\ng-dialog\CONTRIBUTING.md" />
+    <Content Include="app\admin\bower_components\ng-dialog\package.json" />
+    <Content Include="app\admin\bower_components\ng-dialog\README.md" />
+    <Content Include="app\admin\bower_components\oclazyload\.bower.json" />
+    <Content Include="app\admin\bower_components\oclazyload\bower.json" />
+    <Content Include="app\admin\bower_components\oclazyload\CHANGELOG.md" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\complexExample\bower.json" />
+    <Content Include="app\admin\bower_components\oclazyload\examples\complexExample\README.md" />
+    <Content Include="app\admin\bower_components\oclazyload\LICENSE.md" />
+    <Content Include="app\admin\bower_components\oclazyload\README.md" />
+    <Content Include="app\admin\bower_components\ueditor\net\config.json" />
+    <Content Include="app\admin\bower_components\ueditor\net\controller.ashx" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\jquery-1.10.2.min.map" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\video-js\font\vjs.eot" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\video-js\font\vjs.ttf" />
+    <Content Include="app\admin\bower_components\ueditor\third-party\video-js\font\vjs.woff" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -58,13 +917,131 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="app\admin\bower_components\ueditor\net\App_Code\Config.cs" />
+    <Compile Include="app\admin\bower_components\ueditor\net\App_Code\ConfigHandler.cs" />
+    <Compile Include="app\admin\bower_components\ueditor\net\App_Code\CrawlerHandler.cs" />
+    <Compile Include="app\admin\bower_components\ueditor\net\App_Code\Handler.cs" />
+    <Compile Include="app\admin\bower_components\ueditor\net\App_Code\ListFileHandler.cs" />
+    <Compile Include="app\admin\bower_components\ueditor\net\App_Code\NotSupportedHandler.cs" />
+    <Compile Include="app\admin\bower_components\ueditor\net\App_Code\PathFormater.cs" />
+    <Compile Include="app\admin\bower_components\ueditor\net\App_Code\UploadHandler.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CheckController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NavController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaskController.cs" />
+    <Compile Include="Areas\Admin\Models\BaseModel.cs" />
+    <Compile Include="Areas\Admin\Models\CategoryModel.cs" />
+    <Compile Include="Areas\Admin\Models\CheckModel.cs" />
+    <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Areas\Admin\Models\ManagerModel.cs" />
+    <Compile Include="Areas\Admin\Models\NavModel.cs" />
+    <Compile Include="Areas\Admin\Models\PermissionModel.cs" />
+    <Compile Include="Areas\Admin\Models\PostModel.cs" />
+    <Compile Include="Areas\Admin\Models\RoleModel.cs" />
+    <Compile Include="Areas\Admin\Models\ScheduleTaskModel.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="app\admin\bower_components\angular-ui-router\api\angular-ui-router.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Example.Core\Example.Core.csproj">
+      <Project>{2F10DDAC-FB7C-4FF1-BF40-A4BA6E811C3E}</Project>
+      <Name>Example.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zq\Zq.csproj">
+      <Project>{EEE306B5-087E-41F2-A5CC-6DFFAB7A068A}</Project>
+      <Name>Zq</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>

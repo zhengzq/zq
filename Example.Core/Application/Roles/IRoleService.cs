@@ -3,7 +3,7 @@ using Zq;
 
 namespace Example.Core.Application.Roles
 {
-    public interface IRoleService  
+    public interface IRoleService : IApplicationService
     {
         OperateResult Update(UpdateRoleCommand command);
         OperateResult Create(CreateRoleCommand command);

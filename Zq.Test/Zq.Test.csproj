@@ -70,10 +70,6 @@
     <Compile Include="RepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Example.Web\Example.Web.csproj">
-      <Project>{04B09892-0532-4B4F-B018-3B145C7AEFC2}</Project>
-      <Name>Example.Web</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Zq.Autofac\Zq.Autofac.csproj">
       <Project>{ab29014a-b279-4df8-89a3-2eae4089642a}</Project>
       <Name>Zq.Autofac</Name>

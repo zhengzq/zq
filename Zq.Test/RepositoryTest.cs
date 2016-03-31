@@ -3,8 +3,8 @@ using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zq.Autofac;
 using Zq.Configurations;
+using Zq.DI;
 using Zq.Domain;
-using Zq.Ioc;
 using Zq.Logging;
 
 namespace Zq.Test
@@ -20,7 +20,7 @@ namespace Zq.Test
                 .UseConsoleLog()
                 .InitComponent();
 
-            var repository = ObjectLocator.Resolve<IRepository<Worker>>();
+            var repository = DI.Ioc.Resolve<IRepository<Worker>>();
             repository.Add(new Worker() { });
         }
     }

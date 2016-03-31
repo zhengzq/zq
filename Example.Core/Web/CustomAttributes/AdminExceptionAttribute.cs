@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using Example.Core.Web.Json;
-using Zq.Ioc;
+using Zq.DI;
 using Zq.Logging;
 
 namespace Example.Core.Web.CustomAttributes
@@ -78,7 +78,7 @@ namespace Example.Core.Web.CustomAttributes
                 };
             }
 
-            ObjectLocator.Resolve<ILogger>().Log(LogLevel.Error, errMsg);
+            Ioc.Resolve<ILogger>().Log(LogLevel.Error, errMsg);
 
             filterContext.ExceptionHandled = true;
             filterContext.HttpContext.Response.Clear();

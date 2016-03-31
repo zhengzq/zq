@@ -1,11 +1,9 @@
 ﻿using System.Data.Entity;
 using System.Reflection;
-using Zq.Ioc;
 using Zq.UnitOfWork;
 
 namespace Example.Core.Data
 {
-    [Component(typeof(IDbContext), LifeTime.Hierarchical)]
     public class EfDbContext : DbContext, IDbContext
     {
         /// <summary>

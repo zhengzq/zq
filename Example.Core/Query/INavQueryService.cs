@@ -2,7 +2,6 @@
 using System.Linq;
 using Example.Core.Domain.Navigations;
 using Zq;
-using Zq.Ioc;
 
 namespace Example.Core.Query
 {
@@ -11,7 +10,6 @@ namespace Example.Core.Query
         List<NavigationRecord> GetModules();
         List<NavigationRecord> GetNavigationRecords();
     }
-    [Component(typeof(INavQueryService))]
     public class NavQueryService : INavQueryService
     {
         public List<NavigationRecord> GetModules()

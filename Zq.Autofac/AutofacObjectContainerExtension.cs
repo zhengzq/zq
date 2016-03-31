@@ -1,7 +1,7 @@
 ﻿using System;
 using Autofac;
 using Autofac.Builder;
-using Zq.Ioc;
+using Zq.DI;
 
 namespace Zq.Autofac
 {
@@ -25,7 +25,7 @@ namespace Zq.Autofac
                 case LifeTime.Transient:
                     instance.InstancePerDependency();
                     break;
-                case LifeTime.Hierarchical:
+                case LifeTime.Thread:
                 default:
                     instance.InstancePerLifetimeScope();
                     break;
@@ -41,7 +41,7 @@ namespace Zq.Autofac
                 case LifeTime.Transient:
                     instance.InstancePerDependency();
                     break;
-                case LifeTime.Hierarchical:
+                case LifeTime.Thread:
                 default:
                     instance.InstancePerLifetimeScope();
                     break;
@@ -58,7 +58,7 @@ namespace Zq.Autofac
                 case LifeTime.Transient:
                     instance.InstancePerDependency();
                     break;
-                case LifeTime.Hierarchical:
+                case LifeTime.Thread:
                 default:
                     instance.InstancePerLifetimeScope();
                     break;

@@ -3,13 +3,12 @@ using System.Linq;
 using Example.Core.Domain.Navigations;
 using Example.Core.Domain.Permissions;
 using Zq;
+using Zq.DI;
 using Zq.Domain;
-using Zq.Ioc;
 using Zq.UnitOfWork;
 
 namespace Example.Core.Application.Navigations
 {
-    [Component(typeof(INavService), LifeTime.Hierarchical)]
     public class NavService : INavService
     {
         private readonly INavigationRepository _navigationRepository;

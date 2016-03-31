@@ -7,6 +7,5 @@ namespace Example.Core.Domain.Permissions
     {
         List<Permission> GetPermissionsByNavigationId(string navigationId);
         List<Permission> GetAllPermission();
- 
     }
 }

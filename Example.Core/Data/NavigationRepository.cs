@@ -2,12 +2,10 @@
 using System.Data.SqlClient;
 using System.Linq;
 using Example.Core.Domain.Navigations;
-using Zq.Ioc;
 using Zq.UnitOfWork;
 
 namespace Example.Core.Data
 {
-    [Component(typeof(INavigationRepository), LifeTime.Hierarchical)]
     public class NavigationRepository : EfRepository<Navigation>, INavigationRepository
     {
         public NavigationRepository(IDbContext dbContext)

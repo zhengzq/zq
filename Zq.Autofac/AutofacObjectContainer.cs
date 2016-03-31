@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Autofac;
 using Autofac.Builder;
-using Zq.Ioc;
+using Zq.DI;
 
 namespace Zq.Autofac
 {
@@ -48,10 +48,10 @@ namespace Zq.Autofac
             var builder = new ContainerBuilder();
             var interfacType = typeof(TInterface);
             var implementType = typeof(TImplement);
-            
+
             if (implementType.IsGenericType && interfacType.IsGenericType)
             {
-                 builder.RegisterGeneric(implementType).As(interfacType).SwitchLifetime(lifeTime);
+                builder.RegisterGeneric(implementType).As(interfacType).SwitchLifetime(lifeTime);
             }
             else
             {
@@ -92,20 +92,7 @@ namespace Zq.Autofac
                 var attribute = FindComponentAttribute(type);
                 if (attribute != null)
                 {
-                    var b = builder.RegisterType(type).As(attribute.Type);
-                    switch (attribute.LifeTime)
-                    {
-                        case LifeTime.Single:
-                            b.SingleInstance();
-                            break;
-                        case LifeTime.Transient:
-                            b.InstancePerDependency();
-                            break;
-                        case LifeTime.Hierarchical:
-                        default:
-                            b.InstancePerLifetimeScope();
-                            break;
-                    }
+                    builder.RegisterType(type).As(attribute.Type).SwitchLifetime(attribute.LifeTime);
                 }
             }
             builder.Update(_container);

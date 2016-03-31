@@ -5,7 +5,7 @@ using System.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zq.Autofac;
 using Zq.Configurations;
-using Zq.Ioc;
+using Zq.DI;
 using Zq.Redis;
 
 namespace Zq.Test
@@ -28,7 +28,7 @@ namespace Zq.Test
 
             Configuration.Instance.Container.Register<Worker, IWorker>();
 
-            Assert.AreEqual(true, ObjectLocator.Resolve<IWorker>() != null);
+            Assert.AreEqual(true, DI.Ioc.Resolve<IWorker>() != null);
         }
     }
 

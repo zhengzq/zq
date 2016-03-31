@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
 using Example.Core.Domain.Managers;
 using Zq;
+using Zq.DI;
 using Zq.Domain;
-using Zq.Ioc;
 using Zq.UnitOfWork;
 
 namespace Example.Core.Application.Managers
 {
-    [Component(typeof(IManagerService), LifeTime.Hierarchical)]
     public class ManagerService : IManagerService
     {
-
         private readonly IUnitOfWork _unitWork;
         private readonly IManagerRepository _managerRepository;
         public ManagerService(IUnitOfWork unitWork

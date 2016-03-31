@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 using Example.Core.Web.Authentication;
-using Zq.Ioc;
+using Zq.DI;
 
 namespace Example.Core.Web
 {
@@ -10,7 +10,7 @@ namespace Example.Core.Web
         public static CurrentUser CurrentUser {
             get
             {
-                return ObjectLocator.Resolve<IAuthenticationService>().GetAuthenticatedUser();
+                return Ioc.Resolve<IAuthenticationService>().GetAuthenticatedUser();
             }
         }
 

@@ -4,7 +4,7 @@ using Zq;
 
 namespace Example.Core.Application.Navigations
 {
-    public interface INavService
+    public interface INavService : IApplicationService
     {
         OperateResult Create(CreateNavCommand command);
         OperateResult Update(UpdateNavCommand command);

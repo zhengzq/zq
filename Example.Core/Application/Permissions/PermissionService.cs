@@ -2,12 +2,11 @@
 using System.Linq;
 using System.Reflection;
 using Example.Core.Domain.Permissions;
-using Zq.Ioc;
+using Zq.DI;
 using Zq.UnitOfWork;
 
 namespace Example.Core.Application.Permissions
 {
-    [Component(typeof(IPermissionService), LifeTime.Hierarchical)]
     public class PermissionService : IPermissionService
     {
         private readonly IPermissionRepository _permissionRepository;

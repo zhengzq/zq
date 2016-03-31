@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using Example.Core.Domain.Roles;
 using Zq;
+using Zq.DI;
 using Zq.Domain;
-using Zq.Ioc;
 using Zq.UnitOfWork;
 
 namespace Example.Core.Application.Roles
 {
-    [Component(typeof(IRoleService))]
     public class RoleService : IRoleService
     {
         private readonly IRoleRepository _roleRepository;
@@ -56,7 +55,7 @@ namespace Example.Core.Application.Roles
                 var role = new Role(command.Name
                     , command.Order);
 
-               
+
 
                 command.Permissions.ForEach(x =>
                 {

@@ -5,7 +5,7 @@ using System.Threading;
 using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zq.Autofac;
-using Zq.Ioc;
+using Zq.DI;
 using Zq.Unity;
 
 namespace Zq.Test
@@ -66,8 +66,8 @@ namespace Zq.Test
             //var hashCodes = new List<int>();
 
             var container = new AutofacObjectContainer();
-            container.Register<Worker, IWorker>(LifeTime.Hierarchical)
-                .Register<Employee, IEmployee>(LifeTime.Hierarchical)
+            container.Register<Worker, IWorker>(LifeTime.Thread)
+                .Register<Employee, IEmployee>(LifeTime.Thread)
                 .Register<Tool, ITool>(LifeTime.Single);
 
             var scope = container.Scope();
@@ -87,9 +87,9 @@ namespace Zq.Test
             var hashCodes = new List<int>();
 
             var container = new AutofacObjectContainer();
-            container.Register<Worker, IWorker>(LifeTime.Hierarchical)
-              .Register<Employee, IEmployee>(LifeTime.Hierarchical)
-              .Register<Tool, ITool>(LifeTime.Hierarchical);
+            container.Register<Worker, IWorker>(LifeTime.Thread)
+              .Register<Employee, IEmployee>(LifeTime.Thread)
+              .Register<Tool, ITool>(LifeTime.Thread);
 
             ThreadPool.QueueUserWorkItem(obj =>
             {
@@ -148,8 +148,8 @@ namespace Zq.Test
             var hashCodes = new List<int>();
 
             var container = new UnityObjectContainer();
-            container.Register<Worker, IWorker>(LifeTime.Hierarchical)
-                 .Register<Tool, ITool>(LifeTime.Hierarchical);
+            container.Register<Worker, IWorker>(LifeTime.Thread)
+                 .Register<Tool, ITool>(LifeTime.Thread);
 
             for (var i = 0; i < 10; i++)
             {
@@ -166,8 +166,8 @@ namespace Zq.Test
             var hashCodes = new List<int>();
 
             var container = new UnityObjectContainer();
-            container.Register<Worker, IWorker>(LifeTime.Hierarchical)
-                 .Register<Tool, ITool>(LifeTime.Hierarchical);
+            container.Register<Worker, IWorker>(LifeTime.Thread)
+                 .Register<Tool, ITool>(LifeTime.Thread);
 
             ThreadPool.QueueUserWorkItem(obj =>
             {
@@ -198,7 +198,7 @@ namespace Zq.Test
             var container = new UnityObjectContainer();
 
             container.Register<Worker, IWorker>(LifeTime.Transient)
-                 .Register<Tool, ITool>(LifeTime.Hierarchical);
+                 .Register<Tool, ITool>(LifeTime.Thread);
 
             for (var i = 0; i < 10; i++)
             {

@@ -1,5 +1,5 @@
 ﻿using Zq.Configurations;
-using Zq.Ioc;
+using Zq.DI;
 using Zq.Logging;
 
 namespace Zq.Log4net

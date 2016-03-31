@@ -37,7 +37,8 @@
     <Compile Include="Domain\Entity.cs" />
     <Compile Include="Domain\FakeRepository.cs" />
     <Compile Include="Domain\IVersionable.cs" />
-    <Compile Include="Ioc\ComponentAttribute.cs" />
+    <Compile Include="DI\ComponentAttribute.cs" />
+    <Compile Include="IApplicationService.cs" />
     <Compile Include="Logging\LogLevel.cs" />
     <Compile Include="Messages\IBus.cs" />
     <Compile Include="Messages\IMessage.cs" />
@@ -50,9 +51,9 @@
     <Compile Include="Domain\IEntity.cs" />
     <Compile Include="Domain\IRepository.cs" />
     <Compile Include="Domain\ValueObject.cs" />
-    <Compile Include="Ioc\IObjectContainer.cs" />
-    <Compile Include="Ioc\LifeTime.cs" />
-    <Compile Include="Ioc\ObjectLocator.cs" />
+    <Compile Include="DI\IObjectContainer.cs" />
+    <Compile Include="DI\LifeTime.cs" />
+    <Compile Include="DI\Ioc.cs" />
     <Compile Include="IQueryService.cs" />
     <Compile Include="Logging\ConfigurationExtension.cs" />
     <Compile Include="Logging\ILogger.cs" />

@@ -1,12 +1,10 @@
 ﻿using System.Data.SqlClient;
 using System.Linq;
 using Example.Core.Domain.Managers;
-using Zq.Ioc;
 using Zq.UnitOfWork;
 
 namespace Example.Core.Data
 {
-    [Component(typeof(IManagerRepository), LifeTime.Hierarchical)]
     public class ManagerRepository : EfRepository<Manager>, IManagerRepository
     {
         public ManagerRepository(IDbContext dbContext)

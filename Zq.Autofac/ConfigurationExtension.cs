@@ -1,7 +1,7 @@
 ﻿using System;
 using Autofac;
 using Zq.Configurations;
-using Zq.Ioc;
+using Zq.DI;
 
 namespace Zq.Autofac
 {
@@ -16,7 +16,7 @@ namespace Zq.Autofac
 
             configuration.Container = container;
 
-            ObjectLocator.SetContainer(container); 
+            DI.Ioc.SetContainer(container); 
 
             return configuration;
         }

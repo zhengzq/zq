@@ -1,43 +1,53 @@
-﻿using Zq;
-using Zq.Ioc;
+﻿using System.Collections.Generic;
+using Example.Core.Query.Options;
+using Zq;
+using Zq.Paging;
 
 namespace Example.Core.Query
 {
     public interface IRoleQueryService : IQueryService
     {
-        //List<NavigationRecord> GetModulesByRoleId(int roleId);
+        IPagedList<dynamic> Find(int index, int size, RoleOption option);
+        List<dynamic> GetSelectListItems();
+        dynamic FindById(string id);
     }
-    [Component(typeof(IRoleQueryService))]
+
     public class RoleQueryService : IRoleQueryService
     {
-        //public List<NavigationRecord> GetModulesByRoleId(int roleId)
-        //{
-        //    var role = _roleRepository.Get(roleId);
-        //    var rolePermissions = GetRolePermissions(roleId);
 
-        //    var records = StandardNavigationProvider.Instance.GetNavigationRecords();
+        public IPagedList<dynamic> Find(int index, int size, RoleOption option)
+        {
+            var db = new ReadDbContext();
+            var sql = new Sql(@"SELECT  [Id]
+      ,[Name]
+      ,[Order]
+  FROM [Role] WITH(NOLOCK)");
 
-        //    Func<NavigationRecord, bool> expression = x =>
-        //    {
-        //        return rolePermissions.Exists(y => y.Type == PermissionTypeEnum.导航
-        //        && y.NavicationCode == x.Code
-        //        && y.Domain == role.Domain);
-        //    };
+            sql.OrderBy("([Role].[Order]) ASC");
+            var data = db.Page<dynamic>(index, size, sql);
+            return new PagedList<dynamic>(data.Items, index, size);
+        }
 
-        //    var module = records.Where(x => string.IsNullOrWhiteSpace(x.ParentId)).Where(expression).OrderBy(x => x.Order).ToList();
 
-        //    module.ForEach(x =>
-        //    {
-        //        var list = records.Where(y => y.ParentCode == x.Code).Where(expression).ToList();
-        //        x.Childs.AddRange(list);
-        //    });
-        //    return module;
-        //}
-        //public List<dynamic> GetRolePermissions(int roleId)
-        //{
-        //    var permissions = new List<dynamic>();
+        public dynamic FindById(string id)
+        {
+            var db = new ReadDbContext();
+            var sql = new Sql(@"SELECT  [Id]
+      ,[Name]
+      ,[Order]
+  FROM [Role] WITH(NOLOCK) WHERE ID=@0", id);
+            return db.SingleOrDefault<dynamic>(sql);
+        }
 
-        //    return permissions;
-        //}
+
+        public List<dynamic> GetSelectListItems()
+        {
+            var db = new ReadDbContext();
+            var sql = new Sql(@"SELECT  [Id]
+      ,[Name]
+      ,[Order]
+  FROM [Role] WITH(NOLOCK)");
+            return db.Fetch<dynamic>(sql);
+        }
     }
 }

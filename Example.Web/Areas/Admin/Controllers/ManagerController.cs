@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using System.Linq;
 using Example.Core.Application.Permissions;
 using Example.Core.Query;
+using Example.Core.Query.Options;
 using Example.Core.Web;
 using Example.Core.Web.CustomAttributes;
 
@@ -26,7 +26,7 @@ namespace Example.Web.Areas.Admin.Controllers
 
         [AdminAuthorize(PermissionId.ManagerView)]
         [HttpPost]
-        public JsonResult List([ModelBinder(typeof(Binder<ManagerOption>))]Page<ManagerOption> search)
+        public JsonResult List([ModelBinder(typeof(Binder<ManagerOption>))]PageOption<ManagerOption> search)
         {
             var data = _managerQueryService.Find(search.Index, search.Size, search.Option);
             return Json(new

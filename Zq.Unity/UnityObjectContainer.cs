@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Microsoft.Practices.Unity;
-using Zq.Ioc;
+using Zq.DI;
 
 namespace Zq.Unity
 {
@@ -25,7 +25,7 @@ namespace Zq.Unity
                 case LifeTime.Transient:
                     _container.RegisterType<TInterface, TImplement>(new TransientLifetimeManager());
                     break;
-                case LifeTime.Hierarchical:
+                case LifeTime.Thread:
                 default:
                     _container.RegisterType<TInterface, TImplement>(new HierarchicalLifetimeManager());
                     break;

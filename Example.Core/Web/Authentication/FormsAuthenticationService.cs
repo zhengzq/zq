@@ -1,14 +1,13 @@
 using System;
 using System.Web;
 using System.Web.Security;
-using Zq.Ioc;
+using Zq.DI;
 
 namespace Example.Core.Web.Authentication
 {
     /// <summary>
     /// Authentication service
     /// </summary>
-    [Component(typeof(IAuthenticationService),LifeTime.Hierarchical)]
     public partial class FormsAuthenticationService : IAuthenticationService
     {
         private readonly HttpContextBase _httpContext;

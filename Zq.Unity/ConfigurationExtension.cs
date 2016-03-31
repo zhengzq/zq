@@ -1,5 +1,5 @@
 ﻿using Zq.Configurations;
-using Zq.Ioc;
+using Zq.DI;
 
 namespace Zq.Unity
 {
@@ -11,7 +11,7 @@ namespace Zq.Unity
 
             configuration.Container = container;
 
-            ObjectLocator.SetContainer(container);
+            DI.Ioc.SetContainer(container);
 
             return configuration;
         }

@@ -1,9 +1,7 @@
-﻿using Zq.Ioc;
-using Zq.UnitOfWork;
+﻿using Zq.UnitOfWork;
 
 namespace Example.Core.Data
 {
-    [Component(typeof(IUnitOfWork), LifeTime.Hierarchical)]
     public class UnitOfWork : IUnitOfWork
     {
         private readonly EfDbContext _dbContext;

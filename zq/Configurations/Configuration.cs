@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using Zq.Ioc;
+using Zq.DI;
 
 namespace Zq.Configurations
 {

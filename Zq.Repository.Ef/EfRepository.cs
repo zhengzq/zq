@@ -3,8 +3,8 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using Zq.Common;
+using Zq.DI;
 using Zq.Domain;
-using Zq.Ioc;
 using Zq.Logging;
 
 namespace Zq.Repository.Ef
@@ -49,7 +49,7 @@ namespace Zq.Repository.Ef
                         msg += string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage) + Environment.NewLine;
 
                 var fail = new Exception(msg, dbEx);
-                var logger = ObjectLocator.Resolve<ILogger>();
+                var logger = DI.Ioc.Resolve<ILogger>();
                 logger.Log(LogLevel.Error, fail.Message, fail);
                 throw fail;
             }
@@ -69,7 +69,7 @@ namespace Zq.Repository.Ef
                         msg += Environment.NewLine + string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
 
                 var fail = new Exception(msg, dbEx);
-                var logger = ObjectLocator.Resolve<ILogger>();
+                var logger = DI.Ioc.Resolve<ILogger>();
                 logger.Log(LogLevel.Error, fail.Message, fail);
                 throw fail;
             }
@@ -92,7 +92,7 @@ namespace Zq.Repository.Ef
                         msg += Environment.NewLine + string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
 
                 var fail = new Exception(msg, dbEx);
-                var logger = ObjectLocator.Resolve<ILogger>();
+                var logger = DI.Ioc.Resolve<ILogger>();
                 logger.Log(LogLevel.Error, fail.Message, fail);
                 throw fail;
             }

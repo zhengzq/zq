@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Zq.Ioc;
+using Zq.DI;
 using Zq.Serializers;
 
 namespace Example.Core.Web
@@ -14,7 +14,7 @@ namespace Example.Core.Web
             var start = string.IsNullOrEmpty(request.Form["start"]) ? 0 : int.Parse(request.Form["start"]);
             var length = string.IsNullOrEmpty(request.Form["length"]) ? 10 : int.Parse(request.Form["length"]);
 
-            var search = new Page<T>()
+            var search = new PageOption<T>()
             {
                 Index = (start / length) + 1,
                 Size = length,
@@ -22,7 +22,7 @@ namespace Example.Core.Web
 
             if (!string.IsNullOrEmpty(filter))
             {
-                var serialize = ObjectLocator.Resolve<IJsonSerializer>();
+                var serialize = Ioc.Resolve<IJsonSerializer>();
                 var option = serialize.Deserialize(filter, bindingContext.ModelType) as T;
                 search.Option = option;
             }

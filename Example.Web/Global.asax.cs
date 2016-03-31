@@ -8,7 +8,7 @@ using Example.Core.Application.Permissions;
 using Example.Core.Data;
 using Example.Core.Extensions;
 using Zq.Configurations;
-using Zq.Ioc;
+using Zq.DI;
 using Zq.JsonNet;
 using Zq.Log4net;
 using Zq.Redis;
@@ -33,8 +33,8 @@ namespace Example.Web
                     .UseLog4Net()
                     .UseRedis();
 
-                var permissionService = ObjectLocator.Resolve<IPermissionService>();
-                var navService = ObjectLocator.Resolve<INavService>();
+                var permissionService = Ioc.Resolve<IPermissionService>();
+                var navService = Ioc.Resolve<INavService>();
                 var navIds = navService.GetNavigationRecords().Select(x => x.NavigationId).ToList();
 
                 permissionService.InitNavigationPermissionWithFunctionPermissionFromAssembly(navIds, "Example.Web");
