@@ -20,7 +20,7 @@ namespace Zq.Autofac
         }
         public T Resolve<T>()
         {
-            return _container.Resolve<T>();
+            return Scope().Resolve<T>();
         }
 
         public T Resolve<T>(params Tuple<string, object>[] parameters)
@@ -30,17 +30,20 @@ namespace Zq.Autofac
             {
                 namedParameters.Add(new NamedParameter(parameter.Item1, parameter.Item2));
             }
-            return _container.Resolve<T>(namedParameters.ToArray());
+            return Scope().Resolve<T>(namedParameters.ToArray());
         }
 
         public IEnumerable<T> ResolveAll<T>()
         {
-            return _container.Resolve<IEnumerable<T>>();
+            return Scope().Resolve<IEnumerable<T>>();
         }
+
         public object Resolve(Type type)
         {
-            return _container.Resolve(type);
+
+            return Scope().Resolve(type);
         }
+
         public IObjectContainer Register<TImplement, TInterface>(LifeTime lifeTime = LifeTime.Single)
             where TInterface : class
             where TImplement : class, TInterface
@@ -77,6 +80,12 @@ namespace Zq.Autofac
             }
             builder.Update(_container);
             return this;
+        }
+
+
+        private ILifetimeScope Scope()
+        {
+            return CurrentHttpLifetimeScope != null ? CurrentHttpLifetimeScope() : _container;
         }
 
         public void CustomRegisterComponents(Action<object> func)
