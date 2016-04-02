@@ -12,5 +12,22 @@ namespace Zq.Paging
         {
             return new PagedList<dynamic>(superset, index, pageSize);
         }
+
+        public static List<Dictionary<string, object>> Serialize(this IPagedList<dynamic> page)
+        {
+            var list = new List<Dictionary<string, object>>();
+            foreach (var o in page)
+            {
+                var result = new Dictionary<string, object>();
+                var dictionary = o as IDictionary<string, object>;
+                if (dictionary != null)
+                    foreach (var item in dictionary)
+                    {
+                        result.Add(item.Key, item.Value);
+                    }
+                list.Add(result);
+            }
+            return list;
+        }
     }
 }
