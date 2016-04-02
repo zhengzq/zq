@@ -16,7 +16,7 @@ namespace Example.Core.Data
         {
             var parameter = new SqlParameter("@0", loginName);
             var i = base.Context.Database.ExecuteSqlCommand("SELECT COUNT(0) FROM Manager WHERE LoginName=@0", parameter);
-            return i == 0;
+            return i > 0;
         }
 
         public Manager GetManagerByLoginName(string loginName)

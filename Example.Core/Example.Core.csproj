@@ -71,9 +71,11 @@
     <Compile Include="Domain\Roles\IRoleRepository.cs" />
     <Compile Include="Domain\Roles\Role.cs" />
     <Compile Include="Domain\Roles\RolePermission.cs" />
-    <Compile Include="Extensions\ModelMetadataExtension.cs" />
-    <Compile Include="Extensions\ModelStateExtensions.cs" />
+    <Compile Include="Query\Dto\DtoExtension.cs" />
+    <Compile Include="Web\Extensions\ModelMetadataExtension.cs" />
+    <Compile Include="Web\Extensions\ModelStateExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\Dto\ManagerDto.cs" />
     <Compile Include="Query\Dto\RoleDto.cs" />
     <Compile Include="Query\IManagerQueryService.cs" />
     <Compile Include="Query\INavQueryService.cs" />
@@ -84,7 +86,7 @@
     <Compile Include="Query\Options\ScheduleTaskOption.cs" />
     <Compile Include="Query\PetaPoco.cs" />
     <Compile Include="Query\ReadDbContext.cs" />
-    <Compile Include="ViewModel\BaseModel.cs" />
+    <Compile Include="ViewModel\ViewModelExtension.cs" />
     <Compile Include="ViewModel\CheckModel.cs" />
     <Compile Include="ViewModel\LoginModel.cs" />
     <Compile Include="ViewModel\ManagerModel.cs" />
@@ -105,8 +107,11 @@
     <Compile Include="Web\Binder.cs" />
     <Compile Include="Web\CustomAttributes\AdminAuthorizeAttribute.cs" />
     <Compile Include="Web\CustomAttributes\AdminExceptionAttribute.cs" />
+    <Compile Include="Web\Json\DynamicManager.cs" />
+    <Compile Include="Web\Json\JsonErrorType.cs" />
     <Compile Include="Web\Json\JsonManager.cs" />
     <Compile Include="Web\Json\JsonNetResult.cs" />
+    <Compile Include="Web\Json\ResultManager.cs" />
     <Compile Include="Web\Page.cs" />
     <Compile Include="Web\WorkContext.cs" />
   </ItemGroup>

@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using System.Web.UI.WebControls;
-using Example.Core.Extensions;
+using Example.Core.Web.Extensions;
 
 namespace Example.Core.ViewModel
 {
-    public class ManagerModel : BaseModel
+    public class ManagerModel
     {
         [UIHint("HiddenInput")]
         public int Id { get; set; }
@@ -30,8 +27,6 @@ namespace Example.Core.ViewModel
         [DisplayName("确认密码")]
         [UIHint("Password")]
         public string RepeatPassword { get; set; }
-
-
 
         [DisplayName("联系电话")]
         [UIHint("PhoneNumber")]

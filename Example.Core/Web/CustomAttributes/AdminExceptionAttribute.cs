@@ -61,7 +61,7 @@ namespace Example.Core.Web.CustomAttributes
                 filterContext.Result = new JsonResult
                 {
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-                    Data = JsonManager.GetError(500, "服务器正忙,请稍候再试。")
+                    Data = JsonManager.Error(500, "服务器正忙,请稍候再试。")
                 };
             }
             else

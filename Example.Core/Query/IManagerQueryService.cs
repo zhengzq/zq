@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Example.Core.Query.Dto;
 using Example.Core.Query.Options;
 using Zq;
 using Zq.Paging;
@@ -9,39 +10,33 @@ namespace Example.Core.Query
     {
         IPagedList<dynamic> Find(int index,int size, ManagerOption option);
 
-        dynamic FindById(string id);
+        ManagerDto FindById(int id);
     }
     public class ManagerQueryService : IManagerQueryService
     {
 
         public IPagedList<dynamic> Find(int index, int size, ManagerOption option)
         {
-            //          var db = new ReadDbContext();
-            //          var sql = new Sql(@"SELECT [Manager].[Id]
-            //    ,[LoginName]
-            //    ,[UserName]
-            //    ,[RoleId]
-            //    ,[Cellphone]
-            //    ,[Email]
-            //    ,[IsEnable]
-            //    ,RoleName=[Role].Name
-            //    ,[CreatedTime]
-            //FROM [Manager] WITH(NOLOCK) 
-            //LEFT JOIN [Role] WITH(NOLOCK) ON [Manager].RoleId=[Role].Id");
+            var db = new ReadDbContext();
+            var sql = new Sql(@"SELECT [Manager].[Id]
+                ,[LoginName]
+                ,[UserName]
+                ,[RoleId]
+                ,[Cellphone]
+                ,[Email]
+                ,[IsEnable]
+                ,RoleName=[Role].Name
+                ,[CreatedTime]
+            FROM [Manager] WITH(NOLOCK) 
+            LEFT JOIN [Role] WITH(NOLOCK) ON [Manager].RoleId=[Role].Id");
 
-            //          sql.OrderBy("Manager.CreatedTime");
-            //          var data = db.Page<dynamic>(option.PageIndex, option.PageSize, sql);
-            //          return new PagedList<dynamic>(data.Items, option.PageIndex, option.PageSize);
-            return new PagedList<dynamic>(new List<dynamic>()
-            {
-                new {LoginName="zzq",UserName="郑志强",CellPhone=110,RoleName="超级管理员",Id=1,Cellphone="1"},
-                new {LoginName="zzq1",UserName="郑志强1",CellPhone=110,RoleName="超级管理员",Id=2,Cellphone="2"},
-                new {LoginName="zzq2",UserName="郑志强2",CellPhone=110,RoleName="超级管理员",Id=3,Cellphone="3"},
-            }, index, size);
+            sql.OrderBy("Manager.CreatedTime");
+            var data = db.Page<dynamic>(index, size, sql);
+            return new PagedList<dynamic>(data.Items, index, size);
         }
 
 
-        public dynamic FindById(string id)
+        public ManagerDto FindById(int id)
         {
             var db = new ReadDbContext();
             var sql = new Sql(@"SELECT [Id]
@@ -53,7 +48,7 @@ namespace Example.Core.Query
       ,[IsEnable]
       ,[CreatedTime]
   FROM [Manager] WITH(NOLOCK) WHERE ID=@0", id);
-            return db.SingleOrDefault<dynamic>(sql);
+            return db.SingleOrDefault<ManagerDto>(sql);
         }
     }
 }

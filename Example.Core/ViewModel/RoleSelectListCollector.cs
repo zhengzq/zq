@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Example.Core.Extensions;
 using Example.Core.Query;
+using Example.Core.Web.Extensions;
 using Zq.DI;
 
 namespace Example.Core.ViewModel

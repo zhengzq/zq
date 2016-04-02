@@ -54,7 +54,7 @@ namespace Example.Core.Application.Managers
                 if (!command.RepeatPassword.Equals(command.Password))
                     throw new DomainException("两次密码输入不正确", 100);
 
-                if (!_managerRepository.CheckLoginName(command.LoginName))
+                if (_managerRepository.CheckLoginName(command.LoginName))
                     throw new DomainException("登录名已经存在", 100);
 
                 var data = new Manager(0

@@ -2,7 +2,7 @@
 
 namespace Example.Core.ViewModel
 {
-    public class NavModel : BaseModel
+    public class NavModel
     {
         public int Id { get; set; }
         public string SystemName { get; set; }

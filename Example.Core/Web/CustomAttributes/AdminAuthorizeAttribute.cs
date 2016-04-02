@@ -43,7 +43,7 @@ namespace Example.Core.Web.CustomAttributes
                     switch (filterContext.HttpContext.Request.HttpMethod.ToLower())
                     {
                         case "post":
-                            filterContext.Result = JsonManager.GetError(401, model.Message);
+                            filterContext.Result = JsonManager.Error(401, model.Message);
                             break;
                         default:
                             filterContext.Result = new ViewResult()

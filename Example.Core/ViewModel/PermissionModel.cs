@@ -1,6 +1,6 @@
 ﻿namespace Example.Core.ViewModel
 {
-    public class PermissionModel : BaseModel
+    public class PermissionModel 
     {
         public int Id { get; set; }
         public bool Selected { get; set; }

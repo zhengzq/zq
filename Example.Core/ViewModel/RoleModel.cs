@@ -2,7 +2,7 @@
 
 namespace Example.Core.ViewModel
 {
-    public class RoleModel : BaseModel
+    public class RoleModel 
     {
         public int Id { get; set; }
         public int TypeId { get; set; }
