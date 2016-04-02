@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Example.Core.Query
     public class ReadDbContext : Database
     {
         public ReadDbContext()
-            : base("BlogDB")
+            : base(ConfigurationManager.ConnectionStrings["Example"].Name)
         {
             // if (Mapper == null) Mapper = new MyMapper();
         }

@@ -566,6 +566,14 @@
     <Content Include="Areas\Admin\css\plugins\footable\fonts\footable.eot" />
     <Content Include="Areas\Admin\css\plugins\footable\fonts\footable.ttf" />
     <Content Include="Areas\Admin\css\plugins\footable\fonts\footable.woff" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\SingleLineForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\HiddenInput.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\PhoneNumber.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\DropDownList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -586,7 +594,6 @@
     <Compile Include="Areas\Admin\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\ToolController.cs" />
-    <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -658,7 +665,9 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Example.Core\Example.Core.csproj">
       <Project>{2F10DDAC-FB7C-4FF1-BF40-A4BA6E811C3E}</Project>

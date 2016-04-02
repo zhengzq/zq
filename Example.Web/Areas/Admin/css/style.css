@@ -7883,3 +7883,15 @@ body.skin-3 {
         font-size: 12px
     }
 }
+
+.note {
+  background: #fafafa;
+  border-left: 3px solid #ddd;
+  border-right: 0 solid #ddd;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.note.note-info {
+  border-color: #5bc0de;
+  background: #f6fbfd;
+}

@@ -71,8 +71,10 @@
     <Compile Include="Domain\Roles\IRoleRepository.cs" />
     <Compile Include="Domain\Roles\Role.cs" />
     <Compile Include="Domain\Roles\RolePermission.cs" />
+    <Compile Include="Extensions\ModelMetadataExtension.cs" />
     <Compile Include="Extensions\ModelStateExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\Dto\RoleDto.cs" />
     <Compile Include="Query\IManagerQueryService.cs" />
     <Compile Include="Query\INavQueryService.cs" />
     <Compile Include="Query\IRoleQueryService.cs" />
@@ -82,6 +84,15 @@
     <Compile Include="Query\Options\ScheduleTaskOption.cs" />
     <Compile Include="Query\PetaPoco.cs" />
     <Compile Include="Query\ReadDbContext.cs" />
+    <Compile Include="ViewModel\BaseModel.cs" />
+    <Compile Include="ViewModel\CheckModel.cs" />
+    <Compile Include="ViewModel\LoginModel.cs" />
+    <Compile Include="ViewModel\ManagerModel.cs" />
+    <Compile Include="ViewModel\NavModel.cs" />
+    <Compile Include="ViewModel\PermissionModel.cs" />
+    <Compile Include="ViewModel\RoleModel.cs" />
+    <Compile Include="ViewModel\RoleSelectListCollector.cs" />
+    <Compile Include="ViewModel\ScheduleTaskModel.cs" />
     <Compile Include="Web\AdminController.cs" />
     <Compile Include="Web\Api\AdminApiController.cs" />
     <Compile Include="Web\Api\ApiExceptionAttribute.cs" />
@@ -106,6 +117,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -114,6 +129,7 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>

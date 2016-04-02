@@ -2,9 +2,9 @@
 using Example.Core.Application.Managers;
 using Example.Core.Domain.Managers;
 using Example.Core.Extensions;
+using Example.Core.ViewModel;
 using Example.Core.Web;
 using Example.Core.Web.Authentication;
-using Example.Web.Areas.Admin.Models;
 using Zq;
 
 namespace Example.Web.Areas.Admin.Controllers
@@ -18,6 +18,7 @@ namespace Example.Web.Areas.Admin.Controllers
         {
             _authenticationService = authenticationService;
             _managerService = managerService;
+
         }
         [AllowAnonymous]
         public ActionResult Login()

@@ -2,6 +2,7 @@
 using Example.Core.Application.Permissions;
 using Example.Core.Query;
 using Example.Core.Query.Options;
+using Example.Core.ViewModel;
 using Example.Core.Web;
 using Example.Core.Web.CustomAttributes;
 
@@ -41,7 +42,7 @@ namespace Example.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(new ManagerModel());
         }
     }
 }

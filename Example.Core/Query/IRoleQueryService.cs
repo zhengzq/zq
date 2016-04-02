@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Example.Core.Query.Dto;
 using Example.Core.Query.Options;
 using Zq;
 using Zq.Paging;
@@ -8,7 +9,7 @@ namespace Example.Core.Query
     public interface IRoleQueryService : IQueryService
     {
         IPagedList<dynamic> Find(int index, int size, RoleOption option);
-        List<dynamic> GetSelectListItems();
+        List<RoleDto> Find();
         dynamic FindById(string id);
     }
 
@@ -40,14 +41,14 @@ namespace Example.Core.Query
         }
 
 
-        public List<dynamic> GetSelectListItems()
+        public List<RoleDto> Find()
         {
             var db = new ReadDbContext();
             var sql = new Sql(@"SELECT  [Id]
       ,[Name]
       ,[Order]
   FROM [Role] WITH(NOLOCK)");
-            return db.Fetch<dynamic>(sql);
+            return db.Fetch<RoleDto>(sql);
         }
     }
 }
