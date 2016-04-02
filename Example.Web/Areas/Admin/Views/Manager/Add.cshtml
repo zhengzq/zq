@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_FormLayout.cshtml";
+}
+@model Example.Core.ViewModel.ManagerModel
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        @Html.Partial("_BreadcrupbPartial", new List<Tuple<string, string>>()
+        {
+            new Tuple<string, string>("/Admin/manager/index","用户列表"),
+            new Tuple<string, string>(Request.RawUrl,"用户新增")
+        })
+    </div>
+    <div class="ibox-content">
+        <div class="note note-info">More info and examples at </div>
+        <form class="panel form-horizontal" id="form" method="POST" action="/Admin/Manager/Add">
+            <div class="row" style="margin-right: 50px">
+                @Html.EditorForModel("SingleLineForm")
+                <hr class="panel-wide">
+                <div class="form-group">
+                    @Html.Partial("_FormButtonPartial")
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Script{
+    <script>
+        function submitForm() {
+            zq.submitForm({
+                $form: $("#form"),
+                success: function (result) { console.log(result);}
+            });
+        }
+    </script>
+}
