@@ -1,0 +1,8 @@
+﻿@{
+    var modelMetadata = ModelMetadata.FromLambdaExpression(model => model, ViewData);
+    var properties = modelMetadata.Properties;
+}
+@foreach (var property in properties)
+{
+    @Html.Editor(property.PropertyName, property.DataTypeName, property.Model)
+}

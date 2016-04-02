@@ -1,0 +1,10 @@
+﻿@model string
+
+<div class="form-group">
+    <label for="@ViewData.TemplateInfo.HtmlFieldPrefix" class="col-sm-2 control-label">
+        @ViewData.ModelMetadata.DisplayName
+    </label>
+    <div class="col-sm-10">
+        @Html.TextBoxFor(model => model, new { @class = "form-control" })
+    </div>
+</div>
