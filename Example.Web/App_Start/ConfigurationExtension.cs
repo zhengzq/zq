@@ -5,11 +5,12 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Example.Core.Data;
+using Example.Core.Query.Dto;
+using Example.Core.ViewModel;
 using Example.Core.Web.Authentication;
 using Zq;
 using Zq.Autofac;
 using Zq.Configurations;
-using Zq.Domain;
 using Zq.UnitOfWork;
 
 namespace Example.Web
@@ -81,6 +82,24 @@ namespace Example.Web
                 builder.Update(container);
                 DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             });
+            return configuration;
+        }
+
+        public static Configuration UseMapper(this Configuration configuration)
+        {
+            //AutoMapper.Mapper.CreateMap<NavModel, NavDto>();
+            //AutoMapper.Mapper.CreateMap<NavDto, NavModel>();
+            //AutoMapper.Mapper.CreateMap<PermissionModel, PermissionDto>();
+            //AutoMapper.Mapper.CreateMap<PermissionDto, PermissionModel>();
+            AutoMapper.Mapper.Initialize(conf =>
+            {
+                conf.CreateMap<RoleDto, RoleModel>();
+                conf.CreateMap<RoleModel, RoleDto>();
+
+                conf.CreateMap<ManagerDto, ManagerModel>();
+                conf.CreateMap<ManagerModel, ManagerDto>();
+            });
+
             return configuration;
         }
     }

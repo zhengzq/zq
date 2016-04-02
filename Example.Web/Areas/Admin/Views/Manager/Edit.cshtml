@@ -14,22 +14,26 @@
     </div>
     <div class="ibox-content">
         <div class="note note-info">More info and examples at </div>
-        <form class="panel form-horizontal">
-            <div class="row">
+        <form class="panel form-horizontal" id="form" method="POST" action="/Admin/Manager/Edit">
+            <div class="row" style="margin-right: 50px">
                 @Html.EditorForModel("SingleLineForm")
                 <hr class="panel-wide">
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-9">
-                        <button class="btn btn-primary" type="button" onclick="submitForm()">提交修改</button>
-                        <a class="btn btn-default"
-                           href="javascript:document.referrer?location.href=document.referrer:history.go(-1);">
-                            返回
-                        </a>
-                    </div>
+                    @Html.Partial("_FormButtonPartial")
                 </div>
-
             </div>
         </form>
     </div>
 </div>
-
+@section Script{
+    <script>
+        function submitForm() {
+            zq.submitForm({
+                $form: $("#form"),
+                success: function (result) {
+                    console.log(result);
+                }
+            });
+        }
+    </script>
+}

@@ -1,10 +1,10 @@
 ﻿using System.Web.Mvc;
 using Example.Core.Application.Managers;
 using Example.Core.Domain.Managers;
-using Example.Core.Extensions;
 using Example.Core.ViewModel;
 using Example.Core.Web;
 using Example.Core.Web.Authentication;
+using Example.Core.Web.Extensions;
 using Zq;
 
 namespace Example.Web.Areas.Admin.Controllers

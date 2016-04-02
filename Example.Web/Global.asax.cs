@@ -6,7 +6,6 @@ using System.Web.Routing;
 using Example.Core.Application.Navigations;
 using Example.Core.Application.Permissions;
 using Example.Core.Data;
-using Example.Core.Extensions;
 using Zq.Configurations;
 using Zq.DI;
 using Zq.JsonNet;
@@ -31,7 +30,8 @@ namespace Example.Web
                     .UseIoc()
                     .UseJson()
                     .UseLog4Net()
-                    .UseRedis();
+                    .UseRedis()
+                    .UseMapper();
 
                 var permissionService = Ioc.Resolve<IPermissionService>();
                 var navService = Ioc.Resolve<INavService>();
