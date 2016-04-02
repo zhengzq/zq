@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
 using Example.Core.Application.Managers;
 using Example.Core.Domain.Managers;
-using Example.Core.Extensions;
 using Example.Core.Web;
 using Example.Core.Web.Authentication;
+using Example.Core.Web.Extensions;
 using Example2.Web.Areas.Admin.Models;
 using Zq;
 
