@@ -44,6 +44,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="App_Data\InstallDBData.sql" />
     <Content Include="Areas\Admin\404.html" />
     <Content Include="Areas\Admin\500.html" />
     <Content Include="Areas\Admin\css\animate.css" />

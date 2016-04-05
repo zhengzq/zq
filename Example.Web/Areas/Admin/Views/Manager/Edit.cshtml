@@ -13,8 +13,13 @@
         })
     </div>
     <div class="ibox-content">
-        <div class="note note-info">More info and examples at </div>
-        <form class="panel form-horizontal" id="form" method="POST" action="/Admin/Manager/Edit">
+        <div class="note note-info" style="color: red">密码不填写为不修改密码。</div>
+        @using (Html.BeginForm("Edit", "Manager", new { area = "Admin" }, FormMethod.Post, new
+        {
+            @class = "panel form-horizontal",
+            @id = "form"
+        }))
+        {
             <div class="row" style="margin-right: 50px">
                 @Html.EditorForModel("SingleLineForm")
                 <hr class="panel-wide">
@@ -22,7 +27,7 @@
                     @Html.Partial("_FormButtonPartial")
                 </div>
             </div>
-        </form>
+        }
     </div>
 </div>
 @section Script{

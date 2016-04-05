@@ -14,7 +14,12 @@
     </div>
     <div class="ibox-content">
         <div class="note note-info">More info and examples at </div>
-        <form class="panel form-horizontal" id="form" method="POST" action="/Admin/Manager/Add">
+        @using (Html.BeginForm("Add", "Manager", new { area = "Admin" }, FormMethod.Post, new
+        {
+            @class = "panel form-horizontal",
+            @id = "form"
+        }))
+        {
             <div class="row" style="margin-right: 50px">
                 @Html.EditorForModel("SingleLineForm")
                 <hr class="panel-wide">
@@ -22,7 +27,7 @@
                     @Html.Partial("_FormButtonPartial")
                 </div>
             </div>
-        </form>
+        }
     </div>
 </div>
 @section Script{
@@ -30,7 +35,7 @@
         function submitForm() {
             zq.submitForm({
                 $form: $("#form"),
-                success: function (result) { console.log(result);}
+                success: function (result) { console.log(result); }
             });
         }
     </script>

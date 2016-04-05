@@ -9,6 +9,7 @@ using Zq.Configurations;
 using Zq.DI;
 using Zq.JsonNet;
 using Zq.Log4net;
+using Zq.Logging;
 using Zq.Redis;
 
 namespace Example2.Web
@@ -39,7 +40,7 @@ namespace Example2.Web
             }
             catch (System.Exception ex)
             {
-
+                Ioc.Resolve<ILogger>().Log(LogLevel.Error, ex);
                 throw;
             }
 

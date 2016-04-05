@@ -44,6 +44,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="App_Data\InstallDBData.sql" />
     <Content Include="Areas\Admin\libs\jquery\jquery.cookie.js" />
     <Content Include="packages.config" />
     <Content Include="Areas\Admin\Views\web.config" />

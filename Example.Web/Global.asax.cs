@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using System.Web.Mvc.Routing.Constraints;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Example.Core.Application.Navigations;
@@ -10,6 +9,7 @@ using Zq.Configurations;
 using Zq.DI;
 using Zq.JsonNet;
 using Zq.Log4net;
+using Zq.Logging;
 using Zq.Redis;
 
 namespace Example.Web
@@ -41,10 +41,9 @@ namespace Example.Web
             }
             catch (System.Exception ex)
             {
-
+                Ioc.Resolve<ILogger>().Log(LogLevel.Error, ex);
                 throw;
             }
-
         }
     }
 }
