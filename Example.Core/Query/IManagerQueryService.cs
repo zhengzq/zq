@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Example.Core.Query.Dto;
+﻿using Example.Core.Query.Dto;
 using Example.Core.Query.Options;
 using Zq;
 using Zq.Paging;
@@ -8,9 +7,11 @@ namespace Example.Core.Query
 {
     public interface IManagerQueryService : IQueryService
     {
-        IPagedList<dynamic> Find(int index,int size, ManagerOption option);
+        IPagedList<dynamic> Find(int index, int size, ManagerOption option);
 
         ManagerDto FindById(int id);
+
+        ManagerDto FindByLoginName(string loginName);
     }
     public class ManagerQueryService : IManagerQueryService
     {
@@ -18,15 +19,16 @@ namespace Example.Core.Query
         public IPagedList<dynamic> Find(int index, int size, ManagerOption option)
         {
             var db = new ReadDbContext();
-            var sql = new Sql(@"SELECT [Manager].[Id]
-                ,[LoginName]
-                ,[UserName]
-                ,[RoleId]
-                ,[Cellphone]
-                ,[Email]
-                ,[IsEnable]
-                ,RoleName=[Role].Name
-                ,[CreatedTime]
+            var sql = new Sql(@"SELECT [Id]=[Manager].[Id]
+      ,[LoginName]=[Manager].[LoginName]
+      ,[UserName]=[Manager].[UserName]
+      ,[RoleName]=[Role].Name
+      ,[RoleId]=[Manager].[RoleId]
+      ,[Cellphone]=[Manager].[Cellphone]
+      ,[Email]=[Manager].[Email]
+      ,[IsEnable]=[Manager].[IsEnable]
+      ,[CreatedTime]=[Manager].[CreatedTime]
+      ,[IsSys]=[Manager].[IsSys]
             FROM [Manager] WITH(NOLOCK) 
             LEFT JOIN [Role] WITH(NOLOCK) ON [Manager].RoleId=[Role].Id");
 
@@ -39,15 +41,36 @@ namespace Example.Core.Query
         public ManagerDto FindById(int id)
         {
             var db = new ReadDbContext();
-            var sql = new Sql(@"SELECT [Id]
-      ,[LoginName]
-      ,[UserName]
-      ,[RoleId]
-      ,[Cellphone]
-      ,[Email]
-      ,[IsEnable]
-      ,[CreatedTime]
-  FROM [Manager] WITH(NOLOCK) WHERE ID=@0", id);
+            var sql = new Sql(@"SELECT [Id]=[Manager].[Id]
+      ,[LoginName]=[Manager].[LoginName]
+      ,[UserName]=[Manager].[UserName]
+      ,[RoleName]=[Role].Name
+      ,[RoleId]=[Manager].[RoleId]
+      ,[Cellphone]=[Manager].[Cellphone]
+      ,[Email]=[Manager].[Email]
+      ,[IsEnable]=[Manager].[IsEnable]
+      ,[CreatedTime]=[Manager].[CreatedTime]
+      ,[IsSys]=[Manager].[IsSys]
+  FROM [Manager] WITH(NOLOCK) 
+  LEFT JOIN [Role] WITH(NOLOCK) ON [Manager].RoleId=[Role].Id WHERE [Manager].[Id]=@0", id);
+            return db.SingleOrDefault<ManagerDto>(sql);
+        }
+
+        public ManagerDto FindByLoginName(string loginName)
+        {
+            var db = new ReadDbContext();
+            var sql = new Sql(@"SELECT [Id]=[Manager].[Id]
+      ,[LoginName]=[Manager].[LoginName]
+      ,[UserName]=[Manager].[UserName]
+      ,[RoleName]=[Role].Name
+      ,[RoleId]=[Manager].[RoleId]
+      ,[Cellphone]=[Manager].[Cellphone]
+      ,[Email]=[Manager].[Email]
+      ,[IsEnable]=[Manager].[IsEnable]
+      ,[CreatedTime]=[Manager].[CreatedTime]
+      ,[IsSys]=[Manager].[IsSys]
+  FROM [Manager] WITH(NOLOCK) 
+  LEFT JOIN [Role] WITH(NOLOCK) ON [Manager].RoleId=[Role].Id WHERE [Manager].LoginName=@0", loginName);
             return db.SingleOrDefault<ManagerDto>(sql);
         }
     }

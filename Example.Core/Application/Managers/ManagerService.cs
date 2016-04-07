@@ -39,7 +39,7 @@ namespace Example.Core.Application.Managers
 
                 return new OperateResult(ResultState.Success);
 
-               
+
             }
             catch (DomainException dex)
             {
@@ -139,9 +139,20 @@ namespace Example.Core.Application.Managers
 
         }
 
-        public bool ValidateLoginNameWithPassword(string loginName, string password)
+        public OperateResult ValidateLoginNameWithPassword(string loginName, string password)
         {
-            return _managerRepository.Validate(loginName, password);
+            try
+            {
+                var manager = _managerRepository.GetManagerByLoginName(loginName);
+                if (manager == null) return new OperateResult(ResultState.Error, "账号不存在", 2);
+                manager.CheckIsEnable();
+                manager.CheckPassword(password);
+                return new OperateResult(ResultState.Success, "", 0);
+            }
+            catch (DomainException dex)
+            {
+                return new OperateResult(ResultState.Error, dex.Message, dex.Code);
+            }
         }
     }
 }

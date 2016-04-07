@@ -9,5 +9,9 @@ namespace Example.Core.Query.Dto
         {
             return Mapper.Map<ManagerModel>(dto);
         }
+        public static RoleModel ToModel(this RoleDto dto)
+        {
+            return Mapper.Map<RoleModel>(dto);
+        }
     }
 }

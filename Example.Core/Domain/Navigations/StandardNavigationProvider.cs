@@ -22,7 +22,7 @@ namespace Example.Core.Domain.Navigations
             });
             list.Add(new NavigationRecord
             {
-                NavigationId = "MenuRole", Title = "角色管理", Url = "/Role/Index", ParentId = "ModuleSys"
+                NavigationId = "MenuRole", Title = "角色管理", Url = "/Admin/Role/Index", ParentId = "ModuleSys"
             });
 
             #endregion

@@ -10,7 +10,7 @@ namespace Example.Core.Query
     {
         IPagedList<dynamic> Find(int index, int size, RoleOption option);
         List<RoleDto> Find();
-        dynamic FindById(string id);
+        RoleDto FindById(string id);
     }
 
     public class RoleQueryService : IRoleQueryService
@@ -30,14 +30,14 @@ namespace Example.Core.Query
         }
 
 
-        public dynamic FindById(string id)
+        public RoleDto FindById(string id)
         {
             var db = new ReadDbContext();
             var sql = new Sql(@"SELECT  [Id]
       ,[Name]
       ,[Order]
   FROM [Role] WITH(NOLOCK) WHERE ID=@0", id);
-            return db.SingleOrDefault<dynamic>(sql);
+            return db.SingleOrDefault<RoleDto>(sql);
         }
 
 

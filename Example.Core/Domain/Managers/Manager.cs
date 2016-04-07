@@ -61,5 +61,10 @@ namespace Example.Core.Domain.Managers
             if (!this.IsEnable)
                 throw new DomainException("账号已被禁用", 1);
         }
+        public void CheckPassword(string value)
+        {
+            if (!this.Password.Equals(value.Trim()))
+                throw new DomainException("账号密码错误", 1);
+        }
     }
 }

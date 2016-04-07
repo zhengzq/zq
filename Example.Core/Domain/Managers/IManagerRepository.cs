@@ -6,6 +6,5 @@ namespace Example.Core.Domain.Managers
     {
         bool CheckLoginName(string loginName);
         Manager GetManagerByLoginName(string loginName);
-        bool Validate(string loginName, string password);
     }
 }

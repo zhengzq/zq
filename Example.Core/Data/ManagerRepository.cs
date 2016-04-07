@@ -23,10 +23,5 @@ namespace Example.Core.Data
         {
             return Table.FirstOrDefault(x => x.LoginName == loginName);
         }
-
-        public bool Validate(string loginName, string password)
-        {
-            return Table.Count(x => x.LoginName == loginName && x.Password == password) == 1;
-        }
     }
 }
