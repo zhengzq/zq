@@ -10,7 +10,7 @@
                 <div class="ibox-title">
                     @Html.Partial("_BreadcrupbPartial", new List<Tuple<string, string>>()
                     {
-                        new Tuple<string, string>("/Admin/manager/index","用户列表"),
+                        new Tuple<string, string>("/Admin/role/index","角色列表"),
                     })
                 </div>
                 <div class="ibox-content">
@@ -19,8 +19,7 @@
                             <i class="glyphicon glyphicon-plus">添加</i>
                         </button>
                     </div>
-                    <table class="table table-striped table-bordered table-hover dataTables-example" id="table">
-                    </table>
+                    <table class="table table-striped table-bordered table-hover dataTables-example" id="table"></table>
                 </div>
             </div>
         </div>
@@ -28,8 +27,8 @@
 </div>
 @section Script{
     <script type="text/javascript">
-        window.manager = (function($, zq) {
-            var manager = {}, $table = $("#table"), $searchBtn = $("#searchBtn");
+        window.role = (function($, zq) {
+            var role = {}, $table = $("#table"), $searchBtn = $("#searchBtn");
             /**
             * 表格数据列设置
             */
@@ -38,17 +37,14 @@
                     data: "Id",
                     visible: true
                 },
-                { title: "登入名", data: "LoginName" },
-                { title: "真实姓名", data: "UserName" },
-                { title: "手机号码", data: "CellPhone" },
-                { title: "系统角色", data: "RoleName" },
+                { title: "角色名称", data: "Name" },
                 {
                     title: "操作",
                     data: "Id",
                     render: function(data, type, row) {
-                        var btn = '<a class="btn btn-primary btn-xs" href="/admin/manager/edit/{0}">编辑</a>'.format(data);;
+                        var btn = '<a class="btn btn-primary btn-xs" href="/admin/role/edit/{0}">编辑</a>'.format(data);;
                         btn += "&nbsp;";
-                        btn += '<button class="btn btn-primary btn-xs" onclick="manager.delUser({0})">删除</button>'.format(data);
+                        btn += '<button class="btn btn-primary btn-xs" onclick="role.del({0})">删除</button>'.format(data);
                         return btn;
                     }
                 }
@@ -58,10 +54,14 @@
                 $searchForm: $("#searchForm"),
                 $table: $table,
                 columns: columns,
-                ajaxsetting: { url: "/Manager/List" }
+                ajaxsetting: { url: "/role/list" }
             });
 
-            return manager;
+            role.add = function() {
+                window.location.href = '/admin/role/add';
+            }
+
+            return role;
         })($, zq);
     </script>
 }

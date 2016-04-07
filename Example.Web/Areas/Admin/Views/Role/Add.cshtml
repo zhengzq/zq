@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_FormLayout.cshtml";
+}
+@model Example.Core.ViewModel.RoleModel
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        @Html.Partial("_BreadcrupbPartial", new List<Tuple<string, string>>()
+        {
+            new Tuple<string, string>("/admin/role/index","角色列表"),
+            new Tuple<string, string>(Request.RawUrl,"角色新增")
+        })
+    </div>
+    <div class="ibox-content">
+        <div class="note note-info">More info and examples at </div>
+        @using (Html.BeginForm("Add", "Role", new { area = "Admin" }, FormMethod.Post, new
+        {
+            @class = "panel form-horizontal",
+            @id = "form"
+        }))
+        {
+            <div class="row" style="margin-right: 50px">
+                @Html.EditorForModel("SingleLineForm")
+                <hr class="panel-wide">
+                <div class="form-group">
+                    @Html.Partial("_FormButtonPartial")
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Script{
+    <script>
+        function submitForm() {
+            zq.submitForm({
+                $form: $("#form"),
+                success: function (result) { console.log(result); }
+            });
+        }
+    </script>
+}
