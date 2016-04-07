@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using Example.Core.Application.Managers;
-using Example.Core.Domain.Managers;
+using Example.Core.Query;
 using Example.Core.Web;
 using Example.Core.Web.Authentication;
 using Example.Core.Web.Extensions;
@@ -13,12 +13,15 @@ namespace Example2.Web.Areas.Admin.Controllers
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly IManagerService _managerService;
+        private readonly IManagerQueryService _managerQueryService;
 
         public AccountController(IManagerService managerService
-            , IAuthenticationService authenticationService)
+            , IAuthenticationService authenticationService
+            , IManagerQueryService managerQueryService)
         {
             this._managerService = managerService;
             _authenticationService = authenticationService;
+            _managerQueryService = managerQueryService;
         }
 
         [AllowAnonymous]
@@ -32,33 +35,32 @@ namespace Example2.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_managerService.ValidateLoginNameWithPassword(model.LoginName, model.Password))
+                var r = _managerService.ValidateLoginNameWithPassword(model.LoginName, model.Password);
+                if (r.State == ResultState.Success)
                 {
-                    var r = _managerService.GetManagerByLoginName(model.LoginName);
-                    if (r.State == ResultState.Success)
+                    var dto = _managerQueryService.FindByLoginName(model.LoginName);
+                    if (dto != null)
                     {
-                        var manager = r.Data as Manager;
                         _authenticationService.SignIn(new CurrentUser()
                         {
-                            IsSys = manager.IsSys,
-                            UserName = manager.UserName,
-                            LoginName = manager.LoginName,
-                            //RoleName = manager.RoleName,
-                            RoleName = "超级管理员",
-                            RoleId = manager.RoleId,
-                            UserId = manager.Id
+                            IsSys = dto.IsSys,
+                            UserName = dto.UserName,
+                            LoginName = dto.LoginName,
+                            RoleName = dto.RoleName,
+                            RoleId = dto.RoleId,
+                            UserId = dto.Id
                         }, model.RememberMe);
 
                         return RedirectToAction("Index", "Home");
                     }
                     else
                     {
-                        model.Error = r.Msg;
+                        model.Error = "账号获取异常";
                     }
                 }
                 else
                 {
-                    model.Error = "账号或密码错误";
+                    model.Error = r.Msg;
                 }
             }
             else
